@@ -55,6 +55,7 @@ navbar = dbc.Navbar(
                                 #         label="Fundamentals",
                                 # )),
                                 dbc.NavItem(dbc.NavLink("Data", href="/data")),
+                                dbc.NavItem(dbc.NavLink("EDFS", href="/edfs")),
                                 dbc.NavItem(dbc.DropdownMenu(
                                         children=[
                                             dbc.DropdownMenuItem("More pages", header=True),
