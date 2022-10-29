@@ -5,6 +5,7 @@ import dash_bootstrap_components as dbc
 from dash import dcc, html 
 from dash.dependencies import Input, Output, State
 from apps import navigation
+from edfs.firebase import ls, mkdir, rm
 import dash
 
 dash.register_page(
@@ -69,35 +70,19 @@ layout = html.Div(children=[
     Input('textarea-state-example-button', 'n_clicks'),
     State('textarea-state-example', 'value')
 )
-def update_output(n_clicks, value):
-    value="""
-{
-    "TableCount": "3",
-    "Tables": [
-        {
-            "TableName": "test_rds",
-            "TablePath": "TEST_RDS/",
-            "TableOwner": "dbo",
-            "TableColumns": [
-                {
-                    "ColumnName": "id",
-                    "ColumnType": "INT8",
-                    "ColumnNullable": "false",
-                    "ColumnIsPk": "true"
-                },
-                {
-                    "ColumnName": "name",
-                    "ColumnType": "STRING",
-                    "ColumnLength": "30"
-                },
-                {
-                    "ColumnName": "cel",
-                    "ColumnType": "STRING",
-                    "ColumnLength": "30"
-                }
-            ],
-            "TableColumnsTotal": "3"
-        },
-    """
-    if n_clicks > 0:
-        return 'You have entered: \n{}'.format(value)
+def update_output(n_clicks, input_text):
+    if input_text:
+        functions = {'ls': ls, 'mkdir': mkdir, 'rm': rm}
+
+        input = input_text.split(' ')
+        function_name = input[0]
+        params = input[1:]
+
+        try:
+            output = functions[function_name](*params)
+        except KeyError:
+            output = "Command not found. Valid commands: ls, mkdir, rm, put, getPartitionLocations, readPartition"
+        except TypeError:
+            output = "Please verify function required arguments"
+        if n_clicks > 0:
+            return '\n{}'.format(output)
