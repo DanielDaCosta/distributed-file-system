@@ -77,7 +77,8 @@ body {
 
 .menu {
     height: 112px;
-    width: 912px;
+    /* width: 912px; */
+    width: 1216px;
     display: flex;
     justify-content: space-evenly;
     padding-top: 24px;
