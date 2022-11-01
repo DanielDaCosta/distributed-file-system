@@ -5,7 +5,9 @@ import dash_bootstrap_components as dbc
 from dash import dcc, html 
 from dash.dependencies import Input, Output, State
 from apps import navigation
-from edfs.firebase import ls, mkdir, rm
+from edfs.firebase import ls, mkdir, rm, \
+    getPartitionLocation, \
+    readPartition
 import dash
 
 dash.register_page(
@@ -72,7 +74,11 @@ layout = html.Div(children=[
 )
 def update_output(n_clicks, input_text):
     if input_text:
-        functions = {'ls': ls, 'mkdir': mkdir, 'rm': rm}
+        functions = {
+            'ls': ls, 'mkdir': mkdir, 'rm': rm,
+            'getPartitionLocation': getPartitionLocation,
+            'readPartition': readPartition
+        }
 
         input = input_text.split(' ')
         function_name = input[0]

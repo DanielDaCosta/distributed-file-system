@@ -79,4 +79,43 @@ def rm(path: str) -> str:
         if d.status_code == 200:
             output = path + ' was succefully deleted'
     return output
-            
+
+
+def getPartitionLocation(file: str) -> str:
+    '''Return the locations of partitions of the
+        file
+    Args:
+        file (str): relative path to NameNode/
+    Returns:
+        (str) Success or Error message
+    '''
+    path = "NameNode/" + file + "/partitions"
+    rpath = seek(path)
+    partition = requests.get(rpath.url)
+    pdict = partition.json()       
+
+    if pdict is None:
+        output = f'Partitions for {file} not found'
+    else:
+        output = json.dumps(pdict, indent=4, sort_keys=True) # Organizing the data
+    
+    return output
+
+
+def readPartition(file, partition) -> str:
+    '''Return the content of partition # of
+    the specified file
+    Args:
+        file (str): relative path to NameNode/
+        partition (str):  name of the partition
+    Returns:
+        (str) Success or Error message
+    '''
+    try:
+        pdict = json.loads(getPartitionLocation(file))
+        url = pdict[partition]
+        pdict = requests.get(url).json()
+        output = json.dumps(pdict, indent=4, sort_keys=True)
+    except:
+        output = 'Partition not found'
+    return output
