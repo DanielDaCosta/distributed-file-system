@@ -4,6 +4,8 @@ import re
 import sys
 
 #TODO: prepare statements
+#TODO: grab data file from CLI
+#TODO: listen from CLI
 def seek(path):
     seek_statement = "SELECT * FROM df WHERE path = %s"
     mycursor.execute(seek_statement, (path,))
@@ -101,13 +103,17 @@ def key_idx(str_list):
 
 def hash(file, path, name):
     with open('sql-data/Data.csv') as f:
+        key_list = []
+        csv_counter = 0
         reader = csv.reader(f, delimiter=',')
         key_index = key_idx(next(reader))
-        csv_counter = 0
-        key_list = []
+
+        #execute metadata alter
         meta_statement = "INSERT INTO df VALUES (%s, 'FILE');"
         mycursor.execute(meta_statement, ("{}/{}".format(path,name),))
         mydb.commit()
+        file_success = True
+
         for row in reader:
             #key cleaning
             clean_key =  re.sub(r'[^A-Za-z0-9 ]+', '', row[0]).replace(" ", "_")
@@ -117,7 +123,7 @@ def hash(file, path, name):
             if len(key) >= 64:
                 key = key[:-1]
 
-            text = ','.join(row)
+            #allocate data node if not exists
             create_statement = """
                 CREATE TABLE IF NOT EXISTS {}(
                     path varchar(255),
@@ -127,27 +133,25 @@ def hash(file, path, name):
                 )""".format(key)
             insert_statement = "INSERT INTO {} VALUES (%s, %s, %s);".format(key)
 
+            #try insert data into datanode
             try:
                 mycursor.execute(create_statement)
                 mydb.commit()
-                mycursor.execute(insert_statement, (path + "/" + name, csv_counter, text))
+                mycursor.execute(insert_statement, (path + "/" + name, csv_counter, ','.join(row)))
                 mydb.commit()
                 key_list.append(key)
                 csv_counter += 1
-
             except:
                 print("ERROR")
                 print(mycursor.statement)
+                rm(path, name)
                 return []
-                #TODO add metadata block offset locations
-        file_success = True
-        if file_success:
-            block_statement = "INSERT INTO blockLocations VALUES(%s, %s);"
-            for key in key_list:
-                 mycursor.execute(block_statement, (path + "/" + name, key))
-            mydb.commit()
 
-    return []
+        block_statement = "INSERT INTO blockLocations VALUES(%s, %s);"
+        for key in key_list:
+             mycursor.execute(block_statement, (path + "/" + name, key))
+        mydb.commit()
+        return key_list
 
 
 def delete(list):
