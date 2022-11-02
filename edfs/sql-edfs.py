@@ -5,18 +5,21 @@ import sys
 
 #TODO: prepare statements
 def seek(path):
-    mycursor.execute("SELECT * FROM df WHERE path = '" + path + "';")
+    seek_statement = "SELECT * FROM df WHERE path = %s"
+    mycursor.execute(seek_statement, (path,))
     myresult = mycursor.fetchall()
     return myresult
 
 def mkdir(path, name):
     result = seek(path)
     if result and result[0][1] == "DIRECTORY":
-        dup_result = seek(path + "/" + name)
+        pathname = "{}/{}".format(path, name)
+        dup_result = seek(pathname)
         if not dup_result:
-            mycursor.execute("INSERT INTO df VALUES ('" + path + "/" + name + "', 'DIRECTORY');")
+            insert_statement = "INSERT INTO df VALUES (%s, 'DIRECTORY')"
+            mycursor.execute(insert_statement, (pathname,))
             mydb.commit()
-            print("directory " + name + " created")
+            print("directory {} created".format(name))
         else:
             print("directory already exists")
     else:
@@ -26,7 +29,7 @@ def rm(path, name):
     result = seek(path)
     select_statement = "SELECT * FROM df WHERE path LIKE %s"
     delete_statement = "DELETE FROM df WHERE path LIKE %s"
-    clause =  "{a}/{b}".format(a=path,b=name)
+    clause =  "{}/{}".format(path,name)
 
     if result:
         mycursor.execute(select_statement, (clause + "%",))
@@ -69,7 +72,7 @@ def cat(path):
         myresult = getPartitionLocations(path)
         data_list = []
         for partition in myresult:
-            grab_statement = "SELECT * FROM {table_name} WHERE path = %s".format(table_name=partition[1])
+            grab_statement = "SELECT * FROM {} WHERE path = %s".format(partition[1])
             mycursor.execute(grab_statement, (path,))
             data_list.append(mycursor.fetchall()[0])
         sorted_data_list = Sort_Tuple(data_list)
@@ -80,7 +83,7 @@ def cat(path):
 def put(path, name, csv):
     result = seek(path)
     if result and result[0][1] == "DIRECTORY":
-        dup_result = seek(path + "/" + name)
+        dup_result = seek("{}/{}".format(path,name))
         if not dup_result:
             hash_lists = hash(csv, path, name)
             print("file " + name + " created")
@@ -97,13 +100,13 @@ def key_idx(str_list):
 
 
 def hash(file, path, name):
-    with open('Data.csv') as f:
+    with open('sql-data/Data.csv') as f:
         reader = csv.reader(f, delimiter=',')
         key_index = key_idx(next(reader))
         csv_counter = 0
         key_list = []
         meta_statement = "INSERT INTO df VALUES (%s, 'FILE');"
-        mycursor.execute(meta_statement, (path + "/" + name,))
+        mycursor.execute(meta_statement, ("{}/{}".format(path,name),))
         mydb.commit()
         for row in reader:
             #key cleaning
@@ -115,8 +118,14 @@ def hash(file, path, name):
                 key = key[:-1]
 
             text = ','.join(row)
-            create_statement = "CREATE TABLE IF NOT EXISTS {table_name} (path varchar(255), data_index int, data text, FOREIGN KEY(path) REFERENCES df(path) ON DELETE CASCADE);".format(table_name = key)
-            insert_statement = "INSERT INTO {table_name} VALUES (%s, %s, %s);".format(table_name = key)
+            create_statement = """
+                CREATE TABLE IF NOT EXISTS {}
+                    (path varchar(255),
+                    data_index int,
+                    data text,
+                    FOREIGN KEY(path) REFERENCES df(path) ON DELETE CASCADE);
+                """.format(key)
+            insert_statement = "INSERT INTO {} VALUES (%s, %s, %s);".format(key)
 
             try:
                 mycursor.execute(create_statement)
@@ -174,8 +183,8 @@ if __name__ == "__main__":
     path = sys.argv[2].split('/')
     path = list(filter(None, path))
     #Test runs
-    mkdir("/root", "foo")
+    mkdir("/root/foo", "bar")
 
-    put("/root", "data", "Data.csv")
+    put("/root", "data", "sql-data/Data.csv")
     # cat("/root/data")
     rm("/root", "data")
