@@ -119,12 +119,12 @@ def hash(file, path, name):
 
             text = ','.join(row)
             create_statement = """
-                CREATE TABLE IF NOT EXISTS {}
-                    (path varchar(255),
+                CREATE TABLE IF NOT EXISTS {}(
+                    path varchar(255),
                     data_index int,
                     data text,
-                    FOREIGN KEY(path) REFERENCES df(path) ON DELETE CASCADE);
-                """.format(key)
+                    FOREIGN KEY(path) REFERENCES df(path) ON DELETE CASCADE
+                )""".format(key)
             insert_statement = "INSERT INTO {} VALUES (%s, %s, %s);".format(key)
 
             try:
@@ -168,11 +168,21 @@ if __name__ == "__main__":
 
     mycursor = mydb.cursor(buffered=True)
     if len(sys.argv) >= 3 and sys.argv[2] == "--new":
-        mycursor.execute("CREATE DATABASE edfs;")
-        mycursor.execute("USE edfs;")
-        mycursor.execute("CREATE TABLE df (path varchar(255), type varchar(255), PRIMARY KEY(path));")
-        mycursor.execute("INSERT INTO df VALUES ('/root', 'DIRECTORY');")
-        mycursor.execute("CREATE TABLE blockLocations (path varchar(255), partition_name varchar(255), CONSTRAINT FOREIGN KEY (path) REFERENCES df(path) ON DELETE CASCADE);")
+        mycursor.execute("CREATE DATABASE edfs")
+        mycursor.execute("USE edfs")
+        mycursor.execute("""
+            CREATE TABLE df (
+                path varchar(255),
+                type varchar(255),
+                PRIMARY KEY(path)
+            )""")
+        mycursor.execute("INSERT INTO df VALUES ('/root', 'DIRECTORY')")
+        mycursor.execute("""
+            CREATE TABLE blockLocations (
+                path varchar(255),
+                partition_name varchar(255),
+                CONSTRAINT FOREIGN KEY (path) REFERENCES df(path) ON DELETE CASCADE
+            )""")
         mydb.commit()
     elif len(sys.argv) >= 3 and sys.argv[2] == "--delete":
         mycursor.execute("DROP DATABASE edfs;")
