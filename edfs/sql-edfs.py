@@ -102,7 +102,7 @@ def key_idx(str_list):
 
 
 def hash(file, path, name):
-    with open('sql-data/Data.csv') as f:
+    with open(file) as f:
         key_list = []
         csv_counter = 0
         reader = csv.reader(f, delimiter=',')
@@ -160,7 +160,6 @@ def delete(list):
         mydb.commit()
 
 
-#TODO:environment setup
 if __name__ == "__main__":
 
     #python connector setup
@@ -171,7 +170,10 @@ if __name__ == "__main__":
     )
 
     mycursor = mydb.cursor(buffered=True)
+
+    #TODO modularize into environment setup function
     if len(sys.argv) >= 3 and sys.argv[2] == "--new":
+        #TODO: Prepare sql statements
         mycursor.execute("CREATE DATABASE edfs")
         mycursor.execute("USE edfs")
         mycursor.execute("""
@@ -194,11 +196,11 @@ if __name__ == "__main__":
     else:
         mycursor.execute("USE edfs;")
 
-    path = sys.argv[2].split('/')
-    path = list(filter(None, path))
+    # path = sys.argv[2].split('/')
+    # path = list(filter(None, path))
     #Test runs
     mkdir("/root/foo", "bar")
 
-    put("/root", "data", "sql-data/Data.csv")
+    put("/root", "data", "../datasets/sql-data/Data.csv")
     # cat("/root/data")
     rm("/root", "data")
