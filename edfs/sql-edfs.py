@@ -3,6 +3,7 @@ import csv
 import re
 import sys
 import sql_statements as ss
+import argparse
 
 #TODO: prepare statements
 #TODO: grab data file from CLI
@@ -22,39 +23,40 @@ def mkdir(path, name):
             if not dup_result:
                 mycursor.execute(ss.insert_statement, (pathname,))
                 mydb.commit()
-                print("directory {} created".format(name))
+                output = "directory {} created".format(name)
             else:
-                print("directory already exists")
+                output = "directory already exists"
     else:
-        print("Invalid path: {path}".format(path=path))
+        output = "Invalid path: {path}".format(path=path)
+    return output
 
 def rm(path, name):
     result = seek(path)
     clause =  "{}/{}".format(path,name)
-
     if result:
         mycursor.execute(ss.select_statement, (clause + "%",))
         result = mycursor.fetchall()
         if len(result) != 1:
-            print("invalid deletion")
+            output = "invalid deletion"
         else:
             mycursor.execute(ss.delete_statement, (clause,)) #TODO: adding % here will add -r functionality
             mydb.commit()
-            print("{c} deleted".format(c=clause))
+            output = "{c} deleted".format(c=clause)
     else:
-        print("Invalid path: {path}".format(path=clause))
+        output = "Invalid path: {path}".format(path=clause)
+    return output
 
 def ls(path):
     result = seek(path)
     if result:
         if result[0][1] == "FILE":
-            print("Cannot run 'ls' on files")
+            output = "Cannot run 'ls' on files"
         elif result[0][1] == "DIRECTORY":
             mycursor.execute(ss.ls_statement, ("^{}\/[^\/]+$".format(path),))
-            myresult = mycursor.fetchall()
-            return myresult
+            output = mycursor.fetchall()
     else:
-        print("Invalid path: {path}".format(path=path))
+        output = "Invalid path: {path}".format(path=path)
+    return output
 
 def getPartitionLocations(path):
     mycursor.execute(ss.cat_statement, (path,))
@@ -70,7 +72,7 @@ def cat(path):
     result = seek(path)
     if result:
         if result[0][1] == "DIRECTORY":
-            print("Cannot run 'cat' on directories")
+            output = "Cannot run 'cat' on directories"
         elif result[0][1] == "FILE":
             myresult = getPartitionLocations(path)
             data_list = []
@@ -79,10 +81,11 @@ def cat(path):
                 data_list.append(mycursor.fetchall()[0])
             sorted_data_list = Sort_Tuple(data_list)
             for s in sorted_data_list:
-                print(s[2])
+                output = s[2]
             return result
     else:
-        print("Invalid path: {path}".format(path=clause))
+        output = "Invalid path: {path}".format(path=clause)
+    return output
 
 def put(path, name, csv):
     result = seek(path)
@@ -91,20 +94,20 @@ def put(path, name, csv):
             dup_result = seek("{}/{}".format(path,name))
             if not dup_result:
                 hash_lists = hash(csv, path, name)
-                print("file {} created".format(name))
+                output = "file {} created".format(name)
             else:
-                print("file already exists")
+                output = "file already exists"
         else:
-            print("cannot place a file in a file")
+            output = "cannot place a file in a file"
     else:
-        print("Invalid path: {path}".format(path=path))
+        output = "Invalid path: {path}".format(path=path)
+    return output
 
 def key_idx(str_list):
     try:
         return str_list.index('Country Name')
     except:
         return 0
-
 
 def hash(file, path, name):
     with open(file) as f:
@@ -135,7 +138,8 @@ def hash(file, path, name):
                 key_list.append(key)
                 csv_counter += 1
             except:
-                print("ERROR: {}".format(mycursor.statement))
+                output = "ERROR: {}".format(mycursor.statement)
+                print(output)
                 rm(path, name)
                 return []
         for key in key_list:
@@ -169,6 +173,8 @@ if __name__ == "__main__":
 
     mycursor = mydb.cursor(buffered=True)
 
+
+    #TODO: add argparse
     if len(sys.argv) >= 3 and sys.argv[2] == "--new":
         new_env()
     elif len(sys.argv) >= 3 and sys.argv[2] == "--delete":
@@ -180,15 +186,11 @@ if __name__ == "__main__":
     # path = list(filter(None, path))
 
     #Test runs
-    print("mkdir")
-    mkdir("/root/foo", "bar")
+    print(mkdir("/root/foo", "bar"))
 
-    print("put")
-    put("/root", "data", "../datasets/sql-data/Data.csv")
+    print(put("/root", "data", "../datasets/sql-data/Data.csv"))
     # cat("/root/data")
 
-    print("rm")
-    rm("/root", "data")
+    print(rm("/root", "data"))
 
-    print("ls wrong")
-    ls("/tree")
+    print(ls("/tree"))
