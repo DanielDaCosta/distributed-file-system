@@ -18,21 +18,21 @@ def mkdir(path, name):
     result = seek(path)
     if result:
         if result[0][1] == "DIRECTORY":
-            pathname = "{}/{}".format(path, name)
+            pathname = f"{path}/{name}"
             dup_result = seek(pathname)
             if not dup_result:
                 mycursor.execute(ss.insert_statement, (pathname,))
                 mydb.commit()
-                output = "directory {} created".format(name)
+                output = f"directory {name} created"
             else:
                 output = "directory already exists"
     else:
-        output = "Invalid path: {path}".format(path=path)
+        output = f"Invalid path: {path}"
     return output
 
 def rm(path, name):
     result = seek(path)
-    clause =  "{}/{}".format(path,name)
+    clause =  f"{path}/{name}"
     if result:
         mycursor.execute(ss.select_statement, (clause + "%",))
         result = mycursor.fetchall()
@@ -41,9 +41,9 @@ def rm(path, name):
         else:
             mycursor.execute(ss.delete_statement, (clause,)) #TODO: adding % here will add -r functionality
             mydb.commit()
-            output = "{c} deleted".format(c=clause)
+            output = f"{clause} deleted"
     else:
-        output = "Invalid path: {path}".format(path=clause)
+        output = f"Invalid path: {clause}"
     return output
 
 def ls(path):
@@ -52,10 +52,10 @@ def ls(path):
         if result[0][1] == "FILE":
             output = "Cannot run 'ls' on files"
         elif result[0][1] == "DIRECTORY":
-            mycursor.execute(ss.ls_statement, ("^{}\/[^\/]+$".format(path),))
+            mycursor.execute(ss.ls_statement, (f"^{path}\/[^\/]+$",))
             output = mycursor.fetchall()
     else:
-        output = "Invalid path: {path}".format(path=path)
+        output = f"Invalid path: {path}"
     return output
 
 def getPartitionLocations(path):
@@ -70,6 +70,7 @@ def Sort_Tuple(tup):
 
 def cat(path):
     result = seek(path)
+    output = ""
     if result:
         if result[0][1] == "DIRECTORY":
             output = "Cannot run 'cat' on directories"
@@ -77,30 +78,30 @@ def cat(path):
             myresult = getPartitionLocations(path)
             data_list = []
             for partition in myresult:
-                mycursor.execute(ss.grab_statement.format(partition[1]), (path,))
+                mycursor.execute(f"SELECT * FROM {partition[1]} WHERE path = %s", (path,))
                 data_list.append(mycursor.fetchall()[0])
             sorted_data_list = Sort_Tuple(data_list)
             for s in sorted_data_list:
-                output = s[2]
-            return result
+                output += s[2]
+            return output
     else:
-        output = "Invalid path: {path}".format(path=clause)
+        output = f"Invalid path: {clause}"
     return output
 
 def put(path, name, csv):
     result = seek(path)
     if result:
         if result[0][1] == "DIRECTORY":
-            dup_result = seek("{}/{}".format(path,name))
+            dup_result = seek(f"{path}/{name}")
             if not dup_result:
                 hash_lists = hash(csv, path, name)
-                output = "file {} created".format(name)
+                output = f"file {name} created"
             else:
                 output = "file already exists"
         else:
             output = "cannot place a file in a file"
     else:
-        output = "Invalid path: {path}".format(path=path)
+        output = f"Invalid path: {path}"
     return output
 
 def key_idx(str_list):
@@ -117,7 +118,7 @@ def hash(file, path, name):
         key_index = key_idx(next(reader))
 
         #execute metadata alter
-        mycursor.execute(ss.meta_statement, ("{}/{}".format(path,name),))
+        mycursor.execute(ss.meta_statement, (file,))
         mydb.commit()
         file_success = True
 
@@ -126,7 +127,7 @@ def hash(file, path, name):
             clean_key =  re.sub(r'[^A-Za-z0-9 ]+', '', row[0]).replace(" ", "_")
             key = clean_key if clean_key != "" else "invalid_key"
             if key.isnumeric() and key.length() > 0:
-                key = "t{key}".format(key=key)
+                key = f"t{key}"
             if len(key) >= 64:
                 key = key[:-1]
             #try insert data into datanode
@@ -138,12 +139,12 @@ def hash(file, path, name):
                 key_list.append(key)
                 csv_counter += 1
             except:
-                output = "ERROR: {}".format(mycursor.statement)
+                output = f"ERROR: {mycursor.statement}"
                 print(output)
                 rm(path, name)
                 return []
         for key in key_list:
-             mycursor.execute(ss.block_statement, ("{}/{}".format(path, name), key))
+             mycursor.execute(ss.block_statement, (f"{path}/{name}", key))
         mydb.commit()
         return key_list
 
@@ -189,7 +190,7 @@ if __name__ == "__main__":
     print(mkdir("/root/foo", "bar"))
 
     print(put("/root", "data", "../datasets/sql-data/Data.csv"))
-    # cat("/root/data")
+    # print(cat("/root/data"))
 
     print(rm("/root", "data"))
 
