@@ -15,21 +15,21 @@ def seek(path):
 
 def mkdir(path, name):
     result = seek(path)
-    if result and result[0][1] == "DIRECTORY":
-        pathname = "{}/{}".format(path, name)
-        dup_result = seek(pathname)
-        if not dup_result:
-            mycursor.execute(ss.insert_statement, (pathname,))
-            mydb.commit()
-            print("directory {} created".format(name))
-        else:
-            print("directory already exists")
+    if result:
+        if result[0][1] == "DIRECTORY":
+            pathname = "{}/{}".format(path, name)
+            dup_result = seek(pathname)
+            if not dup_result:
+                mycursor.execute(ss.insert_statement, (pathname,))
+                mydb.commit()
+                print("directory {} created".format(name))
+            else:
+                print("directory already exists")
     else:
-        print("invalid path")
+        print("Invalid path: {path}".format(path=path))
 
 def rm(path, name):
     result = seek(path)
-
     clause =  "{}/{}".format(path,name)
 
     if result:
@@ -46,12 +46,15 @@ def rm(path, name):
 
 def ls(path):
     result = seek(path)
-    if result[0][1] == "FILE":
-        print("Cannot run 'ls' on files")
-    elif result[0][1] == "DIRECTORY":
-        mycursor.execute(ss.ls_statement, ("^{}\/[^\/]+$".format(path),))
-        myresult = mycursor.fetchall()
-        return myresult
+    if result:
+        if result[0][1] == "FILE":
+            print("Cannot run 'ls' on files")
+        elif result[0][1] == "DIRECTORY":
+            mycursor.execute(ss.ls_statement, ("^{}\/[^\/]+$".format(path),))
+            myresult = mycursor.fetchall()
+            return myresult
+    else:
+        print("Invalid path: {path}".format(path=path))
 
 def getPartitionLocations(path):
     mycursor.execute(ss.cat_statement, (path,))
@@ -65,30 +68,36 @@ def Sort_Tuple(tup):
 
 def cat(path):
     result = seek(path)
-    if result[0][1] == "DIRECTORY":
-        print("Cannot run 'cat' on directories")
-    elif result[0][1] == "FILE":
-        myresult = getPartitionLocations(path)
-        data_list = []
-        for partition in myresult:
-            mycursor.execute(ss.grab_statement.format(partition[1]), (path,))
-            data_list.append(mycursor.fetchall()[0])
-        sorted_data_list = Sort_Tuple(data_list)
-        for s in sorted_data_list:
-            print(s[2])
-        return result #TODO actually flesh out cat here
+    if result:
+        if result[0][1] == "DIRECTORY":
+            print("Cannot run 'cat' on directories")
+        elif result[0][1] == "FILE":
+            myresult = getPartitionLocations(path)
+            data_list = []
+            for partition in myresult:
+                mycursor.execute(ss.grab_statement.format(partition[1]), (path,))
+                data_list.append(mycursor.fetchall()[0])
+            sorted_data_list = Sort_Tuple(data_list)
+            for s in sorted_data_list:
+                print(s[2])
+            return result
+    else:
+        print("Invalid path: {path}".format(path=clause))
 
 def put(path, name, csv):
     result = seek(path)
-    if result and result[0][1] == "DIRECTORY":
-        dup_result = seek("{}/{}".format(path,name))
-        if not dup_result:
-            hash_lists = hash(csv, path, name)
-            print("file {} created".format(name))
+    if result:
+        if result[0][1] == "DIRECTORY":
+            dup_result = seek("{}/{}".format(path,name))
+            if not dup_result:
+                hash_lists = hash(csv, path, name)
+                print("file {} created".format(name))
+            else:
+                print("file already exists")
         else:
-            print("file already exists")
+            print("cannot place a file in a file")
     else:
-        print("invalid path")
+        print("Invalid path: {path}".format(path=path))
 
 def key_idx(str_list):
     try:
@@ -160,7 +169,6 @@ if __name__ == "__main__":
 
     mycursor = mydb.cursor(buffered=True)
 
-    #TODO modularize into environment setup function
     if len(sys.argv) >= 3 and sys.argv[2] == "--new":
         new_env()
     elif len(sys.argv) >= 3 and sys.argv[2] == "--delete":
@@ -172,8 +180,15 @@ if __name__ == "__main__":
     # path = list(filter(None, path))
 
     #Test runs
+    print("mkdir")
     mkdir("/root/foo", "bar")
 
+    print("put")
     put("/root", "data", "../datasets/sql-data/Data.csv")
     # cat("/root/data")
+
+    print("rm")
     rm("/root", "data")
+
+    print("ls wrong")
+    ls("/tree")
