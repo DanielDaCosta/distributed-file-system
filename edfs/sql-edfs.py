@@ -32,6 +32,10 @@ def key_idx(str_list):
     except:
         return 0
 
+####################
+# API Functions    #
+####################
+
 def seek(path):
     '''
     Returns the filestructure that matches the specified path
@@ -252,6 +256,10 @@ def hash(path, name, csv_file):
              mycursor.execute(block_statement, (f"{path}/{name}", key))
         mydb.commit()
         return key_list
+
+######################
+# Database Functions #
+######################
 
 def delete(list):
     '''
