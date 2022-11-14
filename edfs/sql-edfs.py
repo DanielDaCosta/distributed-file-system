@@ -129,6 +129,19 @@ def getPartitionLocations(path):
     mycursor.execute(cat_statement, (path,))
     return mycursor.fetchall()
 
+def readPartition(path, partition_no):
+    '''
+    Returns the contents of a specified partition_no
+    Args:
+        path (str): the path to the file
+        partition_no: the partition in order of when it originally appeared in
+        the file
+    Returns:
+        (tuple): the data contents of the partition
+    '''
+    mycursor.execute(f"SELECT * FROM {partition_no} WHERE path = %s", (path,))
+    return mycursor.fetchall()[0]
+
 def cat(path):
     '''
     Returns the contents the file at the specified path
@@ -146,8 +159,7 @@ def cat(path):
             myresult = getPartitionLocations(path)
             data_list = []
             for partition in myresult:
-                mycursor.execute(f"SELECT * FROM {partition[1]} WHERE path = %s", (path,))
-                data_list.append(mycursor.fetchall()[0])
+                data_list.append(readPartition(path, partition[1]))
             sorted_data_list = Sort_Tuple(data_list, 1)
             for s in sorted_data_list:
                 output += s[2]
