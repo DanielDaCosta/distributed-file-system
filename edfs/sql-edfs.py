@@ -364,16 +364,10 @@ if __name__ == "__main__":
         print(new_env(edfs))
     else:
         print(start_env(edfs))
-
-
         print(mkdir("/root", "foo"))
         print(mkdir("/root/foo", "bar"))
-
-        # print(mkdir("/root/foo", "bar"))
         print(put("/root/foo", "data", "../datasets/sql-data/Data.csv"))
         print(cat("/root/foo/data"))
         print(ls("/root/foo"))
-        #
         print(rm("/root", "data"))
-        #
         print(ls("/tree"))
