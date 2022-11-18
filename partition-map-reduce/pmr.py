@@ -9,6 +9,7 @@ class EDFS(Enum):
     FIREBASE = 2
     MONGODB = 3
 
+#TODO maybe push this to the sqledfs.py file?
 def mapPartition(key:str, col_data, data:str):
     """
         Arg: The name of the partition from getPartitionLocations
