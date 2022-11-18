@@ -1,6 +1,13 @@
 import sys
 sys.path.insert(1, '../edfs')
 import sqledfs
+from enum import Enum
+
+# class syntax
+class EDFS(Enum):
+    MYSQL = 1
+    FIREBASE = 2
+    MONGODB = 3
 
 def mapPartition(key:str, col_data, data:str):
     """
@@ -24,4 +31,4 @@ if __name__ == "__main__":
           password="compla36080",
         )
 
-        execute(None)
+        execute(EDFS.MYSQL)
