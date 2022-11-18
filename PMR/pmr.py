@@ -18,10 +18,11 @@ def mapPartition(key:str, col_data, data:str):
     """
     return None
 
-def execute(implementation:enum):
+def execute(implementation:enum, function:str, file:str):
     #TODO import getPartitionLocations() from each
     if implementation == EDFS.MYSQL:
         sqledfs.start_env("edfs")
+        sqledfs.getPartitionLocations("file")
     return None
 
 if __name__ == "__main__":
