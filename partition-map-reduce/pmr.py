@@ -20,16 +20,20 @@ def mapPartition(key:str, col_data, data:str):
 
 def execute(implementation:enum):
     #TODO import getPartitionLocations() from each
+    if implementation == EDFS.MYSQL:
+        mydb = ccnx.connect(
+          host="localhost",
+          user="root",
+          password="BLANK",
+        )
+        sqledfs.start_env("edfs")
+
     return None
 
 if __name__ == "__main__":
 
     if sys.argv[1] == "mysql":
         #python connector setup
-        mydb = ccnx.connect(
-          host="localhost",
-          user="root",
-          password="compla36080",
-        )
+
 
         execute(EDFS.MYSQL)
