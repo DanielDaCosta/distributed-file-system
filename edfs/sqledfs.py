@@ -36,7 +36,7 @@ def key_idx(str_list):
 # API Functions    #
 ####################
 
-def seek(path):
+def seek(mycursor, path):
     '''
     Returns the filestructure that matches the specified path
     Args:
@@ -49,7 +49,7 @@ def seek(path):
     myresult = mycursor.fetchall()
     return myresult
 
-def mkdir(path, name):
+def mkdir(mycursor, path, name):
     '''
     Create the directory at the specfied path in the filesystem
     Args:
@@ -58,11 +58,11 @@ def mkdir(path, name):
     Returns:
         output (str): success or failure of the operation
     '''
-    result = seek(path)
+    result = seek(mycursor, path)
     if result:
         if result[0][1] == "DIRECTORY":
             pathname = f"{path}/{name}"
-            dup_result = seek(pathname)
+            dup_result = seek(mycursor, pathname)
             if not dup_result:
                 insert_statement = "INSERT INTO df VALUES (%s, 'DIRECTORY')"
                 mycursor.execute(insert_statement, (pathname,))
@@ -74,7 +74,7 @@ def mkdir(path, name):
         output = f"Invalid path: {path}"
     return output
 
-def rm(path, name):
+def rm(mycursor, path, name):
     '''
     Removes the directory at the specfied path in the filesystem
     Args:
@@ -83,7 +83,7 @@ def rm(path, name):
     Returns:
         output (str): success or failure of the operation
     '''
-    result = seek(path)
+    result = seek(mycursor, path)
     filepath =  f"{path}/{name}"
     if result:
         select_statement = "SELECT * FROM df WHERE path LIKE %s"
@@ -100,7 +100,7 @@ def rm(path, name):
         output = f"Invalid path: {filepath}"
     return output
 
-def ls(path):
+def ls(mycursor, path):
     '''
     Returns the contents of the directory at the specfied path in the filesystem
     Args:
@@ -109,7 +109,7 @@ def ls(path):
     Returns:
         output (str): success or failure of the operation
     '''
-    result = seek(path)
+    result = seek(mycursor, path)
     if result:
         if result[0][1] == "FILE":
             output = "Cannot run 'ls' on files"
@@ -121,7 +121,7 @@ def ls(path):
         output = f"Invalid path: {path}"
     return output
 
-def getPartitionLocations(path):
+def getPartitionLocations(mycursor, path):
     '''
     Returns the blockLocations that match the file at the specified
     Args:
@@ -133,7 +133,7 @@ def getPartitionLocations(path):
     mycursor.execute(cat_statement, (path,))
     return mycursor.fetchall()
 
-def readPartition(path, partition_no):
+def readPartition(mycursor, path, partition_no):
     '''
     Returns the contents of a specified partition_no
     Args:
@@ -146,7 +146,7 @@ def readPartition(path, partition_no):
     mycursor.execute(f"SELECT * FROM {partition_no} WHERE path = %s", (path,))
     return mycursor.fetchall()[0]
 
-def cat(path):
+def cat(mycursor, path):
     '''
     Returns the contents the file at the specified path
     Args:
@@ -154,16 +154,16 @@ def cat(path):
     Returns:
         output (obj): the text of the file
     '''
-    result = seek(path)
+    result = seek(mycursor, path)
     output = ""
     if result:
         if result[0][1] == "DIRECTORY":
             output = "Cannot run 'cat' on directories"
         elif result[0][1] == "FILE":
-            myresult = getPartitionLocations(path)
+            myresult = getPartitionLocations(mycursor, path)
             data_list = []
             for partition in myresult:
-                data_list.append(readPartition(path, partition[1]))
+                data_list.append(readPartition(mycursor, path, partition[1]))
             sorted_data_list = Sort_Tuple(data_list, 1)
             for s in sorted_data_list:
                 output += s[2]
@@ -172,7 +172,7 @@ def cat(path):
         output = f"Invalid path: {path}"
     return output
 
-def put(path, name, csv):
+def put(mycursor, path, name, csv):
     '''
     places the file from a local directory into the EDFS
     Args:
@@ -182,12 +182,12 @@ def put(path, name, csv):
     Returns:
         output (str): the success or failure of the operation
     '''
-    result = seek(path)
+    result = seek(mycursor, path)
     if result:
         if result[0][1] == "DIRECTORY":
-            dup_result = seek(f"{path}/{name}")
+            dup_result = seek(mycursor, f"{path}/{name}")
             if not dup_result:
-                hash_lists = hash(path, name, csv)
+                hash_lists = hash(mycursor, path, name, csv)
                 output = f"file {name} created"
             else:
                 output = "file already exists"
@@ -199,7 +199,7 @@ def put(path, name, csv):
 
 
 
-def hash(path, name, csv_file):
+def hash(mycursor, path, name, csv_file):
     '''
     Alters the metadata to allocate new datanotes if needed and places the file
     data into the nodes
@@ -261,7 +261,7 @@ def hash(path, name, csv_file):
 # Database Functions #
 ######################
 
-def delete(list):
+def delete(mycursor, list):
     '''
     Drops all tables in the list from the edfs
     Args:
@@ -278,7 +278,7 @@ def delete(list):
     except:
         return "Database drop error"
 
-def new_env(edfs):
+def new_env(mycursor, edfs):
     '''
     Executes EDFS SQL setup queries
     Args:
@@ -311,7 +311,7 @@ def new_env(edfs):
     except:
         return "Database error"
 
-def delete_env(edfs):
+def delete_env(mycursor, edfs):
     '''
     Drops the EDFS database entirely
     Args:
@@ -327,7 +327,7 @@ def delete_env(edfs):
         return "Database error"
     return  f"{edfs} deleted"
 
-def start_env(edfs):
+def start_env(mycursor, edfs):
     '''
     Uses EDFS database
     Args:
@@ -342,6 +342,7 @@ def start_env(edfs):
         return "Database error"
     return  f"{edfs} started"
 
+#TODO OOP this script
 
 if __name__ == "__main__":
 
@@ -349,25 +350,25 @@ if __name__ == "__main__":
     mydb = ccnx.connect(
       host="localhost",
       user="root",
-      password=sys.argv[1],
+      password="compla36080",
     )
     mycursor = mydb.cursor(buffered=True)
     edfs = "edfs"
 
     #Testing
     if "--delete" in sys.argv:
-        print(delete_env(edfs))
+        print(delete_env(mycursor, edfs))
     elif "--new" in sys.argv:
-        print(new_env(edfs))
+        print(new_env(mycursor, edfs))
     elif "--restart" in sys.argv:
-        print(delete_env(edfs))
-        print(new_env(edfs))
+        print(delete_env(mycursor, edfs))
+        print(new_env(mycursor, edfs))
     else:
-        print(start_env(edfs))
-        print(mkdir("/root", "foo"))
-        print(mkdir("/root/foo", "bar"))
-        print(put("/root/foo", "data", "../datasets/sql-data/Data.csv"))
-        print(cat("/root/foo/data"))
-        print(ls("/root/foo"))
-        print(rm("/root", "data"))
-        print(ls("/tree"))
+        print(start_env(mycursor, edfs))
+        print(mkdir(mycursor, "/root", "foo"))
+        print(mkdir(mycursor, "/root/foo", "bar"))
+        print(put(mycursor, "/root/foo", "data", "../datasets/sql-data/Data.csv"))
+        print(cat(mycursor, "/root/foo/data"))
+        print(ls(mycursor, "/root/foo"))
+        print(rm(mycursor, "/root", "data"))
+        print(ls(mycursor, "/tree"))
