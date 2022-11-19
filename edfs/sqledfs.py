@@ -155,6 +155,20 @@ def cat(mycursor, path):
     Returns:
         output (obj): the text of the file
     '''
+    output = ""
+    sorted_data_list = getPartitionData(mycursor, path)
+    for s in sorted_data_list:
+        output += s[2]
+    return output
+
+def getPartitionData(mycursor, path):
+    '''
+    Returns the contents the file at the specified path
+    Args:
+        path (str): the path to the file
+    Returns:
+        output (obj): the text of the file
+    '''
     result = seek(mycursor, path)
     output = ""
     if result:
@@ -166,9 +180,7 @@ def cat(mycursor, path):
             for partition in myresult:
                 data_list.append(readPartition(mycursor, path, partition[1]))
             sorted_data_list = Sort_Tuple(data_list, 1)
-            for s in sorted_data_list:
-                output += s[2]
-            return output
+            return sorted_data_list
     else:
         output = f"Invalid path: {path}"
     return output

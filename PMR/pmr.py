@@ -21,11 +21,13 @@ def mapPartition(key:str, col_data, data:str):
 
 def sql_map(mycursor, file="/root/foo/data"):
     sqledfs.start_env(mycursor, "edfs")
-    partitions = sqledfs.getPartitionLocations(mycursor, file)
-    # col_names = getColNames()
-    for p in partitions:
+    data = sqledfs.getPartitionData(mycursor, file)
+    # then I get all the partition locations and the indices and it goes zoooom
+
+    for r in data:
         #grab targets and parse into partitions
-        print(p)
+        print(r)
+
 
 def execute(mycursor, implementation:int, function:str=None, file:str=None, targets:[]=None):
     #TODO import getPartitionLocations() from each
