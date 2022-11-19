@@ -1,6 +1,7 @@
 import sys
 sys.path.insert(1, '../edfs')
 import sqledfs
+import mysql.connector as ccnx
 from enum import Enum
 
 # class syntax
@@ -18,17 +19,22 @@ def mapPartition(key:str, col_data, data:str):
     """
     return None
 
-def execute(implementation:enum, function:str, file:str, targets:[]):
+def sql_map():
+    sqledfs.start_env("edfs")
+    partitions = sqledfs.getPartitionLocations("file")
+    col_names = getColNames()
+    for p in partitions:
+        #grab targets and parse into partitions
+        print(p)
+
+def execute(implementation:int, function:str=None, file:str=None, targets:[]=None, mycursor):
     #TODO import getPartitionLocations() from each
     if implementation == EDFS.MYSQL:
-        sqledfs.start_env("edfs")
-
-        #expecting partiion array
+        sql_map()
         partitions = sqledfs.getPartitionLocations("file")
-        col_names = getColNames()
-        for p in partitions:
-            #grab targets and parse into partitions
-            print(p)
+        #expecting partiion array
+
+
     return None
 
 if __name__ == "__main__":
@@ -40,5 +46,6 @@ if __name__ == "__main__":
           user="root",
           password=sys.argv[1],
         )
+        mycursor = mydb.cursor(buffered=True)
 
-        execute(EDFS.MYSQL)
+        execute(EDFS.MYSQL, mycursor)
