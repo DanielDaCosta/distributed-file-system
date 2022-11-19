@@ -32,6 +32,16 @@ def key_idx(str_list):
     except:
         return 0
 
+def key_cleaning(row):
+    #key cleaning
+    clean_key =  re.sub(r'[^A-Za-z0-9 ]+', '', row[0]).replace(" ", "_")
+    key = clean_key if clean_key != "" else "invalid_key"
+    if key.isnumeric() and key.length() > 0:
+        key = f"t{key}"
+    if len(key) >= 64:
+        key = key[:-1]
+    return key
+
 ####################
 # API Functions    #
 ####################
@@ -232,16 +242,31 @@ def hash(mycursor, path, name, csv_file):
     with open(csv_file) as f:
         key_list, csv_counter = [], 0
         reader = csv.reader(f, delimiter=',')
-        key_index = key_idx(next(reader))
-        for row in reader:
-            #key cleaning
-            clean_key =  re.sub(r'[^A-Za-z0-9 ]+', '', row[0]).replace(" ", "_")
-            key = clean_key if clean_key != "" else "invalid_key"
-            if key.isnumeric() and key.length() > 0:
-                key = f"t{key}"
-            if len(key) >= 64:
-                key = key[:-1]
+        header = next(reader)
+        key_index = key_idx(header)
+        key = key_cleaning(header)
 
+        #TODO: modularize this create code JFC
+        try:
+            create_statement = f"""
+                CREATE TABLE IF NOT EXISTS {key}(
+                    path varchar(255),
+                    data_index int,
+                    data text,
+                    FOREIGN KEY(path) REFERENCES df(path) ON DELETE CASCADE
+                )"""
+            insert_hash_statement = f"INSERT INTO {key} VALUES (%s, %s, %s);"
+            mycursor.execute(create_statement)
+            mydb.commit()
+            mycursor.execute(insert_hash_statement, (path + "/" + name, csv_counter, ','.join(header)))
+            mydb.commit()
+            key_list.append(key)
+            csv_counter += 1
+        except:
+            output = f"ERROR: {mycursor.statement}"
+
+        for row in reader:
+            key = key_cleaning(row)
             #try insert data into datanode
             try:
                 create_statement = f"""
