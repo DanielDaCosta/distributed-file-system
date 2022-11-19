@@ -131,7 +131,8 @@ def getPartitionLocations(mycursor, path):
     '''
     cat_statement = "SELECT * FROM blockLocations WHERE path = %s"
     mycursor.execute(cat_statement, (path,))
-    return mycursor.fetchall()
+    result = mycursor.fetchall()
+    return result
 
 def readPartition(mycursor, path, partition_no):
     '''
