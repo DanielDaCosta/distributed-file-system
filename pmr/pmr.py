@@ -24,13 +24,22 @@ def sql_map(mycursor, targets, file="/root/foo/data"):
     data = sql.getPartitionData(mycursor, file)
     # then I get all the partition locations and the indices and it goes zoooom
 
-    for d in data:
-        print(d)
+    #ID targets
+    header = None
+    header_list = (data[0][2].split(","))
+    col_idxs = [header_list.index(i) for i in targets]
 
-    # header = None
-    # header_list = (data[0][2].split(","))
-    # col_idxs = [header_list.index(i) for i in targets]
-    #
+    #map step
+    data_mapped = {}
+    for d in data:
+        partition_key, data_index, data_block = d[0], d[1], d[2].split(",")
+        data_block = [(x, data_block[x]) for x in col_idxs]
+        if partition_key not in data_mapped:
+            data_mapped[partition_key] = []
+        data_mapped[partition_key] += data_block
+
+    print(data_mapped)
+
     # data_mapped = {}
     # for d in data:
     #     data_list = d[2].split(",")
