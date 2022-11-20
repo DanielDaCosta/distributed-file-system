@@ -382,6 +382,29 @@ def start_env(mycursor, edfs):
 
 #TODO OOP this script
 
+def test_edfs(mycursor, argv):
+
+    edfs = "edfs"
+
+    #Testing
+    if "--delete" in argv:
+        print(delete_env(mycursor, edfs))
+    elif "--new" in argv:
+        print(new_env(mycursor, edfs))
+    elif "--restart" in argv:
+        print(delete_env(mycursor, edfs))
+        print(new_env(mycursor, edfs))
+    else:
+        print(start_env(mycursor, edfs))
+        print(mkdir(mycursor, "/root", "foo"))
+        print(mkdir(mycursor, "/root/foo", "bar"))
+        #todo: put check to make sure that the file source exists
+        print(put(mycursor, "/root/foo", "data", "../datasets/sql-edfs/data.csv"))
+        print(cat(mycursor, "/root/foo/data"))
+        print(ls(mycursor, "/root/foo"))
+        print(rm(mycursor, "/root", "data"))
+        print(ls(mycursor, "/tree"))
+
 if __name__ == "__main__":
 
     #python connector setup
@@ -391,22 +414,5 @@ if __name__ == "__main__":
       password=sys.argv[1],
     )
     mycursor = mydb.cursor(buffered=True)
-    edfs = "edfs"
 
-    #Testing
-    if "--delete" in sys.argv:
-        print(delete_env(mycursor, edfs))
-    elif "--new" in sys.argv:
-        print(new_env(mycursor, edfs))
-    elif "--restart" in sys.argv:
-        print(delete_env(mycursor, edfs))
-        print(new_env(mycursor, edfs))
-    else:
-        print(start_env(mycursor, edfs))
-        print(mkdir(mycursor, "/root", "foo"))
-        print(mkdir(mycursor, "/root/foo", "bar"))
-        print(put(mycursor, "/root/foo", "data", "../datasets/sql-data/data.csv"))
-        print(cat(mycursor, "/root/foo/data"))
-        print(ls(mycursor, "/root/foo"))
-        print(rm(mycursor, "/root", "data"))
-        print(ls(mycursor, "/tree"))
+    test_edfs(mycursor, sys.argv)
