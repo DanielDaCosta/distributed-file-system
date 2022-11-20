@@ -19,7 +19,7 @@ def mapPartition(key:str, col_data, data:str):
     """
     return None
 
-def sql_map(mycursor, file="/root/foo/data"):
+def sql_map(mycursor, targets, file="/root/foo/data"):
     sqledfs.start_env(mycursor, "edfs")
     data = sqledfs.getPartitionData(mycursor, file)
     # then I get all the partition locations and the indices and it goes zoooom
@@ -29,16 +29,14 @@ def sql_map(mycursor, file="/root/foo/data"):
         #grab targets and parse into partitions
         if r[1] == 0:
             header = r
-        print(r)
+            columns = header.split()
+            print(column)
 
-    print(header)
 
 def execute(mycursor, implementation:int, function:str=None, file:str=None, targets:[]=None):
     #TODO import getPartitionLocations() from each
     if implementation == EDFS.MYSQL:
-        sql_map(mycursor)
-
-
+        sql_map(mycursor, targets)
     return None
 
 if __name__ == "__main__":

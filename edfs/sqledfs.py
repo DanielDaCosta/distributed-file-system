@@ -388,7 +388,7 @@ if __name__ == "__main__":
     mydb = ccnx.connect(
       host="localhost",
       user="root",
-      password="compla36080",
+      password=sys.argv[1],
     )
     mycursor = mydb.cursor(buffered=True)
     edfs = "edfs"
