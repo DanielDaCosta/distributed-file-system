@@ -25,13 +25,15 @@ def sql_map(mycursor, targets, file="/root/foo/data"):
     # then I get all the partition locations and the indices and it goes zoooom
 
     header = None
-    for r in data:
-        #grab targets and parse into partitions
-        if r[1] == 0:
-            header = r
-            columns = header.split()
-            print(column)
+    header_list = (data[0][2].split(","))
+    col_idxs = [header_list.index(i) for i in targets]
 
+    data_combined = []
+    for d in data:
+        data_list = data[0][2].split(",")
+        data_combined.append([data_list[x] for x in col_idxs])
+
+    print(data_combined)
 
 def execute(mycursor, implementation:int, function:str=None, file:str=None, targets:[]=None):
     #TODO import getPartitionLocations() from each
@@ -40,7 +42,6 @@ def execute(mycursor, implementation:int, function:str=None, file:str=None, targ
     return None
 
 if __name__ == "__main__":
-
     if sys.argv[2] == "mysql":
         #python connector setup
         mydb = ccnx.connect(
@@ -49,5 +50,4 @@ if __name__ == "__main__":
           password=sys.argv[1],
         )
         mycursor = mydb.cursor(buffered=True)
-
-        execute(mycursor, EDFS.MYSQL)
+        execute(mycursor, EDFS.MYSQL, targets=["Country Code","2021 [YR2021]"])
