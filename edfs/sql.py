@@ -144,18 +144,18 @@ def getPartitionLocations(mycursor, path):
     result = mycursor.fetchall()
     return result
 
-def readPartition(mycursor, path, partition_no):
+def readPartition(mycursor, path, partition_name):
     '''
-    Returns the contents of a specified partition_no
+    Returns the contents of a specified partition_name
     Args:
         path (str): the path to the file
-        partition_no: the partition in order of when it originally appeared in
-        the file
+        partition_name: the name of the partition
     Returns:
         (tuple): the data contents of the partition
     '''
-    mycursor.execute(f"SELECT * FROM {partition_no} WHERE path = %s", (path,))
-    return mycursor.fetchall()[0]
+    mycursor.execute(f"SELECT * FROM {partition_name} WHERE path = %s", (path,))
+    result = mycursor.fetchall()[0]
+    return (partition_name, result[1], result[2])
 
 def cat(mycursor, path):
     '''
