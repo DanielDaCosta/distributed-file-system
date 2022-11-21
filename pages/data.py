@@ -10,19 +10,24 @@ import dash
 from dash import dcc
 import pandas as pd
 import numpy as np
+from edfs.firebase import read_dataset
 
 # data = pd.read_csv("avocado.csv")
 # data = data.query("type == 'conventional' and region == 'Albany'")
 # data["Date"] = pd.to_datetime(data["Date"], format="%Y-%m-%d")
 # data.sort_values("Date", inplace=True)
-df = pd.read_csv("datasets/Data_Extract_From_Statistical_Capacity_Indicators/42377300-c075-4554-a55f-41cd64c79126_Data.csv")
-# function to get year columns
+file_name = "Stats_Cap_Ind_Sample"
+data = read_dataset(f"root/user/{file_name}")
+# data = pd.read_csv("datasets/Data_Extract_From_Statistical_Capacity_Indicators/42377300-c075-4554-a55f-41cd64c79126_Data.csv")
+
+
+# # function to get year columns
 def is_year (c):
     return any(char.isdigit() for char in c)
 
-# change columns names
+# # change columns names
 new_columns = list()
-columns = df.columns
+columns = data.columns
 for c in columns:
     if is_year(c):
         new_columns.append(c[:4])
@@ -30,11 +35,11 @@ for c in columns:
         new_columns.append(c.replace(" ","_"))
 
 # change column names in dataframe
-df.columns = new_columns
-df = df.drop(columns=['Country_Code', 'Series_Code'], axis=1)
-data = df.melt(id_vars=["Country_Name", "Series_Name"], 
-        var_name="Year", 
-        value_name="Value")
+data.columns = new_columns
+# df = df.drop(columns=['Country_Code', 'Series_Code'], axis=1)
+# data = df.melt(id_vars=["Country_Name", "Series_Name"], 
+#         var_name="Year", 
+#         value_name="Value")
 data['Year'] = data['Year'].astype(int)
 data = data.loc[data['Value'] != '..'].copy()
 data['Value'] = data['Value'].astype(float)
@@ -66,6 +71,26 @@ layout = html.Div(children=[
             children=[
                 html.Div(
                     children=[
+                        html.Div(children="Filename", className="menu-title"),
+                        dcc.Dropdown(
+                            id="dataset-filter",
+                            options=['Stats_Cap_Ind_Sample', 'Stats_Cap_Ind_Sample_2', 'Stats_Cap_Ind_Sample_3'],
+                            value="Stats_Cap_Ind_Sample",
+                            clearable=False,
+                            placeholder="Select Indicator",
+                            searchable=False,
+                            className="dropdown",
+                        ),
+                    ]
+                ),
+                html.Br()
+            ],
+            className='menu2'
+        ),
+        html.Div(
+            children=[
+                html.Div(
+                    children=[
                         html.Div(children="Country", className="menu-title"),
                         dcc.Dropdown(
                             id="region-filter",
@@ -79,7 +104,7 @@ layout = html.Div(children=[
                             className="dropdown",
                             multi=True
                         ),
-                    ]
+                    ],
                 ),
                 html.Div(
                     children=[
@@ -161,11 +186,26 @@ layout = html.Div(children=[
             ],
             className="wrapper",
         ),
+        html.Div(id='dummy')
     # html.H3(children="Graph of Data"),
     # dcc.Link('Home',href="/"),
     # html.Br(),
     # dcc.Link('model-showcase',href="/showcase")
 ])
+
+@dash.callback(
+    Output("dummy", "children"),
+    Input("dataset-filter", "value"),
+)
+def select_dataset(dataset_name):
+    global data
+    global file_name
+    if file_name != dataset_name:
+        print("Changing")
+        file_name = dataset_name
+        data = read_dataset(f"root/user/{file_name}")
+    return None
+
 
 @dash.callback(
     [Output("price-chart", "figure"), Output("volume-chart", "figure")],

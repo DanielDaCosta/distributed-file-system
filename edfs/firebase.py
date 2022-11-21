@@ -256,10 +256,13 @@ def to_df(data):
 
 
 def read_dataset(file: str):
-    partitions = getPartitionLocation(file)
+    partitions = json.loads(getPartitionLocation(file))
 
     df_list = list()
-    for _, dir in partitions.items():
+    for country_name, dir in partitions.items():
+        if country_name == 'Country_Name': # Store only column names. Ignore
+            continue
         map = mapPartition(dir, file)
         df_list.append(to_df(map))
+        break ### REMOVEE
     return pd.concat(df_list)
