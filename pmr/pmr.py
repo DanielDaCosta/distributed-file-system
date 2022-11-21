@@ -10,15 +10,27 @@ class EDFS(Enum):
     FIREBASE = 2
     MONGODB = 3
 
-class FUNCTION(Enum):
+class FUNC(Enum):
     SUM = 1
     MAX = 2
     MIN = 3
+    AVG = 4
 
 
 #####################
 #  Helper Function  #
 #####################
+
+def convert_str(item:str):
+    try:
+        return float(item)
+    except:
+        return None
+
+#####################
+#  Mapper Function  #
+#####################
+
 def mapPartition(key:str, col_data, data:str):
     """
         Arg: The name of the partition from getPartitionLocations
@@ -27,7 +39,7 @@ def mapPartition(key:str, col_data, data:str):
     """
     return None
 
-def sql_map(mycursor, targets, file="/root/foo/data"):
+def sql_map(mycursor, targets:[], file="/root/foo/data"):
     sql.start_env(mycursor, "edfs")
     data = sql.getPartitionData(mycursor, file)
     # then I get all the partition locations and the indices and it goes zoooom
@@ -45,30 +57,46 @@ def sql_map(mycursor, targets, file="/root/foo/data"):
         if partition_key not in data_mapped:
             data_mapped[partition_key] = []
         data_mapped[partition_key] += data_block
-
     return data_mapped
 
-def sql_shuffle(data_mapped):
+def sql_shuffle(data_mapped:dict):
     data_shuffled = {}
     for key in data_mapped.keys():
         for item in data_mapped[key]:
             col_key, value = item[0], item[1]
             if col_key not in data_shuffled:
                 data_shuffled[col_key] = []
-            data_shuffled[col_key].append(value)
+            data_shuffled[col_key].append(convert_str(value))
     return data_shuffled
 
+def sql_reduce(data_shuffled:dict, function:int):
+    data_reduced = {}
+    if function == FUNC.SUM:
+        for col in data_shuffled.keys():
+            data_reduced[col] = sum(list(filter(lambda item: item is not None, data_shuffled[col])))
+    elif function == FUNC.MAX:
+        for col in data_shuffled.keys():
+            data_reduced[col] = max(list(filter(lambda item: item is not None, data_shuffled[col])))
+    elif function == FUNC.MIN:
+        for col in data_shuffled.keys():
+            data_reduced[col] = min(list(filter(lambda item: item is not None, data_shuffled[col])))
+    elif function == FUNC.AVG:
+        for col in data_shuffled.keys():
+            shuffled_data = list(filter(lambda item: item is not None, data_shuffled[col]))
+            data_reduced[col] = sum(shuffled_data)/len(shuffled_data)
+    return data_reduced
 
-def reduce(function, data):
-    return None
-
-def execute(mycursor, implementation:int, function:int, file:str=None, targets:[]=None):
+def execute(mycursor, implementation:int, function:int, file:str=None, targets:[]=None, DEBUG=False):
     #TODO import getPartitionLocations() from each
     if implementation == EDFS.MYSQL:
         data_mapped = sql_map(mycursor, targets)
         data_shuffled = sql_shuffle(data_mapped)
-        print(data_shuffled)
-    # reduce(function, data)
+        data_reduced = sql_reduce(data_shuffled, function)
+        if DEBUG:
+            print(f"Data Mapped:\n {data_mapped}\n")
+            print(f"Data Shuffled:\n {data_shuffled}\n")
+            print(f"Data Reduced:\n {data_reduced}\n")
+        return data_reduced
     return None
 
 if __name__ == "__main__":
@@ -80,4 +108,4 @@ if __name__ == "__main__":
           password=sys.argv[1],
         )
         mycursor = mydb.cursor(buffered=True)
-        execute(mycursor, EDFS.MYSQL, FUNCTION.SUM, targets=["2021 [YR2021]", "2020 [YR2020]"])
+        execute(mycursor, EDFS.MYSQL, FUNC.AVG, targets=["2021 [YR2021]", "2020 [YR2020]"], DEBUG=True)
