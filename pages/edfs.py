@@ -7,7 +7,9 @@ from dash.dependencies import Input, Output, State
 from apps import navigation
 from edfs.firebase import ls, mkdir, rm, \
     getPartitionLocation, \
-    readPartition
+    readPartition, \
+    put, \
+    cat
 import dash
 
 dash.register_page(
@@ -77,7 +79,9 @@ def update_output(n_clicks, input_text):
         functions = {
             'ls': ls, 'mkdir': mkdir, 'rm': rm,
             'getPartitionLocation': getPartitionLocation,
-            'readPartition': readPartition
+            'readPartition': readPartition,
+            'put': put,
+            'cat': cat
         }
 
         input = input_text.split(' ')

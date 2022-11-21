@@ -1,0 +1,501 @@
+Country Name,Country Code,Series Name,Series Code,2020 [YR2020],2019 [YR2019],2018 [YR2018],2017 [YR2017],2016 [YR2016],2015 [YR2015],2014 [YR2014],2013 [YR2013],2012 [YR2012],2011 [YR2011],2010 [YR2010],2009 [YR2009],2008 [YR2008],2007 [YR2007],2006 [YR2006],2005 [YR2005],2004 [YR2004]
+Rwanda,RWA,HIV/AIDS,5.51.01.05.hiv,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Russian Federation,RUS,Vital registration system coverage,3.11.01.03.popreg,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Bolivia,BOL,National accounts base year,2.01.01.02.nabase,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Jamaica,JAM,Gender equality,5.51.01.07.gender,0.66667,0.66667,0.33333,0,0,0,0,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,1,1,1,0.66667
+IDA total,IDA,National accounts base year,2.01.01.02.nabase,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..
+Bangladesh,BGD,Per capita GDP growth,5.51.01.10.gdp,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Cambodia,KHM,Population census,3.11.01.01.popcen,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+IDA & IBRD total,IBT,National accounts base year,2.01.01.02.nabase,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..
+Sierra Leone,SLE,Population census,3.11.01.01.popcen,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0
+India,IND,Consumer price index base year,2.01.03.01.prcpbase,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0
+Lebanon,LBN,Methodology assessment of statistical capacity (scale 0 - 100),IQ.SCI.MTHD,40,40,50,50,50,50,50,50,50,50,50,40,40,30,40,40,30
+Cote d'Ivoire,CIV,Import and export price indexes,5.04.01.02.impexp,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"Gambia, The",GMB,Immunization,5.51.01.04.immun,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Eswatini,SWZ,Periodicity and timeliness assessment of statistical capacity (scale 0 - 100),IQ.SCI.PRDC,93.3334,90,93.3333,86.6667,86.6667,86.6667,90,90,86.66667,83.33333,83.33333,83.33333,83.33333,90,90,86.66667,86.66667
+Uzbekistan,UZB,Balance of payments manual in use,2.04.01.01.excncpt,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1
+IBRD only,IBD,Overall Average,IQ.SCI.OVRL,71.7921215053763,72.8494677419355,73.3871021505376,75.4121870967742,75.9319043010753,75.4121935483871,75.0913978494624,74.8924731182796,75.2508960035842,76.5938069398907,76.001785154827,75.919817723133,75.974462568306,75.5919490163934,74.8087250819672,75.0090711111111,72.7504555555556
+Central African Republic,CAF,Special Data Dissemination Standard,5.21.01.01.sdds,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Burundi,BDI,Child malnutrition,5.51.01.02.malnut,1,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.33333,0.66667,0.66667,0.66667,0.66667,0.33333,0.33333,0.33333,0.33333
+Honduras,HND,Immunization,5.51.01.04.immun,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Angola,AGO,National accounts base year,2.01.01.02.nabase,0,0,0,0,0,0,1,1,0,0,0,0,1,1,1,1,1
+Albania,ALB,Per capita GDP growth,5.51.01.10.gdp,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Indonesia,IDN,HIV/AIDS,5.51.01.05.hiv,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Azerbaijan,AZE,Per capita GDP growth,5.51.01.10.gdp,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Bangladesh,BGD,Primary completion,5.51.01.08.primcomp,0,0,0,0.66667,0.33333,0.66667,0.66667,0,0,0,0,0,0,0,0,0,0
+Palau,PLW,Balance of payments manual in use,2.04.01.01.excncpt,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,..
+Jamaica,JAM,Vital registration system coverage,3.11.01.03.popreg,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0
+Burundi,BDI,Maternal health,5.51.01.06.matern,1,1,1,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.33333,0.33333,0.33333,0.33333,0.33333
+Malawi,MWI,Overall Average,IQ.SCI.OVRL,70,73.3333333333333,77.7778,77.7778,74.4444666666667,75.5555666666667,75.5555555555556,78.8888888888889,74.4444444444444,77.7777777777778,78.8888888888889,73.3333333333333,73.3333333333333,75.5555555555556,67.7777777777778,64.4444444444444,67.7777777777778
+Syrian Arab Republic,SYR,Access to water,5.51.01.09.water,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Belize,BLZ,Primary completion,5.51.01.08.primcomp,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,..
+Kenya,KEN,Child mortality,5.51.01.03.mortal,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Fiji,FJI,Per capita GDP growth,5.51.01.10.gdp,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,..
+"Egypt, Arab Rep.",EGY,Source data assessment of statistical capacity (scale 0 - 100),IQ.SCI.SRCE,80,90,90,90,100,100,100,100,100,100,100,100,100,100,100,100,100
+"Congo, Rep.",COG,Maternal health,5.51.01.06.matern,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.33333,0.33333,0.33333,0.33333,0.33333,0.33333,0,0,0,0,0
+Zimbabwe,ZWE,Immunization,5.51.01.04.immun,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"Venezuela, RB",VEN,Maternal health,5.51.01.06.matern,1,1,1,1,0.66667,0.66667,0.33333,0.66667,0.66667,0.66667,1,1,1,1,0.66667,0.66667,0.66667
+Panama,PAN,Per capita GDP growth,5.51.01.10.gdp,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Armenia,ARM,Balance of payments manual in use,2.04.01.01.excncpt,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Brazil,BRA,Methodology assessment of statistical capacity (scale 0 - 100),IQ.SCI.MTHD,90,90,90,80,90,90,90,80,80,90,90,90,90,100,100,100,90
+Indonesia,IDN,National immunization coverage,5.13.01.01.who,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+Nigeria,NGA,Import and export price indexes,5.04.01.02.impexp,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Nicaragua,NIC,Child malnutrition,5.51.01.02.malnut,0.33333,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,1,1,1,1,1,0.66667,0.66667,1,1,0.66667
+Suriname,SUR,Income poverty,5.51.01.01.poverty,0,0,0,0,0,0,0,0,0.33333,0.33333,0.33333,0.33333,0.33333,0.33333,0.33333,0.33333,..
+Guyana,GUY,Industrial production index,5.01.01.01.indust,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,..
+Turkey,TUR,Vital registration system coverage,3.11.01.03.popreg,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0
+Pakistan,PAK,National accounts base year,2.01.01.02.nabase,0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1,0
+Sao Tome and Principe,STP,Overall Average,IQ.SCI.OVRL,57.7778333333333,63.3333333333333,63.3333333333333,70,60.0000333333333,65.5555666666667,68.8888888888889,70,63.3333333333333,61.1111111111111,61.1111111111111,65.5555555555556,60,60,51.1111111111111,51.1111111111111,..
+"Yemen, Rep.",YEM,Maternal health,5.51.01.06.matern,0.66667,1,1,1,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,1,0.66667,0.66667,0.66667,0.33333,0.66667,0.66667
+Central African Republic,CAF,Agricultural census,3.01.04.01.agcen,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Paraguay,PRY,Vital registration system coverage,3.11.01.03.popreg,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Philippines,PHL,Child mortality,5.51.01.03.mortal,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Rwanda,RWA,Balance of payments manual in use,2.04.01.01.excncpt,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Burkina Faso,BFA,Access to water,5.51.01.09.water,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Grenada,GRD,Access to water,5.51.01.09.water,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,..
+Georgia,GEO,Child malnutrition,5.51.01.02.malnut,0.33333,0.33333,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,1,1,1,1,0.66667,0.66667,0.66667,0.66667,0.66667
+Costa Rica,CRI,Income poverty,5.51.01.01.poverty,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Philippines,PHL,Overall Average,IQ.SCI.OVRL,82.2222333333333,81.1111333333333,81.1111333333333,82.2222,82.2222,82.2222,77.7777777777778,84.4444444444444,83.3333333333333,88.8888888888889,88.8888888888889,92.2222222222222,92.2222222222222,88.8888888888889,83.3333333333333,86.6666666666667,81.1111111111111
+Paraguay,PRY,HIV/AIDS,5.51.01.05.hiv,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Serbia,SRB,HIV/AIDS,5.51.01.05.hiv,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1
+Guinea,GIN,Health survey,5.13.01.01.hlthsurv,1,1,0.5,0.5,1,1,1,1,1,1,1,1,1,1,1,1,1
+Guinea-Bissau,GNB,Vital registration system coverage,3.11.01.03.popreg,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Zambia,ZMB,Industrial production index,5.01.01.01.indust,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Serbia,SRB,National immunization coverage,5.13.01.01.who,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+El Salvador,SLV,Primary completion,5.51.01.08.primcomp,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Thailand,THA,Vital registration system coverage,3.11.01.03.popreg,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"Congo, Rep.",COG,Child malnutrition,5.51.01.02.malnut,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.33333,0.33333,0.33333,0.33333,0.33333,0.33333,0,0,0,0,0
+Guyana,GUY,Balance of payments manual in use,2.04.01.01.excncpt,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,..
+"Yemen, Rep.",YEM,National accounts base year,2.01.01.02.nabase,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0
+Rwanda,RWA,Government finance accounting,3.02.01.02.fscov,0,0,0,1,0,1,1,0,1,1,1,1,1,1,1,1,1
+Colombia,COL,Import and export price indexes,5.04.01.02.impexp,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1
+Mongolia,MNG,Government finance accounting,3.02.01.02.fscov,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Malawi,MWI,Child mortality,5.51.01.03.mortal,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Gabon,GAB,Population census,3.11.01.01.popcen,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Timor-Leste,TLS,Per capita GDP growth,5.51.01.10.gdp,1,1,1,0.66667,1,1,1,1,1,1,1,0.66667,0.66667,0.66667,0.33333,0.33333,..
+Malaysia,MYS,Primary completion,5.51.01.08.primcomp,0.66667,1,1,1,1,0,0,0,0,0.33333,0.33333,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667
+Maldives,MDV,Consumer price index base year,2.01.03.01.prcpbase,1,1,1,1,0,0,1,1,1,1,1,1,1,0,1,1,..
+Iraq,IRQ,Periodicity and timeliness assessment of statistical capacity (scale 0 - 100),IQ.SCI.PRDC,60,63.3334,63.3334,66.6667,60,66.6667,60,70,70,70,63.33333,63.33333,63.33333,56.66667,60,60,56.66667
+Armenia,ARM,Source data assessment of statistical capacity (scale 0 - 100),IQ.SCI.SRCE,90,90,90,100,100,100,80,80,80,80,80,80,80,80,80,80,80
+North Macedonia,MKD,Population census,3.11.01.01.popcen,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Indonesia,IDN,Child mortality,5.51.01.03.mortal,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Philippines,PHL,Periodicity and timeliness assessment of statistical capacity (scale 0 - 100),IQ.SCI.PRDC,96.6667,93.3334,93.3334,86.6666,86.6666,86.6666,73.3333333333333,93.3333333333333,90,96.66667,96.66667,96.66667,96.66667,96.66667,90,90,93.33333
+Trinidad and Tobago,TTO,Special Data Dissemination Standard,5.21.01.01.sdds,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Romania,ROU,National accounts base year,2.01.01.02.nabase,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Timor-Leste,TLS,Health survey,5.13.01.01.hlthsurv,0.5,0.5,0.5,1,1,0.5,0.5,1,1,1,1,1,1,1,1,1,..
+Jamaica,JAM,Primary completion,5.51.01.08.primcomp,0.66667,0.66667,0.33333,0,0,0,0,0.66667,0.66667,0.33333,0.33333,0.33333,0.33333,0.66667,0.66667,0.66667,0.66667
+Togo,TGO,Industrial production index,5.01.01.01.indust,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Kyrgyz Republic,KGZ,Agricultural census,3.01.04.01.agcen,0,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1
+India,IND,Income poverty,5.51.01.01.poverty,0.66667,0.66667,0.66667,1,1,1,0.66667,0.66667,0.33333,0.33333,0.33333,0.33333,0.33333,0,0.33333,0.33333,0.33333
+Somalia,SOM,Balance of payments manual in use,2.04.01.01.excncpt,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+Belize,BLZ,Per capita GDP growth,5.51.01.10.gdp,1,1,1,1,1,0.66667,1,0.66667,1,1,1,1,1,1,1,1,..
+Rwanda,RWA,Periodicity and timeliness assessment of statistical capacity (scale 0 - 100),IQ.SCI.PRDC,100,96.6667,96.6667,93.3334,90.0001,90.0001,86.6666666666667,90,90,83.33333,83.33333,83.33333,80,80,83.33333,90,83.33333
+Tajikistan,TJK,Import and export price indexes,5.04.01.02.impexp,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Zambia,ZMB,Periodicity and timeliness assessment of statistical capacity (scale 0 - 100),IQ.SCI.PRDC,70.0001,76.6667,76.6667,76.6667,80.0001,80.0001,80,80,86.66667,90,83.33333,86.66667,86.66667,86.66667,86.66667,86.66667,86.66667
+Cameroon,CMR,Overall Average,IQ.SCI.OVRL,46.6667,56.6667,56.6667,70.0000333333333,68.8889,55.5555666666667,56.6666666666667,56.6666666666667,60,64.4444444444444,66.6666666666667,63.3333333333333,66.6666666666667,63.3333333333333,63.3333333333333,50,51.1111111111111
+Philippines,PHL,Access to water,5.51.01.09.water,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"Venezuela, RB",VEN,Government finance accounting,3.02.01.02.fscov,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1
+Suriname,SUR,Periodicity and timeliness assessment of statistical capacity (scale 0 - 100),IQ.SCI.PRDC,73.3333,83.3334,83.3334,86.6667,76.6667,76.6668,80,80,83.33333,90,83.33333,80,76.66667,76.66667,73.33333,70,..
+Ecuador,ECU,Agricultural census,3.01.04.01.agcen,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1
+"Yemen, Rep.",YEM,Child mortality,5.51.01.03.mortal,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+South Asia,SAS,Poverty survey,5.14.01.01.povsurv,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..
+Tanzania,TZA,External debt reporting status,5.04.01.01.exdebt,0,0,0,1,1,1,1,1,1,1,1,0,0,0,1,1,0
+"Yemen, Rep.",YEM,Consumer price index base year,2.01.03.01.prcpbase,0,1,1,1,1,1,1,0,0,0,0,1,1,1,1,0,0
+Mauritania,MRT,UNESCO reporting,5.12.01.01.unesco,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Nauru,NRU,Child malnutrition,5.51.01.02.malnut,0.33333,0,0,0,..,..,..,..,..,..,..,..,..,..,..,..,..
+Somalia,SOM,Consumer price index base year,2.01.03.01.prcpbase,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Guyana,GUY,Overall Average,IQ.SCI.OVRL,45.5555666666667,50,55.5555333333333,55.5555333333333,57.7778,56.6667,58.8888888888889,58.8888888888889,55.5555555555556,58.8888888888889,53.3333333333333,55.5555555555556,53.3333333333333,54.4444444444444,52.2222222222222,55.5555555555556,..
+Namibia,NAM,Health survey,5.13.01.01.hlthsurv,0,0,0.5,1,1,1,0.5,1,1,1,1,1,1,1,0.5,0.5,0.5
+Djibouti,DJI,Access to water,5.51.01.09.water,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,..
+Sudan,SDN,Income poverty,5.51.01.01.poverty,0.66667,0.33333,0.33333,0.33333,0.33333,0.33333,0.33333,0.33333,0,0,0,0,0,0,0,0,0
+China,CHN,Industrial production index,5.01.01.01.indust,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1
+Ukraine,UKR,Periodicity and timeliness assessment of statistical capacity (scale 0 - 100),IQ.SCI.PRDC,76.6666,76.6666,83.3334,83.3334,90,93.3333,93.3333333333333,93.3333333333333,96.66667,96.66667,93.33333,93.33333,93.33333,93.33333,93.33333,90,90
+Colombia,COL,Population census,3.11.01.01.popcen,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1
+Tuvalu,TUV,Consumer price index base year,2.01.03.01.prcpbase,1,1,1,1,1,1,1,0,..,..,..,..,..,..,..,..,..
+Angola,AGO,Per capita GDP growth,5.51.01.10.gdp,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Tunisia,TUN,UNESCO reporting,5.12.01.01.unesco,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Morocco,MAR,Poverty survey,5.14.01.01.povsurv,1,1,1,1,1,1,0.5,0.5,0.5,1,1,1,1,1,1,1,1
+Eswatini,SWZ,National accounts base year,2.01.01.02.nabase,1,1,1,1,1,0,0,0,0,1,1,1,0,0,0,0,0
+Senegal,SEN,Consumer price index base year,2.01.03.01.prcpbase,0,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1
+Colombia,COL,UNESCO reporting,5.12.01.01.unesco,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Albania,ALB,Vital registration system coverage,3.11.01.03.popreg,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Nicaragua,NIC,Population census,3.11.01.01.popcen,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Dominican Republic,DOM,Methodology assessment of statistical capacity (scale 0 - 100),IQ.SCI.MTHD,60,60,70,70,70,60,60,50,50,50,50,50,50,50,40,60,60
+Gabon,GAB,Immunization,5.51.01.04.immun,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Papua New Guinea,PNG,Income poverty,5.51.01.01.poverty,0.33333,0.33333,0.33333,0.33333,0.33333,0,0,0,0,0,0,0.33333,0.33333,0.33333,0.33333,0.33333,0.33333
+Mali,MLI,Periodicity and timeliness assessment of statistical capacity (scale 0 - 100),IQ.SCI.PRDC,90,93.3334,93.3334,86.6667,86.6667,86.6667,90,93.3333333333333,90,90,90,90,83.33333,83.33333,86.66667,83.33333,76.66667
+Sub-Saharan Africa (excluding high income),SSA,National immunization coverage,5.13.01.01.who,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..
+IDA total,IDA,Vital registration system coverage,3.11.01.03.popreg,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..
+Togo,TGO,Primary completion,5.51.01.08.primcomp,0.66667,1,1,1,1,1,1,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667
+Botswana,BWA,Methodology assessment of statistical capacity (scale 0 - 100),IQ.SCI.MTHD,20,20,20,40,20,30,40,30,40,30,30,30,40,30,30,50,50
+Paraguay,PRY,National accounts base year,2.01.01.02.nabase,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Vietnam,VNM,National immunization coverage,5.13.01.01.who,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Equatorial Guinea,GNQ,Consumer price index base year,2.01.03.01.prcpbase,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,..
+Europe & Central Asia (excluding high income),ECA,Child mortality,5.51.01.03.mortal,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..
+IDA total,IDA,Consumer price index base year,2.01.03.01.prcpbase,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..
+Montenegro,MNE,Periodicity and timeliness assessment of statistical capacity (scale 0 - 100),IQ.SCI.PRDC,86.6667,86.6667,90.0001,90.0001,76.6667,76.6667,76.6666666666667,76.6666666666667,73.33333,63.33333,63.33333,60,50,43.33333,40,36.67,60
+Kyrgyz Republic,KGZ,Periodicity and timeliness assessment of statistical capacity (scale 0 - 100),IQ.SCI.PRDC,100,100,100,100,96.6667,96.6667,90,93.3333333333333,93.33333,93.33333,96.66667,93.33333,93.33333,93.33333,90,93.33333,83.33333
+Thailand,THA,External debt reporting status,5.04.01.01.exdebt,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1
+Moldova,MDA,Balance of payments manual in use,2.04.01.01.excncpt,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Liberia,LBR,Health survey,5.13.01.01.hlthsurv,0.5,0,0.5,1,1,1,1,0.5,0.5,0.5,0.5,0.5,0.5,0,0,0,0
+Burkina Faso,BFA,Special Data Dissemination Standard,5.21.01.01.sdds,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Philippines,PHL,Per capita GDP growth,5.51.01.10.gdp,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Moldova,MDA,Gender equality,5.51.01.07.gender,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0.66667
+Gabon,GAB,Industrial production index,5.01.01.01.indust,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+St. Kitts and Nevis,KNA,Periodicity and timeliness assessment of statistical capacity (scale 0 - 100),IQ.SCI.PRDC,58.3334,63.3334,70,70,70,70,66.6666666666667,70,63.33333,63.33333,63.33333,63.33333,63.33333,70,70,63.33333,..
+Eritrea,ERI,Child malnutrition,5.51.01.02.malnut,0.33333,0.33333,0.33333,0.33333,0.33333,0.66667,0.33333,0.33333,0.33333,0.33333,0.33333,0.33333,0.66667,0.66667,1,0.66667,0.66667
+Cabo Verde,CPV,Industrial production index,5.01.01.01.indust,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,..
+Pakistan,PAK,Gender equality,5.51.01.07.gender,1,1,1,1,1,1,1,1,1,1,1,1,0.66667,0.66667,0.33333,0.33333,0
+Panama,PAN,Income poverty,5.51.01.01.poverty,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Grenada,GRD,Maternal health,5.51.01.06.matern,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,..
+Seychelles,SYC,Source data assessment of statistical capacity (scale 0 - 100),IQ.SCI.SRCE,60,60,70,70,70,60,60,60,60,50,60,80,80,70,70,70,..
+Burundi,BDI,Special Data Dissemination Standard,5.21.01.01.sdds,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Nepal,NPL,Immunization,5.51.01.04.immun,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"Yemen, Rep.",YEM,Periodicity and timeliness assessment of statistical capacity (scale 0 - 100),IQ.SCI.PRDC,73.3333,76.6666,86.6668,83.3334,73.3335,76.6668,76.6666666666667,76.6666666666667,70,73.33333,86.66667,86.66667,83.33333,86.66667,76.66667,80,80
+Malaysia,MYS,Immunization,5.51.01.04.immun,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Burkina Faso,BFA,Consumer price index base year,2.01.03.01.prcpbase,0,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1
+Philippines,PHL,Consumer price index base year,2.01.03.01.prcpbase,0,0,0,1,1,1,1,1,0,1,1,1,1,1,0,1,1
+Kenya,KEN,National accounts base year,2.01.01.02.nabase,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,0
+Brazil,BRA,Poverty survey,5.14.01.01.povsurv,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Tunisia,TUN,Maternal health,5.51.01.06.matern,0.33333,0.66667,0.66667,0.66667,0.66667,0.66667,0.33333,0.66667,0.66667,0.66667,0.66667,0.33333,0.66667,0.66667,0.66667,0.66667,0.66667
+South Africa,ZAF,Agricultural census,3.01.04.01.agcen,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1
+Zimbabwe,ZWE,National accounts base year,2.01.01.02.nabase,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0
+Middle East & North Africa (excluding high income),MNA,Immunization,5.51.01.04.immun,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..
+Argentina,ARG,Consumer price index base year,2.01.03.01.prcpbase,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1
+Jordan,JOR,Immunization,5.51.01.04.immun,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"Gambia, The",GMB,Industrial production index,5.01.01.01.indust,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+India,IND,Immunization,5.51.01.04.immun,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Seychelles,SYC,Gender equality,5.51.01.07.gender,1,1,1,1,1,1,0.66667,1,0.66667,0.66667,0.66667,0.66667,0.66667,1,1,1,..
+Mongolia,MNG,Source data assessment of statistical capacity (scale 0 - 100),IQ.SCI.SRCE,100,100,90,100,100,100,100,100,80,80,80,80,80,80,80,80,60
+Benin,BEN,Primary completion,5.51.01.08.primcomp,0.66667,0.66667,1,1,1,0.66667,0.66667,0.66667,0.33333,0.33333,0.33333,0.33333,0.66667,0.66667,1,0.66667,0.66667
+Marshall Islands,MHL,National immunization coverage,5.13.01.01.who,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,..
+Colombia,COL,Child malnutrition,5.51.01.02.malnut,0.66667,0.33333,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667
+Argentina,ARG,Poverty survey,5.14.01.01.povsurv,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Vanuatu,VUT,Overall Average,IQ.SCI.OVRL,36.6666666666667,48.8888666666667,45.5555333333333,52.2222,50,45.5555666666667,43.3333333333333,43.3333333333333,47.7777777777778,53.3333333333333,42.2222222222222,56.6666666666667,58.8888888888889,48.8888888888889,51.1111111111111,44.4444444444444,..
+Croatia,HRV,Child malnutrition,5.51.01.02.malnut,0,0,0,0,0,0,0,0,0,0,0,0.33333,0.66667,1,1,1,1
+Colombia,COL,National immunization coverage,5.13.01.01.who,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Nicaragua,NIC,Source data assessment of statistical capacity (scale 0 - 100),IQ.SCI.SRCE,30,30,40,70,70,70,60,60,80,80,80,80,80,80,80,80,80
+Bangladesh,BGD,National immunization coverage,5.13.01.01.who,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+Equatorial Guinea,GNQ,Maternal health,5.51.01.06.matern,0.33333,0.33333,0.33333,0.33333,0.33333,0.33333,0,0.33333,0.33333,0.33333,0.33333,0.33333,0.33333,0.66667,0.66667,0.66667,..
+Russian Federation,RUS,UNESCO reporting,5.12.01.01.unesco,1,1,1,1,1,1,1,0,1,1,1,0,0,0,0,1,1
+Europe & Central Asia (excluding high income),ECA,Government finance accounting,3.02.01.02.fscov,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..
+Nepal,NPL,Income poverty,5.51.01.01.poverty,0.33333,0.33333,0.33333,0.33333,0.66667,0.66667,0.66667,0.66667,0.33333,0.33333,0.33333,0.33333,0.66667,0.66667,0.66667,0.33333,0.33333
+Morocco,MAR,Methodology assessment of statistical capacity (scale 0 - 100),IQ.SCI.MTHD,60,60,80,80,90,80,80,80,80,80,90,100,90,80,80,70,70
+Romania,ROU,HIV/AIDS,5.51.01.05.hiv,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1
+Mongolia,MNG,National immunization coverage,5.13.01.01.who,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Liberia,LBR,Overall Average,IQ.SCI.OVRL,57.7777666666667,54.4444333333333,57.7777666666667,60.0000333333333,57.7777666666667,51.1111,46.6666666666667,47.7777777777778,43.3333333333333,40,33.3333333333333,32.2222222222222,25.5555555555556,22.2222222222222,23.3333333333333,23.3333333333333,16.6666666666667
+Algeria,DZA,Access to water,5.51.01.09.water,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Pakistan,PAK,Immunization,5.51.01.04.immun,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"Congo, Dem. Rep.",COD,External debt reporting status,5.04.01.01.exdebt,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1
+Niger,NER,Poverty survey,5.14.01.01.povsurv,1,1,1,1,1,1,1,1,1,1,1,0.5,0.5,0.5,0.5,1,1
+Jamaica,JAM,Maternal health,5.51.01.06.matern,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Angola,AGO,Primary completion,5.51.01.08.primcomp,0,0,0,0.33333,0.33333,0.66667,0.66667,0.66667,0.66667,0.33333,0.33333,0,0,0,0,0,0
+South Sudan,SSD,Access to water,5.51.01.09.water,1,1,1,1,1,1,0.5,0.5,..,..,..,..,..,..,..,..,..
+IDA total,IDA,National immunization coverage,5.13.01.01.who,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..
+Timor-Leste,TLS,Maternal health,5.51.01.06.matern,0.66667,0.66667,0.66667,0.33333,0.66667,1,1,0.66667,0.66667,0.66667,1,1,1,1,0.66667,0.33333,..
+Belize,BLZ,Population census,3.11.01.01.popcen,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,..
+"Congo, Rep.",COG,Industrial production index,5.01.01.01.indust,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+India,IND,Access to water,5.51.01.09.water,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Madagascar,MDG,Gender equality,5.51.01.07.gender,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,1,0.66667,0.66667,0.33333,0.33333,0,0,0
+Latin America & Caribbean (excluding high income),LAC,Primary completion,5.51.01.08.primcomp,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..
+Panama,PAN,HIV/AIDS,5.51.01.05.hiv,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Togo,TGO,Balance of payments manual in use,2.04.01.01.excncpt,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Sudan,SDN,UNESCO reporting,5.12.01.01.unesco,1,1,1,0,1,1,0,0,1,1,1,1,1,1,1,1,1
+Syrian Arab Republic,SYR,Consumer price index base year,2.01.03.01.prcpbase,0,0,0,0,0,1,1,1,1,1,1,0,1,1,1,1,0
+Cameroon,CMR,Periodicity and timeliness assessment of statistical capacity (scale 0 - 100),IQ.SCI.PRDC,90.0001,90.0001,90.0001,90.0001,86.6667,86.6667,90,90,90,93.33333,90,90,90,80,80,80,83.33333
+Belize,BLZ,Income poverty,5.51.01.01.poverty,0,0,0,0,0,0,0,0,0.33333,0.66667,1,1,1,1,1,1,..
+Zimbabwe,ZWE,Consumer price index base year,2.01.03.01.prcpbase,0,0,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1
+Bangladesh,BGD,Special Data Dissemination Standard,5.21.01.01.sdds,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Mexico,MEX,Primary completion,5.51.01.08.primcomp,1,1,1,0.66667,1,1,1,1,1,1,1,1,1,1,1,1,0.66667
+Guyana,GUY,External debt reporting status,5.04.01.01.exdebt,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,..
+Chile,CHL,Methodology assessment of statistical capacity (scale 0 - 100),IQ.SCI.MTHD,100,90,90,80,90,90,90,90,90,90,90,80,80,90,80,80,80
+Iraq,IRQ,Access to water,5.51.01.09.water,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Trinidad and Tobago,TTO,Maternal health,5.51.01.06.matern,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+North Macedonia,MKD,Maternal health,5.51.01.06.matern,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Dominican Republic,DOM,Per capita GDP growth,5.51.01.10.gdp,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Tanzania,TZA,Import and export price indexes,5.04.01.02.impexp,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"Micronesia, Fed. Sts.",FSM,Source data assessment of statistical capacity (scale 0 - 100),IQ.SCI.SRCE,60,50,50,30,30,20,20,20,20,20,20,20,20,20,20,20,..
+Kiribati,KIR,National immunization coverage,5.13.01.01.who,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,..
+Sierra Leone,SLE,Health survey,5.13.01.01.hlthsurv,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Lao PDR,LAO,Gender equality,5.51.01.07.gender,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Europe & Central Asia (excluding high income),ECA,Periodicity and timeliness assessment of statistical capacity (scale 0 - 100),IQ.SCI.PRDC,81.2280789473684,80.8772052631579,83.1579157894737,83.1579105263158,80.1754526315789,77.8947578947368,80.0175438596491,80.3508771929825,85.9259248148148,87.0370377777778,85.5551857407407,84.9996285185185,83.3329627777778,82.0366672222222,82.0368516666667,80.5551846296296,76.1111109259259
+China,CHN,Consumer price index base year,2.01.03.01.prcpbase,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Ethiopia,ETH,Health survey,5.13.01.01.hlthsurv,0.5,0.5,0.5,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Burundi,BDI,Health survey,5.13.01.01.hlthsurv,0.5,0.5,0.5,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Guinea,GIN,Access to water,5.51.01.09.water,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Eswatini,SWZ,National immunization coverage,5.13.01.01.who,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+Philippines,PHL,Child malnutrition,5.51.01.02.malnut,1,1,1,1,1,1,1,1,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,1
+Syrian Arab Republic,SYR,Child malnutrition,5.51.01.02.malnut,0.33333,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,1,1,1,1,0.66667,1,1,1,1,1
+Timor-Leste,TLS,UNESCO reporting,5.12.01.01.unesco,1,1,1,1,1,0,1,1,1,0,1,0,0,0,0,0,..
+Mauritius,MUS,Gender equality,5.51.01.07.gender,1,1,1,1,1,0.66667,1,0,0,0,0,0,0,0,0,0,0.33333
+"Iran, Islamic Rep.",IRN,Health survey,5.13.01.01.hlthsurv,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Nepal,NPL,HIV/AIDS,5.51.01.05.hiv,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Belize,BLZ,Gender equality,5.51.01.07.gender,1,1,1,1,1,1,1,0,0,0,0,0.33333,0.33333,0.66667,0.66667,1,..
+Kenya,KEN,Government finance accounting,3.02.01.02.fscov,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+Comoros,COM,Periodicity and timeliness assessment of statistical capacity (scale 0 - 100),IQ.SCI.PRDC,69.9999,73.3333,66.6665,69.9999,53.3332,56.6665,50,60,63.33333,70,70,80,80,76.66667,76.66667,80,..
+Middle East & North Africa (excluding high income),MNA,Poverty survey,5.14.01.01.povsurv,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..
+Tunisia,TUN,Poverty survey,5.14.01.01.povsurv,0.5,0.5,0.5,0,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5
+Seychelles,SYC,Industrial production index,5.01.01.01.indust,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,..
+Costa Rica,CRI,Special Data Dissemination Standard,5.21.01.01.sdds,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Jordan,JOR,Import and export price indexes,5.04.01.02.impexp,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1
+South Asia,SAS,National immunization coverage,5.13.01.01.who,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..
+Tajikistan,TJK,Child mortality,5.51.01.03.mortal,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Russian Federation,RUS,Industrial production index,5.01.01.01.indust,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0
+Botswana,BWA,UNESCO reporting,5.12.01.01.unesco,0,0,0,1,0,0,0,0,1,0,0,0,1,1,1,1,1
+Uruguay,URY,HIV/AIDS,5.51.01.05.hiv,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"Congo, Dem. Rep.",COD,National immunization coverage,5.13.01.01.who,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1
+St. Vincent and the Grenadines,VCT,Periodicity and timeliness assessment of statistical capacity (scale 0 - 100),IQ.SCI.PRDC,70,70,70,70,70,66.6667,66.6666666666667,60,60,60,63.33333,63.33333,63.33333,66.66667,66.66667,60,..
+Equatorial Guinea,GNQ,Child mortality,5.51.01.03.mortal,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,..
+Guatemala,GTM,Consumer price index base year,2.01.03.01.prcpbase,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Sub-Saharan Africa (excluding high income),SSA,Gender equality,5.51.01.07.gender,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..
+Tanzania,TZA,HIV/AIDS,5.51.01.05.hiv,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Sao Tome and Principe,STP,Industrial production index,5.01.01.01.indust,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,..
+"Iran, Islamic Rep.",IRN,Population census,3.11.01.01.popcen,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Tunisia,TUN,National accounts base year,2.01.01.02.nabase,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0
+Djibouti,DJI,Methodology assessment of statistical capacity (scale 0 - 100),IQ.SCI.MTHD,50,50,40,40,40,40,40,40,40,30,20,30,30,30,40,40,..
+Europe & Central Asia (excluding high income),ECA,Agricultural census,3.01.04.01.agcen,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..
+Sao Tome and Principe,STP,Methodology assessment of statistical capacity (scale 0 - 100),IQ.SCI.MTHD,40,50,50,50,40,40,40,40,40,40,40,40,40,40,30,30,..
+Chad,TCD,Import and export price indexes,5.04.01.02.impexp,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Russian Federation,RUS,Child malnutrition,5.51.01.02.malnut,0,0,0,0,0,0,0,0.333333333333333,0.333333333333333,0.333333333333333,0.333333333333333,0.333333333333333,0.333333333333333,0.333333333333333,0.333333333333333,0.333333333333333,0
+Colombia,COL,Special Data Dissemination Standard,5.21.01.01.sdds,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Russian Federation,RUS,Gender equality,5.51.01.07.gender,1,1,1,1,0.66667,0.66667,0.666666666666667,0.666666666666667,0.666666666666667,1,0.666666666666667,0.666666666666667,0.666666666666667,0.333333333333333,0.333333333333333,0.333333333333333,0
+Iraq,IRQ,Gender equality,5.51.01.07.gender,0,0,0,0,0,0,0,0.33333,0.33333,0.33333,0.33333,0.66667,0.66667,0.66667,1,1,0.66667
+Pakistan,PAK,Primary completion,5.51.01.08.primcomp,0.66667,0.66667,0.66667,1,1,1,1,1,1,1,0.66667,0.66667,0.33333,0.33333,0,0,0
+Tuvalu,TUV,Child mortality,5.51.01.03.mortal,1,1,1,1,1,1,1,1,..,..,..,..,..,..,..,..,..
+Samoa,WSM,Overall Average,IQ.SCI.OVRL,57.7778,60.0000333333333,56.6667,57.7778,54.4444666666667,53.3333666666667,53.3333333333333,53.3333333333333,51.1111111111111,48.8888888888889,48.8888888888889,53.3333333333333,51.1111111111111,50,52.2222222222222,55.5555555555556,..
+"Congo, Rep.",COG,Poverty survey,5.14.01.01.povsurv,0,0,0,0,0.5,0.5,0.5,0.5,0.5,0,0,0,0,0,0,0,0
+Samoa,WSM,Periodicity and timeliness assessment of statistical capacity (scale 0 - 100),IQ.SCI.PRDC,73.3334,70.0001,70.0001,63.3334,63.3334,60.0001,60,60,53.33333,56.66667,56.66667,60,63.33333,60,66.66667,66.66667,..
+Marshall Islands,MHL,Access to water,5.51.01.09.water,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,..
+Zimbabwe,ZWE,Source data assessment of statistical capacity (scale 0 - 100),IQ.SCI.SRCE,60,60,60,60,60,60,60,60,60,60,60,50,40,40,50,50,50
+Dominican Republic,DOM,Consumer price index base year,2.01.03.01.prcpbase,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Dominican Republic,DOM,External debt reporting status,5.04.01.01.exdebt,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1
+Ethiopia,ETH,Immunization,5.51.01.04.immun,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Ukraine,UKR,Maternal health,5.51.01.06.matern,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Ecuador,ECU,Industrial production index,5.01.01.01.indust,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Poland,POL,Population census,3.11.01.01.popcen,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Maldives,MDV,Special Data Dissemination Standard,5.21.01.01.sdds,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,..
+South Africa,ZAF,Industrial production index,5.01.01.01.indust,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Palau,PLW,Gender equality,5.51.01.07.gender,0.33333,0.33333,0.33333,0.33333,0.33333,0.33333,0,0,0,0,0.33333,0.33333,0.33333,0.33333,0.33333,0.33333,..
+Papua New Guinea,PNG,Overall Average,IQ.SCI.OVRL,52.2221666666667,52.2221666666667,53.3333,43.3333333333333,50,45.5555666666667,46.6666666666667,37.7777777777778,37.7777777777778,37.7777777777778,41.1111111111111,48.8888888888889,44.4444444444444,47.7777777777778,52.2222222222222,48.8888888888889,46.6666666666667
+Moldova,MDA,National immunization coverage,5.13.01.01.who,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Uganda,UGA,Maternal health,5.51.01.06.matern,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.33333,0.66667,0.66667,0.66667,0.66667,0.33333
+Zimbabwe,ZWE,Health survey,5.13.01.01.hlthsurv,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Guinea,GIN,Income poverty,5.51.01.01.poverty,0.66667,0.66667,0.66667,0.66667,0.66667,1,0.66667,0.66667,0.66667,0.66667,0.33333,0.33333,0.33333,0.66667,0.33333,0.33333,0.66667
+Botswana,BWA,Poverty survey,5.14.01.01.povsurv,1,1,1,0,0,0,0.5,1,1,1,0.5,0.5,0.5,0.5,0.5,1,1
+Myanmar,MMR,Overall Average,IQ.SCI.OVRL,74.4444666666667,74.4444666666667,65.5555333333333,64.4444,55.5555333333333,55.5555333333333,46.6666666666667,50,48.8888888888889,51.1111111111111,52.2222222222222,48.8888888888889,57.7777777777778,57.7777777777778,61.1111111111111,62.2222222222222,60
+Mexico,MEX,Poverty survey,5.14.01.01.povsurv,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Rwanda,RWA,External debt reporting status,5.04.01.01.exdebt,1,1,1,1,1,1,1,1,1,0,0,1,1,1,0,0,0
+St. Lucia,LCA,Child malnutrition,5.51.01.02.malnut,0.33333,0.33333,0.33333,0.33333,0.33333,0.33333,0,0,0,0,0,0,0,0,0,0,..
+Dominica,DMA,Health survey,5.13.01.01.hlthsurv,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,..
+Jordan,JOR,Government finance accounting,3.02.01.02.fscov,1,0,0,0,0,1,1,0,0,1,1,0,0,0,0,0,0
+Uganda,UGA,Special Data Dissemination Standard,5.21.01.01.sdds,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Antigua and Barbuda,ATG,Immunization,5.51.01.04.immun,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,..
+Zambia,ZMB,National immunization coverage,5.13.01.01.who,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+Cote d'Ivoire,CIV,Balance of payments manual in use,2.04.01.01.excncpt,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+El Salvador,SLV,Agricultural census,3.01.04.01.agcen,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0
+Lebanon,LBN,Source data assessment of statistical capacity (scale 0 - 100),IQ.SCI.SRCE,40,40,50,70,70,70,70,70,70,60,40,40,40,40,30,30,20
+Maldives,MDV,Immunization,5.51.01.04.immun,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,..
+Brazil,BRA,Health survey,5.13.01.01.hlthsurv,0,0,0,0,0,0,0,0.5,1,1,1,1,1,1,1,1,1
+Kenya,KEN,Health survey,5.13.01.01.hlthsurv,0.5,0.5,0.5,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Thailand,THA,Import and export price indexes,5.04.01.02.impexp,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Croatia,HRV,External debt reporting status,5.04.01.01.exdebt,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1
+Papua New Guinea,PNG,Import and export price indexes,5.04.01.02.impexp,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Romania,ROU,Per capita GDP growth,5.51.01.10.gdp,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Sri Lanka,LKA,Maternal health,5.51.01.06.matern,0.66667,0.66667,0.66667,0.33333,0.33333,0.33333,0.33333,0.66667,0.66667,0.66667,0.33333,0.33333,0.33333,0.33333,0.66667,0.66667,0.66667
+Albania,ALB,Immunization,5.51.01.04.immun,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Thailand,THA,Government finance accounting,3.02.01.02.fscov,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+St. Lucia,LCA,Population census,3.11.01.01.popcen,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,..
+Kenya,KEN,Methodology assessment of statistical capacity (scale 0 - 100),IQ.SCI.MTHD,40,50,50,60,40,40,40,30,50,50,50,50,50,40,40,40,60
+Thailand,THA,HIV/AIDS,5.51.01.05.hiv,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Marshall Islands,MHL,Overall Average,IQ.SCI.OVRL,35.5555333333333,32.2222,32.2222,32.2222,28.8889,37.7777666666667,46.6666666666667,53.3333333333333,53.3333333333333,46.6666666666667,41.1111111111111,41.1111111111111,41.1111111111111,36.6666666666667,32.2222222222222,32.2222222222222,..
+"Egypt, Arab Rep.",EGY,Primary completion,5.51.01.08.primcomp,0.66667,0.66667,0.33333,0.33333,0.33333,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,1,1,1,1,1,0.66667
+Maldives,MDV,Child mortality,5.51.01.03.mortal,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,..
+Cambodia,KHM,Overall Average,IQ.SCI.OVRL,60,60,60,63.3333333333333,66.6666666666667,76.6666666666667,76.6666666666667,70,67.7777777777778,73.3333333333333,73.3333333333333,74.4444444444444,72.2222222222222,72.2222222222222,71.1111111111111,67.7777777777778,64.4444444444444
+"Yemen, Rep.",YEM,National immunization coverage,5.13.01.01.who,0,0,0,0,0,1,1,1,1,1,0,0,1,1,1,1,1
+Vanuatu,VUT,Agricultural census,3.01.04.01.agcen,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,..
+Trinidad and Tobago,TTO,UNESCO reporting,5.12.01.01.unesco,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1
+Nepal,NPL,Vital registration system coverage,3.11.01.03.popreg,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Madagascar,MDG,National accounts base year,2.01.01.02.nabase,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+South Africa,ZAF,Access to water,5.51.01.09.water,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Guinea,GIN,Vital registration system coverage,3.11.01.03.popreg,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Guatemala,GTM,Child mortality,5.51.01.03.mortal,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Uruguay,URY,Source data assessment of statistical capacity (scale 0 - 100),IQ.SCI.SRCE,80,80,80,100,100,100,100,100,100,100,100,100,100,100,100,100,100
+Namibia,NAM,Consumer price index base year,2.01.03.01.prcpbase,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0
+Samoa,WSM,Poverty survey,5.14.01.01.povsurv,0.5,0.5,0.5,0.5,0,0,0,0,0,0,0,0,0.5,0.5,0.5,0.5,..
+Latin America & Caribbean (excluding high income),LAC,Industrial production index,5.01.01.01.indust,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..
+Mongolia,MNG,HIV/AIDS,5.51.01.05.hiv,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1
+Kosovo,XKX,Immunization,5.51.01.04.immun,0,0,0,0,0,0,0,0,..,..,..,..,..,..,..,..,..
+South Africa,ZAF,Primary completion,5.51.01.08.primcomp,0.66667,0.33333,0.33333,0,0,0,0,0,0,0,0.33333,0.33333,0.66667,0.66667,0.66667,0.66667,0.66667
+Iraq,IRQ,Health survey,5.13.01.01.hlthsurv,0.5,0.5,0,1,1,1,1,1,1,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0
+Seychelles,SYC,Child mortality,5.51.01.03.mortal,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,..
+Indonesia,IDN,Periodicity and timeliness assessment of statistical capacity (scale 0 - 100),IQ.SCI.PRDC,86.6667,96.6667,96.6667,100,100,93.3334,100,100,100,100,100,100,100,100,96.66667,93.33333,90
+Nepal,NPL,Poverty survey,5.14.01.01.povsurv,1,1,1,1,0.5,1,1,1,1,1,0.5,0.5,0.5,1,1,1,1
+Namibia,NAM,Overall Average,IQ.SCI.OVRL,51.1111333333333,50.0000333333333,53.3333666666667,56.6666666666667,58.8889333333333,47.7778,48.8888888888889,54.4444444444444,56.6666666666667,57.7777777777778,52.2222222222222,50,56.6666666666667,58.8888888888889,56.6666666666667,58.8888888888889,58.8888888888889
+Mauritius,MUS,Overall Average,IQ.SCI.OVRL,85.5555666666667,85.5555666666667,82.2222333333333,85.5555666666667,91.1111333333333,93.3333666666667,85.5555555555555,75.5555555555556,80,73.3333333333333,70,70,71.1111111111111,67.7777777777778,67.7777777777778,67.7777777777778,70
+Uzbekistan,UZB,Primary completion,5.51.01.08.primcomp,1,1,1,1,0.33333,0.66667,0.66667,1,1,1,1,1,1,1,1,1,0.66667
+Nicaragua,NIC,Vital registration system coverage,3.11.01.03.popreg,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Kenya,KEN,Special Data Dissemination Standard,5.21.01.01.sdds,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+South Asia,SAS,Overall Average,IQ.SCI.OVRL,69.8148333333333,69.0740833333333,70.5555666666667,74.0740833333333,72.5926,71.1111222222222,72.4074074074074,66.6666666666667,67.9629633333333,68.5185183333333,70,69.0740744444444,69.8148144444444,71.1111111111111,70.3703705555556,68.8888888888889,65.7407411111111
+IBRD only,IBD,Agricultural census,3.01.04.01.agcen,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..
+Eritrea,ERI,Primary completion,5.51.01.08.primcomp,0.66667,0.66667,0.66667,0.66667,0.66667,0,0.66667,0.66667,1,1,1,1,1,1,1,1,0.66667
+Azerbaijan,AZE,UNESCO reporting,5.12.01.01.unesco,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Tonga,TON,Per capita GDP growth,5.51.01.10.gdp,1,1,1,1,0.66667,1,1,1,1,1,1,1,1,1,1,1,..
+Benin,BEN,Import and export price indexes,5.04.01.02.impexp,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Ethiopia,ETH,Child malnutrition,5.51.01.02.malnut,1,1,1,1,1,1,0.66667,0.66667,0.33333,0.66667,0.66667,0.66667,0.66667,0.33333,0.33333,0.33333,0.33333
+Kazakhstan,KAZ,Access to water,5.51.01.09.water,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Vanuatu,VUT,Poverty survey,5.14.01.01.povsurv,0.5,0.5,0,0.5,0.5,0,0,0,0,0,0,0.5,0.5,0.5,0,0,..
+Malaysia,MYS,Poverty survey,5.14.01.01.povsurv,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Europe & Central Asia (excluding high income),ECA,Population census,3.11.01.01.popcen,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..
+Turkey,TUR,National immunization coverage,5.13.01.01.who,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Solomon Islands,SLB,Periodicity and timeliness assessment of statistical capacity (scale 0 - 100),IQ.SCI.PRDC,66.6667,66.6667,73.3334,66.6666,66.6666,56.6666,60,50,56.66667,56.66667,50,50,50,53.33333,53.33333,53.33333,..
+Palau,PLW,Child malnutrition,5.51.01.02.malnut,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,..
+Paraguay,PRY,Maternal health,5.51.01.06.matern,1,1,1,1,1,1,0.66667,0.66667,0.66667,0.66667,0.66667,1,1,0.66667,0.66667,0.66667,0.66667
+Zambia,ZMB,Special Data Dissemination Standard,5.21.01.01.sdds,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Turkmenistan,TKM,Methodology assessment of statistical capacity (scale 0 - 100),IQ.SCI.MTHD,30,30,30,30,30,30,30,30,30,30,30,40,40,40,20,20,20
+Papua New Guinea,PNG,Population census,3.11.01.01.popcen,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Angola,AGO,Industrial production index,5.01.01.01.indust,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Papua New Guinea,PNG,Special Data Dissemination Standard,5.21.01.01.sdds,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Mozambique,MOZ,Overall Average,IQ.SCI.OVRL,62.2222666666667,64.4445,64.4445,68.8889,71.1111,72.2222333333333,74.4444444444444,77.7777777777778,77.7777777777778,72.2222222222222,72.2222222222222,72.2222222222222,68.8888888888889,68.8888888888889,70,70,67.7777777777778
+Peru,PER,Government finance accounting,3.02.01.02.fscov,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Lebanon,LBN,Industrial production index,5.01.01.01.indust,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Argentina,ARG,Primary completion,5.51.01.08.primcomp,0.66667,1,1,0.66667,0.66667,0.66667,0.66667,0.66667,1,1,1,1,1,1,1,1,1
+Afghanistan,AFG,Primary completion,5.51.01.08.primcomp,0.66667,0,0,0,0,0,0,0,0,0.33333,0.33333,0.33333,0.33333,0.33333,0,0,0
+Togo,TGO,National immunization coverage,5.13.01.01.who,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0
+Sub-Saharan Africa (excluding high income),SSA,Vital registration system coverage,3.11.01.03.popreg,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..
+IDA total,IDA,Special Data Dissemination Standard,5.21.01.01.sdds,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..
+Sub-Saharan Africa (excluding high income),SSA,Import and export price indexes,5.04.01.02.impexp,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..
+Sao Tome and Principe,STP,Source data assessment of statistical capacity (scale 0 - 100),IQ.SCI.SRCE,60,60,60,80,70,70,80,80,60,60,60,80,70,70,60,60,..
+Kenya,KEN,Child malnutrition,5.51.01.02.malnut,0.66667,0.66667,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Liberia,LBR,Per capita GDP growth,5.51.01.10.gdp,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Malawi,MWI,Immunization,5.51.01.04.immun,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Brazil,BRA,Income poverty,5.51.01.01.poverty,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Kazakhstan,KAZ,Income poverty,5.51.01.01.poverty,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0.66667
+"Iran, Islamic Rep.",IRN,Methodology assessment of statistical capacity (scale 0 - 100),IQ.SCI.MTHD,60,70,70,60,70,60,60,50,50,40,50,70,70,70,60,60,60
+Djibouti,DJI,Source data assessment of statistical capacity (scale 0 - 100),IQ.SCI.SRCE,40,40,40,40,40,20,20,20,20,20,30,10,10,20,40,40,..
+Bhutan,BTN,Income poverty,5.51.01.01.poverty,0.66667,0.66667,0.66667,0.66667,1,1,1,0.66667,0.66667,0.66667,0.33333,0.33333,0.33333,0.33333,0,0,..
+Cameroon,CMR,Consumer price index base year,2.01.03.01.prcpbase,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Uzbekistan,UZB,Access to water,5.51.01.09.water,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+El Salvador,SLV,Access to water,5.51.01.09.water,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Tunisia,TUN,Per capita GDP growth,5.51.01.10.gdp,1,1,1,1,1,0.66667,1,1,1,1,1,1,1,1,1,1,1
+Mexico,MEX,Access to water,5.51.01.09.water,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Indonesia,IDN,Maternal health,5.51.01.06.matern,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Tunisia,TUN,Source data assessment of statistical capacity (scale 0 - 100),IQ.SCI.SRCE,40,60,30,40,70,70,60,70,70,70,70,70,70,70,70,70,70
+Bhutan,BTN,Industrial production index,5.01.01.01.indust,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,..
+Afghanistan,AFG,National accounts base year,2.01.01.02.nabase,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0
+"Iran, Islamic Rep.",IRN,Special Data Dissemination Standard,5.21.01.01.sdds,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Angola,AGO,Poverty survey,5.14.01.01.povsurv,0.5,0,0,0,0,0,0,0,0.5,1,1,1,0.5,0.5,0.5,0.5,0.5
+Syrian Arab Republic,SYR,Overall Average,IQ.SCI.OVRL,22.2222,26.6666666666667,30,32.2222333333333,37.7778,47.7777666666667,44.4444444444444,43.3333333333333,52.2222222222222,60,56.6666666666667,54.4444444444444,62.2222222222222,56.6666666666667,61.1111111111111,61.1111111111111,57.7777777777778
+Chile,CHL,Periodicity and timeliness assessment of statistical capacity (scale 0 - 100),IQ.SCI.PRDC,100,100,100,100,96.6667,96.6667,96.6666666666667,96.6666666666667,93.33333,93.33333,93.33333,96.66667,96.66667,93.33333,93.33333,93.33333,93.33333
+Nicaragua,NIC,Access to water,5.51.01.09.water,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Eritrea,ERI,National immunization coverage,5.13.01.01.who,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Azerbaijan,AZE,Periodicity and timeliness assessment of statistical capacity (scale 0 - 100),IQ.SCI.PRDC,80,70,73.3333,86.6667,96.6667,83.3334,90,93.3333333333333,93.33333,90,86.66667,86.66667,86.66667,86.66667,86.66667,86.66667,80
+Turkey,TUR,Health survey,5.13.01.01.hlthsurv,0.5,0.5,0,0.5,0.5,0.5,1,1,1,1,1,1,1,1,1,1,1
+"Congo, Rep.",COG,Immunization,5.51.01.04.immun,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Panama,PAN,National accounts base year,2.01.01.02.nabase,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,0
+Lao PDR,LAO,Child malnutrition,5.51.01.02.malnut,1,0.66667,0.66667,0.66667,0.66667,0.66667,0.33333,0.33333,0.66667,0.66667,0.66667,0.33333,0.33333,0.66667,1,1,1
+Latin America & Caribbean (excluding high income),LAC,HIV/AIDS,5.51.01.05.hiv,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..
+Senegal,SEN,Agricultural census,3.01.04.01.agcen,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1
+Turkmenistan,TKM,HIV/AIDS,5.51.01.05.hiv,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Tuvalu,TUV,Special Data Dissemination Standard,5.21.01.01.sdds,0,0,0,0,0,0,0,0,..,..,..,..,..,..,..,..,..
+Guyana,GUY,Poverty survey,5.14.01.01.povsurv,0,0,0,0,0,0,0,0,0,0,0,0.5,0.5,0,0,0,..
+Romania,ROU,Primary completion,5.51.01.08.primcomp,0.66667,0.33333,0.66667,0.66667,0.66667,0.66667,1,0.66667,0.66667,0.66667,0.66667,0.66667,1,1,1,1,0.66667
+Turkey,TUR,Maternal health,5.51.01.06.matern,1,1,1,1,1,1,1,1,1,1,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667
+Mauritius,MUS,Consumer price index base year,2.01.03.01.prcpbase,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"Iran, Islamic Rep.",IRN,Balance of payments manual in use,2.04.01.01.excncpt,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Cambodia,KHM,External debt reporting status,5.04.01.01.exdebt,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Honduras,HND,Per capita GDP growth,5.51.01.10.gdp,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"Congo, Dem. Rep.",COD,National accounts base year,2.01.01.02.nabase,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0
+Kenya,KEN,Consumer price index base year,2.01.03.01.prcpbase,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,1,1
+Belarus,BLR,UNESCO reporting,5.12.01.01.unesco,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0
+Comoros,COM,Health survey,5.13.01.01.hlthsurv,0,0,0,0,0,0.5,0.5,0.5,0.5,1,1,1,1,1,1,1,..
+Kiribati,KIR,Import and export price indexes,5.04.01.02.impexp,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,..
+Colombia,COL,Balance of payments manual in use,2.04.01.01.excncpt,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Gabon,GAB,Overall Average,IQ.SCI.OVRL,39.9999666666667,43.3333,36.6666333333333,36.6666333333333,36.6666333333333,39.9999666666667,42.2222222222222,42.2222222222222,36.6666666666667,43.3333333333333,40,41.1111111111111,36.6666666666667,40,40,47.7777777777778,44.4444444444444
+Ghana,GHA,Child malnutrition,5.51.01.02.malnut,1,1,1,1,1,1,1,1,1,1,1,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667
+Belize,BLZ,Consumer price index base year,2.01.03.01.prcpbase,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,..
+St. Kitts and Nevis,KNA,Government finance accounting,3.02.01.02.fscov,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,..
+Marshall Islands,MHL,Poverty survey,5.14.01.01.povsurv,0,0,0,0,0,0.5,0.5,1,1,1,1,1,1,1,0.5,0.5,..
+Trinidad and Tobago,TTO,National accounts base year,2.01.01.02.nabase,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,0
+Trinidad and Tobago,TTO,External debt reporting status,5.04.01.01.exdebt,0,0,0,0,1,1,1,0,0,0,0,0,1,1,1,1,1
+Montenegro,MNE,Consumer price index base year,2.01.03.01.prcpbase,1,1,1,1,1,1,1,0,0,0,0,0,1,0,0,..,..
+Zambia,ZMB,Vital registration system coverage,3.11.01.03.popreg,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Uzbekistan,UZB,Import and export price indexes,5.04.01.02.impexp,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Comoros,COM,Special Data Dissemination Standard,5.21.01.01.sdds,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,..
+East Asia & Pacific (excluding high income),EAP,Import and export price indexes,5.04.01.02.impexp,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..
+IDA & IBRD total,IBT,Primary completion,5.51.01.08.primcomp,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..
+Ukraine,UKR,Industrial production index,5.01.01.01.indust,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Mozambique,MOZ,Consumer price index base year,2.01.03.01.prcpbase,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1
+China,CHN,Agricultural census,3.01.04.01.agcen,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Palau,PLW,External debt reporting status,5.04.01.01.exdebt,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,..
+Tuvalu,TUV,Access to water,5.51.01.09.water,1,1,1,1,1,1,1,1,..,..,..,..,..,..,..,..,..
+Poland,POL,Child mortality,5.51.01.03.mortal,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Guatemala,GTM,Access to water,5.51.01.09.water,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Nauru,NRU,Income poverty,5.51.01.01.poverty,0,0,0,0,..,..,..,..,..,..,..,..,..,..,..,..,..
+Zimbabwe,ZWE,UNESCO reporting,5.12.01.01.unesco,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0
+Lesotho,LSO,Vital registration system coverage,3.11.01.03.popreg,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Ghana,GHA,Government finance accounting,3.02.01.02.fscov,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Algeria,DZA,Balance of payments manual in use,2.04.01.01.excncpt,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Central African Republic,CAF,Maternal health,5.51.01.06.matern,1,1,1,1,1,1,1,1,0.66667,0.66667,0.66667,0.33333,0.66667,0.66667,0.66667,0.66667,0.66667
+Costa Rica,CRI,Agricultural census,3.01.04.01.agcen,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0
+Bolivia,BOL,Child mortality,5.51.01.03.mortal,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Liberia,LBR,HIV/AIDS,5.51.01.05.hiv,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Nigeria,NGA,Income poverty,5.51.01.01.poverty,0.66667,0.33333,0.33333,0.33333,0.66667,0.66667,0.66667,0.66667,0.33333,0.33333,0.33333,0.33333,0.66667,0.66667,0.33333,0.33333,0.66667
+IBRD only,IBD,Health survey,5.13.01.01.hlthsurv,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..,..
+Costa Rica,CRI,Import and export price indexes,5.04.01.02.impexp,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"Congo, Rep.",COG,Gender equality,5.51.01.07.gender,0,0,0.33333,0.33333,0.33333,0.33333,0.33333,0,0,0,0.33333,0.33333,0.66667,0.66667,0.66667,0.66667,0.33333
+Cambodia,KHM,National accounts base year,2.01.01.02.nabase,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1
+Belize,BLZ,Access to water,5.51.01.09.water,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,..
+Chile,CHL,Special Data Dissemination Standard,5.21.01.01.sdds,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+St. Lucia,LCA,Source data assessment of statistical capacity (scale 0 - 100),IQ.SCI.SRCE,50,70,70,60,80,80,70,70,60,60,60,60,60,60,60,60,..
+Peru,PER,Immunization,5.51.01.04.immun,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Tuvalu,TUV,National immunization coverage,5.13.01.01.who,1,1,1,1,1,1,1,1,..,..,..,..,..,..,..,..,..
+Marshall Islands,MHL,National accounts base year,2.01.01.02.nabase,1,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,..
+Mozambique,MOZ,Child malnutrition,5.51.01.02.malnut,1,0.66667,0.66667,0.66667,1,1,1,1,1,1,0.66667,1,1,1,1,1,1
+Tuvalu,TUV,Maternal health,5.51.01.06.matern,0.33333,0.33333,0.33333,0.33333,0.33333,0.66667,0.66667,0.66667,..,..,..,..,..,..,..,..,..
+Mali,MLI,HIV/AIDS,5.51.01.05.hiv,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Comoros,COM,Maternal health,5.51.01.06.matern,0.33333,0.33333,0.33333,0.33333,0.33333,0.33333,0,0.33333,0.33333,0.33333,0.33333,0.66667,0.66667,0.66667,0.66667,0.66667,..
+Jamaica,JAM,Methodology assessment of statistical capacity (scale 0 - 100),IQ.SCI.MTHD,40,40,50,60,80,80,80,70,70,60,60,50,50,60,60,60,60
+Pakistan,PAK,Overall Average,IQ.SCI.OVRL,72.2222333333333,71.1111333333333,74.4444666666667,75.5555666666667,75.5555666666667,75.5555666666667,74.4444444444444,67.7777777777778,71.1111111111111,74.4444444444444,76.6666666666667,83.3333333333333,84.4444444444444,85.5555555555555,81.1111111111111,80,73.3333333333333
+Bulgaria,BGR,Maternal health,5.51.01.06.matern,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Burkina Faso,BFA,Per capita GDP growth,5.51.01.10.gdp,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Albania,ALB,Primary completion,5.51.01.08.primcomp,1,1,1,1,1,0,0,0,0,0,0,0.33333,0.33333,0.33333,0.66667,0.66667,0.33333
+Vanuatu,VUT,Balance of payments manual in use,2.04.01.01.excncpt,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,..
+Vanuatu,VUT,Population census,3.11.01.01.popcen,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,..
+Ukraine,UKR,Agricultural census,3.01.04.01.agcen,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0
+Benin,BEN,Special Data Dissemination Standard,5.21.01.01.sdds,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Montenegro,MNE,Per capita GDP growth,5.51.01.10.gdp,1,1,1,1,1,1,1,1,1,1,1,1,1,0.66667,0.66667,..,..
+Belarus,BLR,Maternal health,5.51.01.06.matern,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Kosovo,XKX,UNESCO reporting,5.12.01.01.unesco,0,0,0,0,0,0,0,0,..,..,..,..,..,..,..,..,..
+Panama,PAN,External debt reporting status,5.04.01.01.exdebt,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Tonga,TON,Maternal health,5.51.01.06.matern,1,1,1,1,1,1,1,1,1,1,1,1,1,0.66667,0.66667,0.66667,..
+Kenya,KEN,Import and export price indexes,5.04.01.02.impexp,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+Bosnia and Herzegovina,BIH,Maternal health,5.51.01.06.matern,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Romania,ROU,Immunization,5.51.01.04.immun,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Eritrea,ERI,Agricultural census,3.01.04.01.agcen,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Solomon Islands,SLB,Child malnutrition,5.51.01.02.malnut,0.66667,0.66667,0.66667,0.33333,0.33333,0.33333,0.33333,0.33333,0.33333,0.33333,0,0,0,0,0,0,..
+Belarus,BLR,National accounts base year,2.01.01.02.nabase,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Tonga,TON,Primary completion,5.51.01.08.primcomp,0,0.33333,0.33333,0.33333,0.33333,0.33333,0.33333,0,0.33333,0.33333,0.33333,0.33333,0.66667,0.66667,0.33333,0.66667,..
+Paraguay,PRY,Primary completion,5.51.01.08.primcomp,0,0,0.33333,0.33333,0.66667,0.66667,0.66667,0.66667,1,1,1,1,1,1,1,1,1
+Madagascar,MDG,Source data assessment of statistical capacity (scale 0 - 100),IQ.SCI.SRCE,50,50,20,30,50,40,50,50,60,60,60,60,60,60,60,60,60
+Samoa,WSM,Per capita GDP growth,5.51.01.10.gdp,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,..
+Bolivia,BOL,Child malnutrition,5.51.01.02.malnut,1,1,1,0.33333,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,1,0.66667,1,1
+Marshall Islands,MHL,Agricultural census,3.01.04.01.agcen,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,..
+Lebanon,LBN,Immunization,5.51.01.04.immun,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Costa Rica,CRI,Population census,3.11.01.01.popcen,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Peru,PER,Import and export price indexes,5.04.01.02.impexp,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1
+Fiji,FJI,Vital registration system coverage,3.11.01.03.popreg,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,..
+Syrian Arab Republic,SYR,Maternal health,5.51.01.06.matern,0.33333,0.66667,0.66667,1,1,1,1,1,0.66667,0.66667,0.66667,0.33333,0.33333,0,0.33333,0.33333,0.33333
+West Bank and Gaza,PSE,Agricultural census,3.01.04.01.agcen,1,1,1,1,1,1,1,1,1,1,0,0,..,..,..,..,..
+Kiribati,KIR,Population census,3.11.01.01.popcen,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,..
+Bulgaria,BGR,Health survey,5.13.01.01.hlthsurv,0,0,0,0,0,0,0,0,0.5,0.5,0.5,0.5,1,1,1,1,1
+Azerbaijan,AZE,HIV/AIDS,5.51.01.05.hiv,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Timor-Leste,TLS,Gender equality,5.51.01.07.gender,1,1,1,1,1,0.66667,0.66667,0.66667,0.66667,0.66667,0.66667,0.33333,0.33333,0.33333,0.33333,0,..
+Nepal,NPL,Per capita GDP growth,5.51.01.10.gdp,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"Congo, Dem. Rep.",COD,Import and export price indexes,5.04.01.02.impexp,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Niger,NER,Income poverty,5.51.01.01.poverty,1,1,1,1,1,1,0.66667,0.66667,0.66667,0.33333,0.33333,0.33333,0,0.33333,0.33333,0.66667,0.66667
+Nigeria,NGA,Periodicity and timeliness assessment of statistical capacity (scale 0 - 100),IQ.SCI.PRDC,80,80,80,80,83.3333,83.3333,86.6666666666667,86.6666666666667,93.33333,90,86.66667,80,83.33333,80,73.33333,70,73.33333
+St. Lucia,LCA,Vital registration system coverage,3.11.01.03.popreg,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,..
+Niger,NER,Gender equality,5.51.01.07.gender,0.66667,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+IDA total,IDA,Periodicity and timeliness assessment of statistical capacity (scale 0 - 100),IQ.SCI.PRDC,80.6289528301887,81.8868188679245,82.9560056603774,82.2641754716982,80.8805396226415,81.4465811320755,78.4591194968553,78.7735849056604,80.7843133333333,81.6025638461539,81.4102569230769,79.1666669230769,78.3333330769231,78.3333330769231,77.4999996153846,78.6928101960784,76.0784309803922
+Mozambique,MOZ,Child mortality,5.51.01.03.mortal,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+Iraq,IRQ,Import and export price indexes,5.04.01.02.impexp,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
