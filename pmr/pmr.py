@@ -10,7 +10,15 @@ class EDFS(Enum):
     FIREBASE = 2
     MONGODB = 3
 
-#TODO maybe push this to the sqledfs.py file?
+class FUNCTION(Enum):
+    SUM = 1
+    MAX = 2
+    MIN = 3
+
+
+#####################
+#  Helper Function  #
+#####################
 def mapPartition(key:str, col_data, data:str):
     """
         Arg: The name of the partition from getPartitionLocations
@@ -38,19 +46,29 @@ def sql_map(mycursor, targets, file="/root/foo/data"):
             data_mapped[partition_key] = []
         data_mapped[partition_key] += data_block
 
-    print(data_mapped)
+    return data_mapped
 
-    # data_mapped = {}
-    # for d in data:
-    #     data_list = d[2].split(",")
-        # data_mapped[.append([d[x] for x in col_idxs])
+def sql_shuffle(data_mapped):
+    data_shuffled = {}
+    for key in data_mapped.keys():
+        for item in data_mapped[key]:
+            col_key, value = item[0], item[1]
+            if col_key not in data_shuffled:
+                data_shuffled[col_key] = []
+            data_shuffled[col_key].append(value)
+    return data_shuffled
 
-    # print(data_combined)
 
-def execute(mycursor, implementation:int, function:str=None, file:str=None, targets:[]=None):
+def reduce(function, data):
+    return None
+
+def execute(mycursor, implementation:int, function:int, file:str=None, targets:[]=None):
     #TODO import getPartitionLocations() from each
     if implementation == EDFS.MYSQL:
-        sql_map(mycursor, targets)
+        data_mapped = sql_map(mycursor, targets)
+        data_shuffled = sql_shuffle(data_mapped)
+        print(data_shuffled)
+    # reduce(function, data)
     return None
 
 if __name__ == "__main__":
@@ -62,4 +80,4 @@ if __name__ == "__main__":
           password=sys.argv[1],
         )
         mycursor = mydb.cursor(buffered=True)
-        execute(mycursor, EDFS.MYSQL, targets=["Country Code","2021 [YR2021]"])
+        execute(mycursor, EDFS.MYSQL, FUNCTION.SUM, targets=["2021 [YR2021]", "2020 [YR2020]"])

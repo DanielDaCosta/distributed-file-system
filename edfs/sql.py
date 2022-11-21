@@ -240,6 +240,7 @@ def hash(mycursor, path, name, csv_file):
     mycursor.execute(meta_statement, (f"{path}/{name}",))
     mydb.commit()
     with open(csv_file) as f:
+
         key_list, csv_counter = [], 0
         reader = csv.reader(f, delimiter=',')
         header = next(reader)
