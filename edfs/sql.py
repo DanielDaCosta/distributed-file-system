@@ -51,7 +51,6 @@ def read_dataset(mycursor, path):
     # (partition_name, csv_index, comma-separated-string)
     list_of_tuples = getPartitionData(mycursor, path)
     try:
-
         list_of_lists = [tuple[2].split(",") for tuple in list_of_tuples]
         df = pd.DataFrame(list_of_lists)
 
@@ -66,7 +65,7 @@ def read_dataset(mycursor, path):
             value_name="Value")
         return df_melted
     except:
-        print(list_of_tuples)
+        return list_of_tuples
 
 def seek(mycursor, path):
     '''
