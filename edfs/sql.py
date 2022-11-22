@@ -40,7 +40,6 @@ def key_cleaning(row):
     if key.isnumeric() and key.length() > 0:
         key = f"t{key}"
     if len(key) >= 64:
-        print("long")
         key = key[0:40]
     return key
 
@@ -51,17 +50,21 @@ def key_cleaning(row):
 def read_dataset(mycursor, path):
     # (partition_name, csv_index, comma-separated-string)
     list_of_tuples = getPartitionData(mycursor, path)
-    list_of_lists = [tuple[2].split(",") for tuple in list_of_tuples]
-    df = pd.DataFrame(list_of_lists)
+    try:
 
-    new_header = df.iloc[0] #grab the first row for the header
-    df = df[1:] #take the data less the header row
-    df.columns = new_header #set the header row as the df header
+        list_of_lists = [tuple[2].split(",") for tuple in list_of_tuples]
+        df = pd.DataFrame(list_of_lists)
 
-    df_melted = df.melt(id_vars=["Country Name", "Series Name"],
-        var_name="Year",
-        value_name="Value")
-    return df_melted
+        new_header = df.iloc[0] #grab the first row for the header
+        df = df[1:] #take the data less the header row
+        df.columns = new_header #set the header row as the df header
+
+        df_melted = df.melt(id_vars=["Country Name", "Series Name"],
+            var_name="Year",
+            value_name="Value")
+        return df_melted
+    except:
+        print(list_of_tuples)
 
 def seek(mycursor, path):
     '''
@@ -430,9 +433,12 @@ def test_edfs(mycursor, argv):
         print(put(mycursor, "/root/foo", "cooking", "../datasets/sql-edfs/CookingData.csv"))
         print(cat(mycursor, "/root/foo/cooking"))
         # print(rm(mycursor, "/root/foo", "stats"))
-        print(read_dataset(mycursor, "/root/foo/stats"))
-        print(read_dataset(mycursor, "/root/foo/data"))
-        print(read_dataset(mycursor, "/root/foo/cooking"))
+        df3 = (read_dataset(mycursor, "/root/foo/stats"))
+        df2 = (read_dataset(mycursor, "/root/foo/data"))
+        df = (read_dataset(mycursor, "/root/foo/cooking"))
+        print(set(df["Series Name"]))
+        print(set(df2["Series Name"]))
+        print(set(df3["Series Name"]))
 
 
 if __name__ == "__main__":
