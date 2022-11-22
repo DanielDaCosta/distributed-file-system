@@ -2,6 +2,7 @@ import mysql.connector as ccnx
 import csv
 import re
 import sys
+import pandas as pd
 
 
 #python connector setup
@@ -49,12 +50,43 @@ def key_cleaning(row):
     if key.isnumeric() and key.length() > 0:
         key = f"t{key}"
     if len(key) >= 64:
-        key = key[:-1]
+        key = key[0:40]
     return key
 
 ####################
 # API Functions    #
 ####################
+
+def read_dataset(path):
+    # (partition_name, csv_index, comma-separated-string)
+    list_of_tuples = getPartitionData(path)
+    list_of_lists = [tuple[2].split(",") for tuple in list_of_tuples]
+    df = pd.DataFrame(list_of_lists)
+
+    new_header = df.iloc[0] #grab the first row for the header
+    df = df[1:] #take the data less the header row
+    df.columns = new_header #set the header row as the df header
+
+    df = df.drop(["Country Code", "Series Code"], "columns")
+
+    df_melted = df.melt(id_vars=["Country Name", "Series Name"],
+        var_name="Year",
+        value_name="Value")
+
+    df_melted["Year"] = df_melted["Year"].str[0:4]
+
+    df_melted = df_melted.loc[df_melted.Value.str.isnumeric()].copy()
+
+    # change columns names
+    new_columns = list()
+    columns = df_melted.columns
+    for c in columns:
+            new_columns.append(c.replace(" ","_"))
+
+    # change column names in dataframe
+    df_melted.columns = new_columns
+
+    return df_melted.astype({'Year':'int', 'Value': 'float'})
 
 def seek(path):
     '''
@@ -141,7 +173,7 @@ def ls(path):
         output = f"Invalid path: {path}"
     return output
 
-def getPartitionLocation(path):
+def getPartitionLocations(path):
     '''
     Returns the blockLocations that match the file at the specified
     Args:
@@ -161,11 +193,14 @@ def readPartition(path, partition_name):
         path (str): the path to the file
         partition_name: the name of the partition
     Returns:
-        (tuple): the data contents of the partition
+        [list of (tuple)]: the data contents of the partition
     '''
     mycursor.execute(f"SELECT * FROM {partition_name} WHERE path = %s", (path,))
-    result = mycursor.fetchall()[0]
-    return (partition_name, result[1], result[2])
+    result = mycursor.fetchall()
+    partition_data = []
+    for line in result:
+        partition_data.append((partition_name, line[1], line[2]))
+    return partition_data
 
 def cat(path):
     '''
@@ -178,7 +213,7 @@ def cat(path):
     output = ""
     sorted_data_list = getPartitionData(path)
     for s in sorted_data_list:
-        output += s[2]
+        output += s[2] +"\n"
     return output
 
 def getPartitionData(path):
@@ -195,10 +230,10 @@ def getPartitionData(path):
         if result[0][1] == "DIRECTORY":
             output = "Cannot run 'cat' on directories"
         elif result[0][1] == "FILE":
-            myresult = getPartitionLocation(path)
+            myresult = getPartitionLocations(path)
             data_list = []
             for partition in myresult:
-                data_list.append(readPartition(path, partition[1]))
+                data_list = data_list + readPartition(path, partition[1])
             sorted_data_list = Sort_Tuple(data_list, 1)
             return sorted_data_list
     else:
@@ -251,7 +286,7 @@ def hash(path, name, csv_file):
     mydb.commit()
     with open(csv_file) as f:
 
-        key_list, csv_counter = [], 0
+        key_list, csv_counter = {}, 0
         reader = csv.reader(f, delimiter=',')
         header = next(reader)
         key_index = key_idx(header)
@@ -271,7 +306,7 @@ def hash(path, name, csv_file):
             mydb.commit()
             mycursor.execute(insert_hash_statement, (path + "/" + name, csv_counter, ','.join(header)))
             mydb.commit()
-            key_list.append(key)
+            key_list[key] = None
             csv_counter += 1
         except:
             output = f"ERROR: {mycursor.statement}"
@@ -292,7 +327,7 @@ def hash(path, name, csv_file):
                 mydb.commit()
                 mycursor.execute(insert_hash_statement, (path + "/" + name, csv_counter, ','.join(row)))
                 mydb.commit()
-                key_list.append(key)
+                key_list[key] = None
                 csv_counter += 1
             except:
                 output = f"ERROR: {mycursor.statement}"
@@ -300,7 +335,7 @@ def hash(path, name, csv_file):
                 # return output
 
         #write data into datanodes
-        for key in key_list:
+        for key in key_list.keys():
              block_statement = "INSERT INTO blockLocations VALUES(%s, %s);"
              mycursor.execute(block_statement, (f"{path}/{name}", key))
         mydb.commit()
@@ -320,7 +355,7 @@ def delete(list):
     '''
     try:
         for item in list:
-            drop_table = f"DROP TABLE {item}"
+            drop_table = f"DROP TABLE {key}"
             mycursor.execute(drop_table)
             mydb.commit()
         return "Dropped tables"
@@ -390,8 +425,6 @@ def start_env(edfs):
     except:
         return "Database error"
     return  f"{edfs} started"
-
-#TODO OOP this script
 
 def test_edfs(argv):
 

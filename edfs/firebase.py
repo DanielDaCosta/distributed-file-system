@@ -255,6 +255,10 @@ def to_df(data):
     return df_melted
 
 
+# function to get year columns
+def is_year (c):
+    return any(char.isdigit() for char in c)
+
 def read_dataset(file: str):
     partitions = json.loads(getPartitionLocation(file))
 
@@ -265,7 +269,24 @@ def read_dataset(file: str):
         map = mapPartition(dir, file)
         df_list.append(to_df(map))
         break ### REMOVEE
-    return pd.concat(df_list)
+
+    df = pd.concat(df_list)
+
+    # change columns names
+    new_columns = list()
+    columns = df.columns
+    for c in columns:
+        if is_year(c):
+            new_columns.append(c[:4])
+        else:
+            new_columns.append(c.replace(" ","_"))
+
+    # change column names in dataframe
+    df.columns = new_columns
+    df['Year'] = df['Year'].astype(int)
+    df = df.loc[df['Value'] != '..'].copy()
+    df['Value'] = df['Value'].astype(float)
+    return df
 
 
 def test():

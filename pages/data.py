@@ -10,41 +10,11 @@ import dash
 from dash import dcc
 import pandas as pd
 import numpy as np
-from edfs.firebase import read_dataset
+import edfs.firebase as file_system
 
-# data = pd.read_csv("avocado.csv")
-# data = data.query("type == 'conventional' and region == 'Albany'")
-# data["Date"] = pd.to_datetime(data["Date"], format="%Y-%m-%d")
-# data.sort_values("Date", inplace=True)
 file_name = "Stats_Cap_Ind_Sample"
-data = read_dataset(f"root/user/{file_name}")
-# data = pd.read_csv("datasets/Data_Extract_From_Statistical_Capacity_Indicators/42377300-c075-4554-a55f-41cd64c79126_Data.csv")
-
-
-# # function to get year columns
-def is_year (c):
-    return any(char.isdigit() for char in c)
-
-# # change columns names
-new_columns = list()
-columns = data.columns
-for c in columns:
-    if is_year(c):
-        new_columns.append(c[:4])
-    else:
-        new_columns.append(c.replace(" ","_"))
-
-# change column names in dataframe
-data.columns = new_columns
-# df = df.drop(columns=['Country_Code', 'Series_Code'], axis=1)
-# data = df.melt(id_vars=["Country_Name", "Series_Name"], 
-#         var_name="Year", 
-#         value_name="Value")
-data['Year'] = data['Year'].astype(int)
-data = data.loc[data['Value'] != '..'].copy()
-data['Value'] = data['Value'].astype(float)
-
-
+data = file_system.read_dataset(f"root/user/{file_name}")
+dataset_list = ['Stats_Cap_Ind_Sample', 'Human_Capital_Index']
 
 dash.register_page(
     __name__,
@@ -71,11 +41,11 @@ layout = html.Div(children=[
             children=[
                 html.Div(
                     children=[
-                        html.Div(children="Filename", className="menu-title"),
+                        html.Div(children="EDFS", className="menu-title"),
                         dcc.Dropdown(
-                            id="dataset-filter",
-                            options=['Stats_Cap_Ind_Sample', 'Stats_Cap_Ind_Sample_2', 'Stats_Cap_Ind_Sample_3'],
-                            value="Stats_Cap_Ind_Sample",
+                            id="edfs-filter",
+                            options=['Firebase', 'MySQL', 'MongoDB'],
+                            value="Firebase",
                             clearable=False,
                             placeholder="Select Indicator",
                             searchable=False,
@@ -83,9 +53,25 @@ layout = html.Div(children=[
                         ),
                     ]
                 ),
+                html.Br(),
+                html.Div(
+                    children=[
+                        html.Div(children="Filename", className="menu-title"),
+                        dcc.Dropdown(
+                            id="dataset-filter",
+                            # options=['Stats_Cap_Ind_Sample', 'Human_Capital_Index', 'Stats_Cap_Ind_Sample_2'],
+                            # value="Stats_Cap_Ind_Sample",
+                            clearable=False,
+                            placeholder="Select Indicator",
+                            searchable=False,
+                            className="dropdown",
+                        ),
+                    ],
+                    style={"margin-left": "15px"}
+                ),
                 html.Br()
             ],
-            className='menu2'
+            className='menu3'
         ),
         html.Div(
             children=[
@@ -94,10 +80,6 @@ layout = html.Div(children=[
                         html.Div(children="Country", className="menu-title"),
                         dcc.Dropdown(
                             id="region-filter",
-                            options=[
-                                {"label": country_name, "value": country_name}
-                                for country_name in np.sort(data.Country_Name.unique())
-                            ],
                             # value="Afghanistan",
                             placeholder="Select Country",
                             clearable=True,
@@ -109,17 +91,9 @@ layout = html.Div(children=[
                 html.Div(
                     children=[
                         html.Div(children="Type", className="menu-title"),
-                        dcc.Dropdown(
-                            id="type-filter",
-                            options=[
-                                {"label": series_name, "value": series_name}
-                                for series_name in data.Series_Name.unique()
-                            ],
-                            value="Child malnutrition",
-                            clearable=False,
-                            placeholder="Select Indicator",
-                            searchable=False,
-                            className="dropdown",
+                        dcc.Dropdown(id="type-filter", clearable=False, placeholder="Select Indicator",
+                        searchable=False,
+                        className="dropdown",
                         ),
                     ],
                 ),
@@ -186,25 +160,59 @@ layout = html.Div(children=[
             ],
             className="wrapper",
         ),
-        html.Div(id='dummy')
+        html.Div(id='dummy'),
+        html.Div(id='dummy-2')
     # html.H3(children="Graph of Data"),
     # dcc.Link('Home',href="/"),
     # html.Br(),
     # dcc.Link('model-showcase',href="/showcase")
 ])
 
+# Change EDFS
 @dash.callback(
-    Output("dummy", "children"),
-    Input("dataset-filter", "value"),
+    Output("dataset-filter", "options"),
+    Input("edfs-filter", "value"),
 )
-def select_dataset(dataset_name):
+def change_edfs(edfs_filter):
+    global file_system
+    global data
+    if edfs_filter == "MySQL":
+        import edfs.mysql as file_system
+        dataset_list = ['data', 'CookingData']
+    elif edfs_filter == "MongoDB":
+        import edfs.mongodb as file_system
+        dataset_list = ['Stats_Cap_Ind_Sample']
+    else:
+        import edfs.firebase as file_system
+        dataset_list = ['Stats_Cap_Ind_Sample', 'Human_Capital_Index']
+    return dataset_list
+
+
+@dash.callback(
+    Output("region-filter", "options"),
+    Output("type-filter", "options"),
+    Input("dataset-filter", "value"),
+    Input("edfs-filter", "value"),
+)
+def select_dataset(dataset_name, edfs_filter):
     global data
     global file_name
-    if file_name != dataset_name:
-        print("Changing")
+    if dataset_name:
         file_name = dataset_name
-        data = read_dataset(f"root/user/{file_name}")
-    return None
+        if edfs_filter == "MySQL":
+            data = file_system.read_dataset(f"/root/foo/{file_name}")
+        elif edfs_filter == "MongoDB":
+            data = file_system.read_dataset(f"/root/foo/{file_name}")
+        else:
+            data = file_system.read_dataset(f"root/user/{file_name}")
+        
+    
+    coutry_name_list = [ {"label": country_name, "value": country_name}
+        for country_name in np.sort(data.Country_Name.unique())
+    ]
+
+    series_name_list = [ {"label": series_name, "value": series_name} for series_name in data.Series_Name.unique()]
+    return coutry_name_list, series_name_list
 
 
 @dash.callback(

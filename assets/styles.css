@@ -87,6 +87,19 @@ body {
     box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.18);
 }
 
+.menu3 {
+    height: 112px;
+    /* width: 912px; */
+    width: 700px;
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 24px;
+    padding-bottom: 150px;
+    margin: -80px auto 0 auto;
+    background-color: #FFFFFF;
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.18);
+}
+
 .menu {
     height: 112px;
     /* width: 912px; */
