@@ -266,3 +266,7 @@ def read_dataset(file: str):
         df_list.append(to_df(map))
         break ### REMOVEE
     return pd.concat(df_list)
+
+
+def test():
+    return 'test1'
