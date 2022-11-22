@@ -59,6 +59,8 @@ def read_dataset(mycursor, path):
         df = df[1:] #take the data less the header row
         df.columns = new_header #set the header row as the df header
 
+        df = df.drop(["Country Code", "Series Code"], "columns")
+
         df_melted = df.melt(id_vars=["Country Name", "Series Name"],
             var_name="Year",
             value_name="Value")
@@ -432,8 +434,8 @@ def test_edfs(mycursor, argv):
         print(cat(mycursor, "/root/foo/cooking"))
         df2 = (read_dataset(mycursor, "/root/foo/data"))
         df = (read_dataset(mycursor, "/root/foo/cooking"))
-        print(set(df["Series Name"]))
-        print(set(df2["Series Name"]))
+        print((df.head()))
+        print((df2.head()))
 
 
 if __name__ == "__main__":
