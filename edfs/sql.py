@@ -435,10 +435,11 @@ def test_edfs(mycursor, argv):
         print(ls(mycursor, "/tree"))
         print(put(mycursor, "/root/foo", "cooking", "../datasets/sql-edfs/CookingData.csv"))
         print(cat(mycursor, "/root/foo/cooking"))
+
         df2 = (read_dataset(mycursor, "/root/foo/data"))
         df = (read_dataset(mycursor, "/root/foo/cooking"))
-        print((df.head()))
-        print((df2.head()))
+
+        print(type(df))
 
 
 if __name__ == "__main__":
