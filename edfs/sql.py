@@ -3,6 +3,7 @@ import csv
 import re
 import sys
 import pandas as pd
+import re
 
 ####################
 # Helper Functions #
@@ -63,7 +64,10 @@ def read_dataset(mycursor, path):
         df_melted = df.melt(id_vars=["Country Name", "Series Name"],
             var_name="Year",
             value_name="Value")
-        return df_melted
+
+        df_melted["Year"] = df_melted["Year"].str[0:4]
+
+        return df_melted.astype({'Year':'int'})
     except:
         return list_of_tuples
 
