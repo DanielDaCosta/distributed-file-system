@@ -416,17 +416,17 @@ def test_edfs(mycursor, argv):
         print(new_env(mycursor, edfs))
     else:
         print(start_env(mycursor, edfs))
-        # print(mkdir(mycursor, "/root", "foo"))
-        # print(mkdir(mycursor, "/root/foo", "bar"))
-        # # #todo: put check to make sure that the file source exists
-        # print(put(mycursor, "/root/foo", "data", "../datasets/sql-edfs/data.csv"))
-        # print(cat(mycursor, "/root/foo/data"))
-        # print(ls(mycursor, "/root/foo"))
-        # # print(rm(mycursor, "/root/foo", "data"))
-        # print(ls(mycursor, "/tree"))
-        # print(put(mycursor, "/root/foo", "stats", "../datasets/Data_Extract_From_Statistical_Capacity_Indicators/42377300-c075-4554-a55f-41cd64c79126_Data.csv"))
-        # print(cat(mycursor, "/root/foo/stats"))
-        # # print(rm(mycursor, "/root/foo", "stats"))
+        print(mkdir(mycursor, "/root", "foo"))
+        print(mkdir(mycursor, "/root/foo", "bar"))
+        # #todo: put check to make sure that the file source exists
+        print(put(mycursor, "/root/foo", "data", "../datasets/sql-edfs/data.csv"))
+        print(cat(mycursor, "/root/foo/data"))
+        print(ls(mycursor, "/root/foo"))
+        # print(rm(mycursor, "/root/foo", "data"))
+        print(ls(mycursor, "/tree"))
+        print(put(mycursor, "/root/foo", "stats", "../datasets/Data_Extract_From_Statistical_Capacity_Indicators/42377300-c075-4554-a55f-41cd64c79126_Data.csv"))
+        print(cat(mycursor, "/root/foo/stats"))
+        # print(rm(mycursor, "/root/foo", "stats"))
         print(read_dataset(mycursor, "/root/foo/stats"))
         print(read_dataset(mycursor, "/root/foo/data"))
 
