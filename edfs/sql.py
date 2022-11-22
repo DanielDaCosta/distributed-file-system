@@ -428,17 +428,12 @@ def test_edfs(mycursor, argv):
         print(ls(mycursor, "/root/foo"))
         # print(rm(mycursor, "/root/foo", "data"))
         print(ls(mycursor, "/tree"))
-        print(put(mycursor, "/root/foo", "stats", "../datasets/Data_Extract_From_Statistical_Capacity_Indicators/42377300-c075-4554-a55f-41cd64c79126_Data.csv"))
-        print(cat(mycursor, "/root/foo/stats"))
         print(put(mycursor, "/root/foo", "cooking", "../datasets/sql-edfs/CookingData.csv"))
         print(cat(mycursor, "/root/foo/cooking"))
-        # print(rm(mycursor, "/root/foo", "stats"))
-        df3 = (read_dataset(mycursor, "/root/foo/stats"))
         df2 = (read_dataset(mycursor, "/root/foo/data"))
         df = (read_dataset(mycursor, "/root/foo/cooking"))
         print(set(df["Series Name"]))
         print(set(df2["Series Name"]))
-        print(set(df3["Series Name"]))
 
 
 if __name__ == "__main__":
