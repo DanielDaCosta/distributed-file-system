@@ -2,6 +2,7 @@ import mysql.connector as ccnx
 import csv
 import re
 import sys
+import pandas as pd
 
 ####################
 # Helper Functions #
@@ -45,6 +46,21 @@ def key_cleaning(row):
 ####################
 # API Functions    #
 ####################
+
+def read_dataset(mycursor, path):
+    # (partition_name, csv_index, comma-separated-string)
+    list_of_tuples = getPartitionData(mycursor, path)
+    list_of_lists = [tuple[2].split(",") for tuple in list_of_tuples]
+    df = pd.DataFrame(list_of_lists)
+
+    new_header = df.iloc[0] #grab the first row for the header
+    df = df[1:] #take the data less the header row
+    df.columns = new_header #set the header row as the df header
+
+    df_melted = df.melt(id_vars=["Country Name", "Series Name"],
+        var_name="Year",
+        value_name="Value")
+    return df_melted
 
 def seek(mycursor, path):
     '''
@@ -151,11 +167,14 @@ def readPartition(mycursor, path, partition_name):
         path (str): the path to the file
         partition_name: the name of the partition
     Returns:
-        (tuple): the data contents of the partition
+        [list of (tuple)]: the data contents of the partition
     '''
     mycursor.execute(f"SELECT * FROM {partition_name} WHERE path = %s", (path,))
-    result = mycursor.fetchall()[0]
-    return (partition_name, result[1], result[2])
+    result = mycursor.fetchall()
+    partition_data = []
+    for line in result:
+        partition_data.append((partition_name, line[1], line[2]))
+    return partition_data
 
 def cat(mycursor, path):
     '''
@@ -168,7 +187,7 @@ def cat(mycursor, path):
     output = ""
     sorted_data_list = getPartitionData(mycursor, path)
     for s in sorted_data_list:
-        output += s[2]
+        output += s[2] +"\n"
     return output
 
 def getPartitionData(mycursor, path):
@@ -188,7 +207,7 @@ def getPartitionData(mycursor, path):
             myresult = getPartitionLocations(mycursor, path)
             data_list = []
             for partition in myresult:
-                data_list.append(readPartition(mycursor, path, partition[1]))
+                data_list = data_list + readPartition(mycursor, path, partition[1])
             sorted_data_list = Sort_Tuple(data_list, 1)
             return sorted_data_list
     else:
@@ -241,7 +260,7 @@ def hash(mycursor, path, name, csv_file):
     mydb.commit()
     with open(csv_file) as f:
 
-        key_list, csv_counter = [], 0
+        key_list, csv_counter = {}, 0
         reader = csv.reader(f, delimiter=',')
         header = next(reader)
         key_index = key_idx(header)
@@ -261,7 +280,7 @@ def hash(mycursor, path, name, csv_file):
             mydb.commit()
             mycursor.execute(insert_hash_statement, (path + "/" + name, csv_counter, ','.join(header)))
             mydb.commit()
-            key_list.append(key)
+            key_list[key] = None
             csv_counter += 1
         except:
             output = f"ERROR: {mycursor.statement}"
@@ -282,7 +301,7 @@ def hash(mycursor, path, name, csv_file):
                 mydb.commit()
                 mycursor.execute(insert_hash_statement, (path + "/" + name, csv_counter, ','.join(row)))
                 mydb.commit()
-                key_list.append(key)
+                key_list[key] = None
                 csv_counter += 1
             except:
                 output = f"ERROR: {mycursor.statement}"
@@ -290,7 +309,7 @@ def hash(mycursor, path, name, csv_file):
                 # return output
 
         #write data into datanodes
-        for key in key_list:
+        for key in key_list.keys():
              block_statement = "INSERT INTO blockLocations VALUES(%s, %s);"
              mycursor.execute(block_statement, (f"{path}/{name}", key))
         mydb.commit()
@@ -397,14 +416,20 @@ def test_edfs(mycursor, argv):
         print(new_env(mycursor, edfs))
     else:
         print(start_env(mycursor, edfs))
-        print(mkdir(mycursor, "/root", "foo"))
-        print(mkdir(mycursor, "/root/foo", "bar"))
-        #todo: put check to make sure that the file source exists
-        print(put(mycursor, "/root/foo", "data", "../datasets/sql-edfs/data.csv"))
-        print(cat(mycursor, "/root/foo/data"))
-        print(ls(mycursor, "/root/foo"))
-        print(rm(mycursor, "/root", "data"))
-        print(ls(mycursor, "/tree"))
+        # print(mkdir(mycursor, "/root", "foo"))
+        # print(mkdir(mycursor, "/root/foo", "bar"))
+        # # #todo: put check to make sure that the file source exists
+        # print(put(mycursor, "/root/foo", "data", "../datasets/sql-edfs/data.csv"))
+        # print(cat(mycursor, "/root/foo/data"))
+        # print(ls(mycursor, "/root/foo"))
+        # # print(rm(mycursor, "/root/foo", "data"))
+        # print(ls(mycursor, "/tree"))
+        # print(put(mycursor, "/root/foo", "stats", "../datasets/Data_Extract_From_Statistical_Capacity_Indicators/42377300-c075-4554-a55f-41cd64c79126_Data.csv"))
+        # print(cat(mycursor, "/root/foo/stats"))
+        # # print(rm(mycursor, "/root/foo", "stats"))
+        print(read_dataset(mycursor, "/root/foo/stats"))
+        print(read_dataset(mycursor, "/root/foo/data"))
+
 
 if __name__ == "__main__":
 

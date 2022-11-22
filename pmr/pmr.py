@@ -43,6 +43,8 @@ def mapPartition(key:str, col_data, data:str):
 def sql_map(mycursor, targets:[], file:str):
     sql.start_env(mycursor, "edfs")
     data = sql.getPartitionData(mycursor, file)
+    print(len(data))
+    print(data)
     # then I get all the partition locations and the indices and it goes zoooom
 
     #ID targets
@@ -87,7 +89,7 @@ def edfs_reduce(data_shuffled:dict, function:int):
             data_reduced[col] = sum(shuffled_data)/len(shuffled_data)
     return data_reduced
 
-def execute(mycursor=None, implementation:int, function:int, targets:[]=None, file:str=None, DEBUG=False):
+def execute(mycursor, implementation:int, function:int, targets:[]=None, file:str=None, DEBUG=False):
     #TODO import getPartitionLocations() from each
     if implementation == EDFS.MYSQL:
         data_mapped = sql_map(mycursor, targets, file)
