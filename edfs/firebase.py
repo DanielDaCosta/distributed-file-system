@@ -15,7 +15,7 @@ def seek(path):
         return rget
     except:
         print('ERROR')
-        
+
 
 def ls(path: str) -> str:
     '''List files under path/.
@@ -41,12 +41,12 @@ def ls(path: str) -> str:
         output = 'empty' if not result_list else ', '.join(result_list)
     elif not rlist:
         output = f'Path {path} not found'
-    else: 
+    else:
         output = f'{path} is not a folder'
-    
+
     return output
 
-        
+
 def mkdir(path: str) -> str:
     '''Create directory if not exists
 
@@ -65,7 +65,7 @@ def mkdir(path: str) -> str:
         output  = 'Directory ' + path + ' already exists'
     return output
 
-        
+
 def rm(path: str) -> str:
     '''Delete directory if exists
 
@@ -94,15 +94,18 @@ def getPartitionLocation(file: str) -> str:
         (str) Success or Error message
     '''
     path = "NameNode/" + file + "/partitions"
+    print(f"GetPartitionLocations - Path: {path}")
     rpath = seek(path)
+    print(f"GetPartitionLocations - rPath: {rpath.url}")
     partition = requests.get(rpath.url)
-    pdict = partition.json()       
+    print(f"GetPartitionLocations - partition: {partition.json()}")
+    pdict = partition.json()
 
     if pdict is None:
         output = f'Partitions for {file} not found'
     else:
         output = json.dumps(pdict, indent=4, sort_keys=True) # Organizing the data
-    
+
     return output
 
 
@@ -133,7 +136,7 @@ def varname (var):
 
 def mtime():
 #     to revert back
-    #datetime.datetime.utcfromtimestamp(int(mtime)/1000).strftime('%Y-%-m-%-d %I:%M:%S') 
+    #datetime.datetime.utcfromtimestamp(int(mtime)/1000).strftime('%Y-%-m-%-d %I:%M:%S')
     return (datetime.datetime.now().timestamp()*1000)
 
 def filesize(file): #file size in bytes
@@ -164,20 +167,20 @@ def file_mdata(path, file, filename):
              'type': 'FILE',
              'filesize':filesize(file)}
     putMeta = requests.patch(npath, json.dumps(mdata))
-    
+
 
 # partition by Country (Original plan)
 def put(file: str, path: str) -> str:
     filename = file.replace(".csv","")
     path = 'NameNode/' + path
 
- 
-    # creating dictinary to organize data into correct json format. 
+
+    # creating dictinary to organize data into correct json format.
     # added 'file name' to the dictionary to help differentiate data from different files
     dc = dict()
     with open(file, encoding = 'utf-8') as csvfile:
         csvReader = csv.reader(csvfile)
-        
+
         for index, row in enumerate(csvReader):
             cname = varname(row[0])
             n = 'p' + str(index)
@@ -185,7 +188,7 @@ def put(file: str, path: str) -> str:
                 dc[cname][n] = (';'.join(row))
             else:
                 dc[cname]={n:(';'.join(row))}
-    
+
     if seek(path + '/' +filename).json() is None:
         for key, val in dc.items():
             url = firebase_url + 'DataNode/' + key + '/' + filename + '.json'
@@ -194,28 +197,28 @@ def put(file: str, path: str) -> str:
                 record_partition (path, key, filename, putResponse.url)
             else:
                 print (file, 'failed to uploaded at partition', key)
-        
+
         output =  file + ' was succesfully uploaded to ' + path
-        
+
         file_mdata(path, file, filename)
         #add metadata information.
     else:
         output = file + " already exists in " + path
-            
-        
     return output
-    
+
 
 def cat(path):
     file = path.replace('.csv','')
+    print(f"CAT - file: {file}")
     pdict = json.loads(getPartitionLocation(file))
+    print(f"CAT - pdict: {pdict}")
     data = dict()
     for k,v in pdict.items():
         getPartition = requests.get(v).json()
         for key, val in getPartition.items():
             i = int(key.replace('p',''))
             data[i]=val.replace(';',',')
-            
+
     ldata = list()
     for key in sorted(data):
         ldata.append(data[key])
@@ -229,12 +232,12 @@ def mapPartition(p, file):
     readMap = indexing(requests.get(p).json())
     for key in sorted(readMap):
         rlist.append(readMap[key])
-    return rlist 
-    
+    return rlist
+
 
 # function to get year columns
 def is_year (c):
-    return any(char.isdigit() for char in c)    
+    return any(char.isdigit() for char in c)
 
 
 def new_col(cols):
@@ -269,25 +272,4 @@ def read_dataset(file: str):
         map = mapPartition(dir, file)
         df_list.append(to_df(map))
         break ### REMOVEE
-
-    df = pd.concat(df_list)
-
-    # change columns names
-    new_columns = list()
-    columns = df.columns
-    for c in columns:
-        if is_year(c):
-            new_columns.append(c[:4])
-        else:
-            new_columns.append(c.replace(" ","_"))
-
-    # change column names in dataframe
-    df.columns = new_columns
-    df['Year'] = df['Year'].astype(int)
-    df = df.loc[df['Value'] != '..'].copy()
-    df['Value'] = df['Value'].astype(float)
-    return df
-
-
-def test():
-    return 'test1'
+    return pd.concat(df_list)

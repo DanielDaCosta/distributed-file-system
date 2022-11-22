@@ -1,6 +1,7 @@
 import sys
 sys.path.insert(1, '../edfs')
 import sql
+import firebase
 import mysql.connector as ccnx
 from enum import Enum
 
@@ -39,7 +40,7 @@ def mapPartition(key:str, col_data, data:str):
     """
     return None
 
-def sql_map(mycursor, targets:[], file="/root/foo/data"):
+def sql_map(mycursor, targets:[], file:str):
     sql.start_env(mycursor, "edfs")
     data = sql.getPartitionData(mycursor, file)
     # then I get all the partition locations and the indices and it goes zoooom
@@ -59,7 +60,7 @@ def sql_map(mycursor, targets:[], file="/root/foo/data"):
         data_mapped[partition_key] += data_block
     return data_mapped
 
-def sql_shuffle(data_mapped:dict):
+def edfs_shuffle(data_mapped:dict):
     data_shuffled = {}
     for key in data_mapped.keys():
         for item in data_mapped[key]:
@@ -69,7 +70,7 @@ def sql_shuffle(data_mapped:dict):
             data_shuffled[col_key].append(convert_str(value))
     return data_shuffled
 
-def sql_reduce(data_shuffled:dict, function:int):
+def edfs_reduce(data_shuffled:dict, function:int):
     data_reduced = {}
     if function == FUNC.SUM:
         for col in data_shuffled.keys():
@@ -86,18 +87,21 @@ def sql_reduce(data_shuffled:dict, function:int):
             data_reduced[col] = sum(shuffled_data)/len(shuffled_data)
     return data_reduced
 
-def execute(mycursor, implementation:int, function:int, file:str=None, targets:[]=None, DEBUG=False):
+def execute(mycursor=None, implementation:int, function:int, targets:[]=None, file:str=None, DEBUG=False):
     #TODO import getPartitionLocations() from each
     if implementation == EDFS.MYSQL:
-        data_mapped = sql_map(mycursor, targets)
-        data_shuffled = sql_shuffle(data_mapped)
-        data_reduced = sql_reduce(data_shuffled, function)
+        data_mapped = sql_map(mycursor, targets, file)
+        data_shuffled = edfs_shuffle(data_mapped)
+        data_reduced = edfs_reduce(data_shuffled, function)
         if DEBUG:
             print(f"Data Mapped:\n {data_mapped}\n")
             print(f"Data Shuffled:\n {data_shuffled}\n")
             print(f"Data Reduced:\n {data_reduced}\n")
         return data_reduced
-    return None
+    if implementation == EDFS.FIREBASE:
+        data = firebase.cat(file)
+        #TODO: firebase map
+        return data
 
 if __name__ == "__main__":
     if sys.argv[2] == "mysql":
@@ -108,4 +112,5 @@ if __name__ == "__main__":
           password=sys.argv[1],
         )
         mycursor = mydb.cursor(buffered=True)
-        execute(mycursor, EDFS.MYSQL, FUNC.AVG, targets=["2021 [YR2021]", "2020 [YR2020]"], DEBUG=True)
+        execute(mycursor, EDFS.MYSQL, FUNC.AVG, targets=["2021 [YR2021]", "2020 [YR2020]"], file="/root/foo/data", DEBUG=True)
+        execute(mycursor, EDFS.FIREBASE, FUNC.AVG, targets=["2021 [YR2021]", "2020 [YR2020]"], file="root/user/Stats_Cap_Ind_Sample", DEBUG=True)
