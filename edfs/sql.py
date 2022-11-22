@@ -40,7 +40,8 @@ def key_cleaning(row):
     if key.isnumeric() and key.length() > 0:
         key = f"t{key}"
     if len(key) >= 64:
-        key = key[:-1]
+        print("long")
+        key = key[0:40]
     return key
 
 ####################
@@ -426,9 +427,12 @@ def test_edfs(mycursor, argv):
         print(ls(mycursor, "/tree"))
         print(put(mycursor, "/root/foo", "stats", "../datasets/Data_Extract_From_Statistical_Capacity_Indicators/42377300-c075-4554-a55f-41cd64c79126_Data.csv"))
         print(cat(mycursor, "/root/foo/stats"))
+        print(put(mycursor, "/root/foo", "cooking", "../datasets/sql-edfs/CookingData.csv"))
+        print(cat(mycursor, "/root/foo/cooking"))
         # print(rm(mycursor, "/root/foo", "stats"))
         print(read_dataset(mycursor, "/root/foo/stats"))
         print(read_dataset(mycursor, "/root/foo/data"))
+        print(read_dataset(mycursor, "/root/foo/cooking"))
 
 
 if __name__ == "__main__":
