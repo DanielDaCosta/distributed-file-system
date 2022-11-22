@@ -51,25 +51,22 @@ def key_cleaning(row):
 def read_dataset(mycursor, path):
     # (partition_name, csv_index, comma-separated-string)
     list_of_tuples = getPartitionData(mycursor, path)
-    try:
-        list_of_lists = [tuple[2].split(",") for tuple in list_of_tuples]
-        df = pd.DataFrame(list_of_lists)
+    list_of_lists = [tuple[2].split(",") for tuple in list_of_tuples]
+    df = pd.DataFrame(list_of_lists)
 
-        new_header = df.iloc[0] #grab the first row for the header
-        df = df[1:] #take the data less the header row
-        df.columns = new_header #set the header row as the df header
+    new_header = df.iloc[0] #grab the first row for the header
+    df = df[1:] #take the data less the header row
+    df.columns = new_header #set the header row as the df header
 
-        df = df.drop(["Country Code", "Series Code"], "columns")
+    df = df.drop(["Country Code", "Series Code"], "columns")
 
-        df_melted = df.melt(id_vars=["Country Name", "Series Name"],
-            var_name="Year",
-            value_name="Value")
+    df_melted = df.melt(id_vars=["Country Name", "Series Name"],
+        var_name="Year",
+        value_name="Value")
 
-        df_melted["Year"] = df_melted["Year"].str[0:4]
+    df_melted["Year"] = df_melted["Year"].str[0:4]
 
-        return df_melted.astype({'Year':'int'})
-    except:
-        return list_of_tuples
+    return df_melted.astype({'Year':'int'})
 
 def seek(mycursor, path):
     '''
@@ -440,6 +437,7 @@ def test_edfs(mycursor, argv):
         df = (read_dataset(mycursor, "/root/foo/cooking"))
 
         print(type(df))
+        print(type(df2))
 
 
 if __name__ == "__main__":
