@@ -40,27 +40,35 @@ def mapPartition(key:str, col_data, data:str):
     """
     return None
 
-def sql_map(mycursor, targets:[], file:str):
-    sql.start_env(mycursor, "edfs")
-    data = sql.getPartitionData(mycursor, file)
-    print(len(data))
-    print(data)
-    # then I get all the partition locations and the indices and it goes zoooom
+def firebase_map(targets, file):
+    data = firebase.cat(file)
+    data = [row.split(",") for row in data] #list of list
+    header_list = data[0]
+    data = [(row[0], None, ','.join(row)) for row in data]
+    col_dict = {header_list.index(i):i for i in targets}
+    return edfs_map(data, col_dict)
 
-    #ID targets
-    header = None
-    header_list = (data[0][2].split(","))
-    col_idxs = [header_list.index(i) for i in targets]
-
+def edfs_map(data, col_dict):
     #map step
     data_mapped = {}
+
     for d in data:
-        partition_key, data_index, data_block = d[0], d[1], d[2].split(",")
-        data_block = [(x, data_block[x]) for x in col_idxs]
+        partition_key, data_block = d[0], d[2].split(",")
+        data_block = [(col_dict[x], data_block[x]) for x in col_dict.keys()]
         if partition_key not in data_mapped:
             data_mapped[partition_key] = []
         data_mapped[partition_key] += data_block
     return data_mapped
+
+def sql_map(mycursor, targets:[], file:str):
+    sql.start_env(mycursor, "edfs")
+    data = sql.getPartitionData(mycursor, file)
+    # then I get all the partition locations and the indices and it goes zoooom
+
+    #ID targets
+    header_list = (data[0][2].split(","))
+    col_dict = {header_list.index(i):i for i in targets}
+    return edfs_map(data, col_dict)
 
 def edfs_shuffle(data_mapped:dict):
     data_shuffled = {}
@@ -101,9 +109,15 @@ def execute(mycursor, implementation:int, function:int, targets:[]=None, file:st
             print(f"Data Reduced:\n {data_reduced}\n")
         return data_reduced
     if implementation == EDFS.FIREBASE:
-        data = firebase.cat(file)
-        #TODO: firebase map
-        return data
+        data_mapped = firebase_map(targets, file)
+        data_shuffled = edfs_shuffle(data_mapped)
+        data_reduced = edfs_reduce(data_shuffled, function)
+        if DEBUG:
+            print(f"Data Mapped:\n {data_mapped}\n")
+            print(f"Data Shuffled:\n {data_shuffled}\n")
+            print(f"Data Reduced:\n {data_reduced}\n")
+        return data_reduced
+        return data_mapped
 
 if __name__ == "__main__":
     if sys.argv[2] == "mysql":
@@ -114,5 +128,5 @@ if __name__ == "__main__":
           password=sys.argv[1],
         )
         mycursor = mydb.cursor(buffered=True)
-        execute(mycursor, EDFS.MYSQL, FUNC.AVG, targets=["2021 [YR2021]", "2020 [YR2020]"], file="/root/foo/data", DEBUG=True)
-        execute(mycursor, EDFS.FIREBASE, FUNC.AVG, targets=["2021 [YR2021]", "2020 [YR2020]"], file="root/user/Stats_Cap_Ind_Sample", DEBUG=True)
+        execute(mycursor, EDFS.MYSQL, FUNC.MIN, targets=["2019 [YR2019]", "2020 [YR2020]"], file="/root/foo/data", DEBUG=True)
+        execute(mycursor, EDFS.FIREBASE, FUNC.AVG, targets=["2019 [YR2019]", "2020 [YR2020]"], file="root/user/Stats_Cap_Ind_Sample", DEBUG=True)

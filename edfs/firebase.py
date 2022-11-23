@@ -94,11 +94,8 @@ def getPartitionLocation(file: str) -> str:
         (str) Success or Error message
     '''
     path = "NameNode/" + file + "/partitions"
-    print(f"GetPartitionLocations - Path: {path}")
     rpath = seek(path)
-    print(f"GetPartitionLocations - rPath: {rpath.url}")
     partition = requests.get(rpath.url)
-    print(f"GetPartitionLocations - partition: {partition.json()}")
     pdict = partition.json()
 
     if pdict is None:
@@ -204,14 +201,14 @@ def put(file: str, path: str) -> str:
         #add metadata information.
     else:
         output = file + " already exists in " + path
+
+
     return output
 
 
 def cat(path):
     file = path.replace('.csv','')
-    print(f"CAT - file: {file}")
     pdict = json.loads(getPartitionLocation(file))
-    print(f"CAT - pdict: {pdict}")
     data = dict()
     for k,v in pdict.items():
         getPartition = requests.get(v).json()
@@ -272,4 +269,25 @@ def read_dataset(file: str):
         map = mapPartition(dir, file)
         df_list.append(to_df(map))
         break ### REMOVEE
-    return pd.concat(df_list)
+
+    df = pd.concat(df_list)
+
+    # change columns names
+    new_columns = list()
+    columns = df.columns
+    for c in columns:
+        if is_year(c):
+            new_columns.append(c[:4])
+        else:
+            new_columns.append(c.replace(" ","_"))
+
+    # change column names in dataframe
+    df.columns = new_columns
+    df['Year'] = df['Year'].astype(int)
+    df = df.loc[df['Value'] != '..'].copy()
+    df['Value'] = df['Value'].astype(float)
+    return df
+
+
+def test():
+    return 'test1'
