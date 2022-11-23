@@ -49,35 +49,6 @@ def mkdir(path, name):
     else:
         print("invalid path")
 
-'''def rm(path, name):
-    result = seek(path)
-    print("starting rm")
-    if result:
-        if (1):#result[0][1] == "DIRECTORY":
-            mycursor.execute("SELECT * FROM df WHERE path LIKE '" + path + "/" + name + "%'")
-            myresult = mycursor.fetchall()
-            mycol=myDb["categories"]
-            item_id = mycol.insert_one(myresult)
-            if len(myresult) != 1:
-                print("invalid deletion")
-            else:
-                mycursor.execute("DELETE FROM df WHERE path ='" + path + "/" + name + "'")
-                mydb.commit()
-                print("deleted")
-        elif result[0][1] == "FILE":
-            mycursor.execute("SELECT * FROM df WHERE path LIKE '" + path + "/" + name + "%'")
-            myresult = mycursor.fetchall()
-            mycol=myDb["categories"]
-            item_id = mycol.insert_one(myresult)
-            if len(myresult) != 1:
-                print("invalid deletion")
-            else:
-                mycursor.execute("DELETE FROM df WHERE path ='" + path + "/" + name + "'")
-                mydb.commit()
-                print("deleted")
-    else:
-        print("invalid path")'''
-        
 def rm (filepath,filename):
         if filepath=='/':
             print(query)
@@ -275,8 +246,8 @@ def delete(list):
 if __name__ == "__main__":
     mydb = ccnx.connect(
     host="localhost",
-    user="root",
-    password=""
+    user= sys.argv[3],
+    password=sys.argv[4]
     )
     mongodb_host="mongodb://localhost:27017/"
     mongodb_dbname="edfs"
