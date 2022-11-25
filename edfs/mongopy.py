@@ -5,9 +5,13 @@ import sys
 import pandas as pd
 from pymongo import MongoClient
 
-#mongodb client setup
-client = MongoClient('localhost', 27017)
-db = client['edfs']
+########################
+# mongodb client setup #
+########################
+
+#client = MongoClient('localhost', 27017)
+#db = client['edfs']
+db=new Mongo().getDB("edfs")
 #collection = db['name_of_collection']
 
 #python connector setup
