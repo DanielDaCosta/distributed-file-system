@@ -330,7 +330,7 @@ def delete(list):
 def new_env(edfs):
     try:
         #f"CREATE DATABASE {edfs}"
-        f"use edfs"
+        db=client['edfs']
         db.df.createCollection()
         row={"path":f"/root","type":f"DIRECTORY"}
         db.df.insert_one(row)
