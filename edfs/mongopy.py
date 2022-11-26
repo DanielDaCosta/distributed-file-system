@@ -19,7 +19,7 @@ mydb = ccnx.connect(
     host="localhost",
     user="root",
     password="",
-    #database="edfs"
+    database="edfs"
 )
 mycursor = mydb.cursor(buffered=True)
 
