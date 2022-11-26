@@ -1,0 +1,12 @@
+exit
+db.getCollectionInfos();
+show dbs
+use edfs
+exit
+show database
+show dbs
+exit
+show dbs
+use edfs
+show database;
+exit

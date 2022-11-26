@@ -9,17 +9,19 @@ from pymongo import MongoClient
 # mongodb client setup #
 ########################
 
-#client = MongoClient('localhost', 27017)
+# client = MongoClient('localhost', 27017)
 #db = client['edfs']
-db=new Mongo().getDB("edfs")
+client = MongoClient('mongodb://root:root@localhost:27017/')
+db = client['edfs']
+# db = new Mongo().getDB("edfs")
 #collection = db['name_of_collection']
 
 #python connector setup
 mydb = ccnx.connect(
     host="localhost",
     user="root",
-    password="",
-    #database="edfs"
+    password="root",
+    database="edfs_mongo"
 )
 mycursor = mydb.cursor(buffered=True)
 
@@ -113,7 +115,6 @@ def mkdir(path, name):
                 output = "directory already exists"
     else:
         output = f"Invalid path: {path}"
-    print("mkdir",output)
     #return output
 
 def rm(path, name):
@@ -161,11 +162,12 @@ def ls(path):
             output1=db.df.find()
     else:
         output1 = f"Invalid path: {path}"
+    output2 = []
     for o in output1:
-        print("ls", o)
-    return output1
+        output2.append(o['path'])
+    return ', '.join(output2)
 
-def getPartitionLocations(path):
+def getPartitionLocation(path):
     cat_statement = "SELECT * FROM blockLocations WHERE path = %s"
     mycursor.execute(cat_statement, (path,))
     result = mycursor.fetchall()
@@ -318,18 +320,15 @@ def hash(path, name, csv_file):
 ######################
 
 def delete(list):
-    try:
-        for item in list:
-            drop_table = f"DROP TABLE {key}"
-            mycursor.execute(drop_table)
-            mydb.commit()
-        return "Dropped tables"
-    except:
-        return "Database drop error"
+    for item in list:
+        drop_table = f"DROP TABLE {item}"
+        mycursor.execute(drop_table)
+        mydb.commit()
+    return "Dropped tables"
 
 def new_env(edfs):
     env_statements = [
-            f"CREATE DATABASE {edfs}",
+            f"CREATE DATABASE IF NOT EXISTS  {edfs}",
             f"USE {edfs}",
             """
                 CREATE TABLE df (
@@ -345,57 +344,48 @@ def new_env(edfs):
                     CONSTRAINT FOREIGN KEY (path) REFERENCES df(path) ON DELETE CASCADE
                 )"""
     ]
-    try:
-        for s in env_statements:
-            mycursor.execute(s)
-        mydb.commit()
-        return f"{edfs} created"
-    except:
-        return "Database error"
+    for s in env_statements:
+        mycursor.execute(s)
+    mydb.commit()
+    return f"{edfs} created"
 
 def delete_env(edfs):
-    try:
-        drop_database = f"DROP DATABASE {edfs};"
-        mycursor.execute(drop_database)
-        mydb.commit()
-    except:
-        return "Database error"
+    drop_database = f"DROP DATABASE {edfs};"
+    mycursor.execute(drop_database)
+    mydb.commit()
     return  f"{edfs} deleted"
 
 def start_env(edfs):
-    try:
-        use_database = f"USE {edfs}"
-        mycursor.execute(use_database)
-    except:
-        return "Database error"
+    use_database = f"USE {edfs}"
+    mycursor.execute(use_database)
     return  f"{edfs} started"
 
-def test_edfs(argv):
+# def test_edfs(argv):
 
-    edfs = "edfs"
+#     edfs = "edfs"
 
-    #Testing
-    if "--delete" in argv:
-        print(delete_env(edfs))
-    elif "--new" in argv:
-        print(new_env(edfs))
-    elif "--restart" in argv:
-        print(delete_env(edfs))
-        print(new_env(edfs))
-    else:
-        print(start_env(edfs))
-        print(mkdir("/root", "foo"))
-        print(mkdir("/root/foo", "bar"))
-        #todo: put check to make sure that the file source exists
-        #print(put("/root/foo", "data", "../datasets/sql-edfs/data.csv"))
-        #print(cat("/root/foo/data"))
-        #print(ls("/root/foo"))
-        #print(rm("/root", "data"))
-        #print(ls("/tree"))
+#     #Testing
+#     if "--delete" in argv:
+#         print(delete_env(edfs))
+#     elif "--new" in argv:
+#         print(new_env(edfs))
+#     elif "--restart" in argv:
+#         print(delete_env(edfs))
+#         print(new_env(edfs))
+#     else:
+#         print(start_env(edfs))
+#         print(mkdir("/root", "foo"))
+#         print(mkdir("/root/foo", "bar"))
+#         #todo: put check to make sure that the file source exists
+#         #print(put("/root/foo", "data", "../datasets/sql-edfs/data.csv"))
+#         #print(cat("/root/foo/data"))
+#         #print(ls("/root/foo"))
+#         #print(rm("/root", "data"))
+#         #print(ls("/tree"))
 
-test_edfs(sys.argv[1])
-mkdir("/root", "foo")
-mkdir("/root/foo", "bar")
-put("/root/foo", "data", "Data.csv")
+# test_edfs(sys.argv[1])
+# mkdir("/root", "foo")
+# mkdir("/root/foo", "bar")
+# put("/root/foo", "data", "Data.csv")
 #rm("/root", "bar")
 #ls("/root/foo")

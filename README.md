@@ -3,6 +3,8 @@
 
 
 # MySQL
+## Docker
+```mysql -p```
 
 ## EDFS page
 mkdir /root foo
@@ -13,3 +15,14 @@ ls /root/foo
 
 # References
 - https://realpython.com/python-dash/
+
+# MongoDB
+
+## Docker
+```mongosh -u root```
+
+## EDFS Commands
+ - mkdir /root/foo
+ - mkdir /root/foo bar
+ - put /root/foo data datasets/Data.csv
+ - cat /root/foo/data

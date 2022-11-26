@@ -43,41 +43,15 @@ def mkdir(path, name):
             mycol=myDb["categories"]
             item_id = mycol.insert_one(temp[0])
                     ##end changes
-            print("directory " + name + " created")
+            msg="directory " + name + " created"
+            return msg
         else:
-            print("directory already exists")
+            msg="directory already exists"
+            return msg
     else:
-        print("invalid path")
+        msg="invalid path"
+        return msg
 
-'''def rm(path, name):
-    result = seek(path)
-    print("starting rm")
-    if result:
-        if (1):#result[0][1] == "DIRECTORY":
-            mycursor.execute("SELECT * FROM df WHERE path LIKE '" + path + "/" + name + "%'")
-            myresult = mycursor.fetchall()
-            mycol=myDb["categories"]
-            item_id = mycol.insert_one(myresult)
-            if len(myresult) != 1:
-                print("invalid deletion")
-            else:
-                mycursor.execute("DELETE FROM df WHERE path ='" + path + "/" + name + "'")
-                mydb.commit()
-                print("deleted")
-        elif result[0][1] == "FILE":
-            mycursor.execute("SELECT * FROM df WHERE path LIKE '" + path + "/" + name + "%'")
-            myresult = mycursor.fetchall()
-            mycol=myDb["categories"]
-            item_id = mycol.insert_one(myresult)
-            if len(myresult) != 1:
-                print("invalid deletion")
-            else:
-                mycursor.execute("DELETE FROM df WHERE path ='" + path + "/" + name + "'")
-                mydb.commit()
-                print("deleted")
-    else:
-        print("invalid path")'''
-        
 def rm (filepath,filename):
         if filepath=='/':
             print(query)
@@ -91,7 +65,8 @@ def rm (filepath,filename):
             if query:
                 myDb.deleteMany({})
             else:
-                print("file does not exsit")
+                msg="file does not exsit"
+                return msg
 
 def ls(path):
     result = seek(path)
@@ -109,11 +84,9 @@ def func(file,path):
     z=dfa.T
     count=1
     mydb=myclient["df1"]
-    #bc=myclient["df"]
     x=df['Country Name'].values.tolist()
     path='root/'
     y=list(df.columns.values)
-#     file_name = os.path.basename(f"{path}'/'{data}")
     for i in x: 
         bea = {'Country Name': i, 'Path': path+"/"+i}
         mypath=mydb.Path
@@ -151,15 +124,12 @@ def func(file,path):
 def getPartition(path):
     myclient = pymongo.MongoClient("mongodb://localhost:27017/")
     df=pd.read_csv(r'/Users/digvijaydesai/Downloads/Data.csv')
-#     df=pd.read_csv(f"{path}'/'{datafile}")
     dfa = pd.DataFrame(df.columns.values) 
-#     path= "C:\Users\Saarthak\551 project\API_NY.GDP.MKTP.KD.ZG_DS2_en_csv_v2_4687422"
     z=dfa.T
     count=1
     mydb=myclient["mydatabase"]
     x=df['Country Name'].values.tolist()
     mypath=mydb.Path
-#     file_name = os.path.basename(f"{path}'/'{data}")
     tmp = 1
     for i in x: 
         bea = {'Country Name': i, 'Path': path+"/"+i}
@@ -202,9 +172,11 @@ def readPartition(inp,file,path):
 #     print(a[])
     try:
         next(x for x in a if x["Country Name"] == inp)
-        print("File already exsists at this location")
-    except StopIteration:
-        print("This file doesnt exsist")
+        msg="File already exsists at this location")
+        return msg
+    except StopIteration:  
+        msg="This file doesnt exsist"
+        return msg
     
 
 def Sort_Tuple(tup):
@@ -257,7 +229,8 @@ def put(csv):
                 mycol.insert_one(a)"""
     #myDb.categories.insert_many(data1)
     #myDb.categories.create_index("CountryName")
-    print("data has been successfully entered")
+    msg="data has been successfully entered"
+    return msg
 
 def key_idx(str_list):
     try:
@@ -275,8 +248,8 @@ def delete(list):
 if __name__ == "__main__":
     mydb = ccnx.connect(
     host="localhost",
-    user="root",
-    password=""
+    user= sys.argv[3],
+    password=sys.argv[4]
     )
     mongodb_host="mongodb://localhost:27017/"
     mongodb_dbname="edfs"

@@ -6,11 +6,16 @@ from dash import dcc
 from dash.dependencies import Input, Output
 from apps import navigation
 import dash
+from enum import Enum
 
 from dash import dcc
 import pandas as pd
 import numpy as np
+import pmr.pmr as pmr
 import edfs.firebase as file_system
+
+# Pmr Configuration
+# class syntax
 
 file_name = "Stats_Cap_Ind_Sample"
 data = file_system.read_dataset(f"root/user/{file_name}")
@@ -130,7 +135,7 @@ layout = html.Div(children=[
                             id="agg-filter",
                             options=[
                                 {"label": agg_filter, "value": agg_filter}
-                                for agg_filter in ['mean', 'max', 'min', 'median']
+                                for agg_filter in ['sum', 'max', 'min', 'avg']
                             ],
                             # value="N/A",
                             placeholder="Select Agg Function",
@@ -216,17 +221,17 @@ def select_dataset(dataset_name, edfs_filter):
 
 
 @dash.callback(
-    [Output("price-chart", "figure"), Output("volume-chart", "figure")],
+    Output("price-chart", "figure"),
     [
         Input("region-filter", "value"),
         Input("type-filter", "value"),
         # Input("date-range", "start_date"),
         # Input("date-range", "end_date"),
         Input("date-range", "value"),
-        Input("agg-filter", "value"),
+        # Input("agg-filter", "value"),
     ],
 )
-def update_charts(country_name, series_name, date_range, agg_filter):
+def update_charts(country_name, series_name, date_range):
 
     if country_name:
         mask = (
@@ -243,11 +248,11 @@ def update_charts(country_name, series_name, date_range, agg_filter):
         )
     filtered_data = data.loc[mask, :]
 
-    # If agregation function is selected
-    if agg_filter:
-        filtered_data = filtered_data\
-                .groupby('Year').agg({'Value': agg_filter})\
-                    .reset_index().assign(Country_Name='Selected Countries')
+    # # If agregation function is selected
+    # if agg_filter:
+    #     filtered_data = filtered_data\
+    #             .groupby('Year').agg({'Value': agg_filter})\
+    #                 .reset_index().assign(Country_Name='Selected Countries')
 
 
     data_list = []
@@ -276,23 +281,79 @@ def update_charts(country_name, series_name, date_range, agg_filter):
         },
     }
 
-    volume_chart_figure = {
-        "data": [
-            {
-                "x": filtered_data["Year"],
-                "y": filtered_data["Value"],
+    # volume_chart_figure = {
+    #     "data": [
+    #         {
+    #             "x": filtered_data["Year"],
+    #             "y": filtered_data["Value"],
+    #             "type": "lines",
+    #         },
+    #     ],
+    #     "layout": {
+    #         "title": {
+    #             "text": f"{series_name}",
+    #             "x": 0.05,
+    #             "xanchor": "left"
+    #         },
+    #         "xaxis": {"fixedrange": True},
+    #         "yaxis": {"fixedrange": True},
+    #         "colorway": ["#E12D39"],
+    #     },
+    # }
+    return price_chart_figure
+
+
+
+
+@dash.callback(
+    Output("volume-chart", "figure"),
+    [
+        Input("edfs-filter", "value"),
+        Input("dataset-filter", "value"),
+        Input("type-filter", "value"),
+        Input("date-range", "value"),
+        Input("agg-filter", "value"),
+    ],
+)
+def update_charts_agg(edfs_filter, dataset_filter, series_name, date_range, agg_filter):
+
+    if edfs_filter and dataset_filter and series_name and date_range and agg_filter:
+        map_agg_filter = {
+            'sum': "SUM",
+            'max': "MAX",
+            'min': "MIN",
+            'avg': "AVG"
+        }
+        AGG_FILTER = map_agg_filter[agg_filter]
+        YEAR_RANGE = [f"{year} [YR{year}]" for year in range(int(date_range[0]), int(date_range[1]))]  # convert year to "{year}[YR{year}]"
+        print(edfs_filter)
+        if edfs_filter == 'MySQL':
+            print("MYSQL", AGG_FILTER, YEAR_RANGE, f"/root/foo/{dataset_filter}")
+            data_agg = pmr.execute("MYSQL", AGG_FILTER, targets=YEAR_RANGE, file=f"/root/foo/{dataset_filter}", DEBUG=True)
+        elif edfs_filter == 'MongoDB':
+            data_agg = pmr.execute("MONGODB", AGG_FILTER, targets=YEAR_RANGE, file=f"/root/foo/{dataset_filter}", DEBUG=True)
+        else:
+            data_agg = pmr.execute("FIREBASE", AGG_FILTER, targets=YEAR_RANGE, file=f"root/user/{dataset_filter}", DEBUG=True)
+        
+        volume_chart_figure = {
+            "data": [{
+                "x": data_agg["Year"],
+                "y": data_agg["Value"],
                 "type": "lines",
-            },
-        ],
-        "layout": {
-            "title": {
-                "text": f"{series_name}",
-                "x": 0.05,
-                "xanchor": "left"
-            },
-            "xaxis": {"fixedrange": True},
-            "yaxis": {"fixedrange": True},
-            "colorway": ["#E12D39"],
-        },
-    }
-    return price_chart_figure, volume_chart_figure
+                "hovertemplate": "%{y:.2f}<extra></extra>",
+                "name": f"{AGG_FILTER}"
+            }],
+            "layout": {
+                "title": {
+                    "text": f"{AGG_FILTER} for {series_name}",
+                    "x": 0.05,
+                    "xanchor": "left",
+                },
+                "xaxis": {"fixedrange": True},
+                # "yaxis": {"tickprefix": "$", "fixedrange": True},
+                "yaxis": {"fixedrange": True},
+                # "colorway": ["#17B897"],
+            }
+        }
+        return volume_chart_figure
+    return {}
