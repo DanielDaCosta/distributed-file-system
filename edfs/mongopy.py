@@ -9,9 +9,9 @@ from pymongo import MongoClient
 # mongodb client setup #
 ########################
 
-#client = MongoClient('localhost', 27017)
-#db = client['edfs']
-db=new Mongo().getDB("edfs")
+client = MongoClient('localhost', 27017)
+db = client['edfs']
+#db=new Mongo().getDB("edfs")
 #collection = db['name_of_collection']
 
 #python connector setup
@@ -330,7 +330,7 @@ def delete(list):
 def new_env(edfs):
     try:
         #f"CREATE DATABASE {edfs}"
-        use edfs
+        f"use edfs"
         db.df.createCollection()
         row={"path":f"/root","type":f"DIRECTORY"}
         db.df.insert_one(row)
