@@ -333,7 +333,8 @@ def new_env(edfs):
                 #f"CREATE DATABASE {edfs}"
                 f"USE {edfs}",
                 db.df.createCollection(),
-                db.df.insert_one("path":'/root',"type":'DIRECTORY'),
+                row={"path":'/root',"type":'DIRECTORY'}
+                db.df.insert_one(row),
                 #"INSERT INTO df VALUES ('/root', 'DIRECTORY')",
                 db.blockLocations.createCollection()
         ]
