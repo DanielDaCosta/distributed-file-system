@@ -329,12 +329,11 @@ def delete(list):
 
 def new_env(edfs):
     try:
-        env_statements = [
                 #f"CREATE DATABASE {edfs}"
-                f"USE {edfs}",
-                db.df.createCollection(),
-                row={"path":'/root',"type":'DIRECTORY'}
-                db.df.insert_one(row),
+                f"use {edfs}"
+                db.df.createCollection()
+                row={"path":f"/root","type":f"DIRECTORY"}
+                db.df.insert_one(row)
                 #"INSERT INTO df VALUES ('/root', 'DIRECTORY')",
                 db.blockLocations.createCollection()
         ]
