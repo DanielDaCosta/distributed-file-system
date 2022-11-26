@@ -1,0 +1,51 @@
+Country Name,Country Code,Series Name,Series Code,2010 [YR2010],2011 [YR2011],2012 [YR2012],2013 [YR2013],2014 [YR2014],2015 [YR2015],2016 [YR2016],2017 [YR2017],2018 [YR2018],2019 [YR2019],2020 [YR2020]
+Australia,AUS,"Human Capital Index (HCI), Male, Upper Bound (scale 0-1)",HD.HCI.OVRL.UB.MA,0.746360183,..,..,..,..,..,..,0.789,0.778917968,..,0.768099308
+Seychelles,SYC,"Human Capital Index (HCI), Male, Lower Bound (scale 0-1)",HD.HCI.OVRL.LB.MA,0.554886997,..,..,..,..,..,..,..,..,..,..
+Turkmenistan,TKM,Expected Years of School,HD.HCI.EYRS,..,..,..,..,..,..,..,..,..,..,..
+Angola,AGO,"Expected Years of School, Male",HD.HCI.EYRS.MA,..,..,..,..,..,..,..,8.69,9.243624687,..,9.243624687
+"Venezuela, RB",VEN,"Learning-Adjusted Years of School, Male",HD.HCI.LAYS.MA,..,..,..,..,..,..,..,..,..,..,..
+Samoa,WSM,"Human Capital Index (HCI), Female, Lower Bound (scale 0-1)",HD.HCI.OVRL.LB.FE,..,..,..,..,..,..,..,..,0.530694127,..,0.567248166
+Niger,NER,"Human Capital Index (HCI), Female (scale 0-1)",HD.HCI.OVRL.FE,..,..,..,..,..,..,..,0.312,0.315365911,..,0.313337088
+Grenada,GRD,"Human Capital Index (HCI), Male (scale 0-1)",HD.HCI.OVRL.MA,..,..,..,..,..,..,..,..,0.509237409,..,0.536143899
+Italy,ITA,"Fraction of Children Under 5 Not Stunted, Female",HD.HCI.STNT.FE,..,..,..,..,..,..,..,..,..,..,..
+India,IND,"Human Capital Index (HCI), Male (scale 0-1)",HD.HCI.OVRL.MA,..,..,..,..,..,..,..,0.429,0.478702426,..,0.487256885
+Montenegro,MNE,Fraction of Children Under 5 Not Stunted,HD.HCI.STNT,0.920837998,..,..,..,..,..,..,0.9061,0.9060601,..,0.9060601
+Austria,AUT,"Human Capital Index (HCI), Female (scale 0-1)",HD.HCI.OVRL.FE,0.753172815,..,..,..,..,..,..,0.798,0.779697299,..,0.761190295
+Brunei Darussalam,BRN,Harmonized Test Scores,HD.HCI.HLOS,..,..,..,..,..,..,..,..,..,..,437.5159302
+Northern Mariana Islands,MNP,"Harmonized Test Scores, Female",HD.HCI.HLOS.FE,..,..,..,..,..,..,..,..,..,..,..
+Cambodia,KHM,"Human Capital Index (HCI), Male, Upper Bound (scale 0-1)",HD.HCI.OVRL.UB.MA,..,..,..,..,..,..,..,..,..,..,..
+Georgia,GEO,Survival Rate from Age 15-60,HD.HCI.AMRT,0.830507934,..,..,..,..,..,..,0.8519,0.849843621,..,0.85284555
+"Egypt, Arab Rep.",EGY,"Human Capital Index (HCI), Male (scale 0-1)",HD.HCI.OVRL.MA,0.466950983,..,..,..,..,..,..,0.468,0.474544466,..,0.475982815
+Hungary,HUN,"Fraction of Children Under 5 Not Stunted, Male",HD.HCI.STNT.MA,..,..,..,..,..,..,..,..,..,..,..
+Japan,JPN,Harmonized Test Scores,HD.HCI.HLOS,547.3712158,..,..,..,..,..,..,563,563.3580933,..,537.7234497
+Kenya,KEN,"Harmonized Test Scores, Female",HD.HCI.HLOS.FE,426.5360107,..,..,..,..,..,..,..,..,..,..
+Malaysia,MYS,"Survival Rate from Age 15-60, Male",HD.HCI.AMRT.MA,0.834527135,..,..,..,..,..,..,0.8452,0.838114977,..,0.841118574
+Cambodia,KHM,Harmonized Test Scores,HD.HCI.HLOS,..,..,..,..,..,..,..,452,451.8895874,..,451.8895874
+Pakistan,PAK,Harmonized Test Scores,HD.HCI.HLOS,..,..,..,..,..,..,..,339,338.6565552,..,338.6565552
+South Sudan,SSD,"Human Capital Index (HCI), Male, Lower Bound (scale 0-1)",HD.HCI.OVRL.LB.MA,..,..,..,..,..,..,..,..,..,..,..
+Guyana,GUY,"Survival Rate from Age 15-60, Female",HD.HCI.AMRT.FE,0.810019135,..,..,..,..,..,..,0.8327,0.816642642,..,0.819192886
+Botswana,BWA,Survival Rate from Age 15-60,HD.HCI.AMRT,0.635273099,..,..,..,..,..,..,0.7942,0.795901418,..,0.798841
+Bangladesh,BGD,"Survival Rate from Age 15-60, Female",HD.HCI.AMRT.FE,0.866707146,..,..,..,..,..,..,0.8962,0.883499563,..,0.887490451
+Portugal,PRT,"Fraction of Children Under 5 Not Stunted, Male",HD.HCI.STNT.MA,..,..,..,..,..,..,..,..,..,..,..
+Mozambique,MOZ,"Expected Years of School, Female",HD.HCI.EYRS.FE,..,..,..,..,..,..,..,..,..,..,..
+Guinea-Bissau,GNB,Probability of Survival to Age 5,HD.HCI.MORT,..,..,..,..,..,..,..,..,..,..,..
+Israel,ISR,Harmonized Test Scores,HD.HCI.HLOS,473.7121582,..,..,..,..,..,..,503,503.4998779,..,480.7521973
+Andorra,AND,"Expected Years of School, Female",HD.HCI.EYRS.FE,..,..,..,..,..,..,..,..,..,..,..
+Bolivia,BOL,Expected Years of School,HD.HCI.EYRS,..,..,..,..,..,..,..,..,..,..,..
+Somalia,SOM,"Probability of Survival to Age 5, Female",HD.HCI.MORT.FE,..,..,..,..,..,..,..,..,..,..,..
+Papua New Guinea,PNG,Harmonized Test Scores,HD.HCI.HLOS,..,..,..,..,..,..,..,358,357.8036194,..,363.3206177
+El Salvador,SLV,"Fraction of Children Under 5 Not Stunted, Male",HD.HCI.STNT.MA,0.784067988,..,..,..,..,..,..,0.8473,0.847251892,..,0.847251892
+Spain,ESP,"Learning-Adjusted Years of School, Female",HD.HCI.LAYS.FE,10.39170742,..,..,..,..,..,..,10.86,10.7497282,..,10.5582943
+Malta,MLT,Probability of Survival to Age 5,HD.HCI.MORT,0.993191183,..,..,..,..,..,..,0.9936,0.992943525,..,0.992980778
+Ireland,IRL,"Human Capital Index (HCI), Female, Lower Bound (scale 0-1)",HD.HCI.OVRL.LB.FE,0.779861867,..,..,..,..,..,..,..,0.811041176,..,0.794014692
+Israel,ISR,"Harmonized Test Scores, Male",HD.HCI.HLOS.MA,467.5158997,..,..,..,..,..,..,501,500.7711487,..,467.0482178
+Colombia,COL,Harmonized Test Scores,HD.HCI.HLOS,411.7399902,..,..,..,..,..,..,424,423.6229858,..,419.0275269
+South Sudan,SSD,Human Capital Index (HCI) (scale 0-1),HD.HCI.OVRL,..,..,..,..,..,..,..,0.302,0.305912971,..,0.306520849
+Nicaragua,NIC,"Survival Rate from Age 15-60, Female",HD.HCI.AMRT.FE,0.878570795,..,..,..,..,..,..,0.8986,0.89607513,..,0.898774385
+Ghana,GHA,"Probability of Survival to Age 5, Male",HD.HCI.MORT.MA,0.924377739,..,..,..,..,..,..,0.9461,0.945319474,..,0.947569132
+Tuvalu,TUV,Human Capital Index (HCI) (scale 0-1),HD.HCI.OVRL,..,..,..,..,..,..,..,0.554,0.440525651,..,0.447577119
+Portugal,PRT,Learning-Adjusted Years of School,HD.HCI.LAYS,11.01336575,..,..,..,..,..,..,11.46,11.56368637,..,11.31005287
+Slovak Republic,SVK,"Survival Rate from Age 15-60, Male",HD.HCI.AMRT.MA,0.824562907,..,..,..,..,..,..,0.8481,0.854309559,..,0.857999802
+Paraguay,PRY,Probability of Survival to Age 5,HD.HCI.MORT,0.973963082,..,..,..,..,..,..,0.979,0.979137123,..,0.979847193
+Liberia,LBR,"Human Capital Index (HCI), Female, Lower Bound (scale 0-1)",HD.HCI.OVRL.LB.FE,..,..,..,..,..,..,..,0.305,0.306718498,..,0.307511032
+"Iran, Islamic Rep.",IRN,"Expected Years of School, Female",HD.HCI.EYRS.FE,10.97550106,..,..,..,..,..,..,11.65,11.81238651,..,11.81238651

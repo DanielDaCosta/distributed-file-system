@@ -7,7 +7,6 @@ from dash.dependencies import Input, Output
 from apps import navigation
 import dash
 from enum import Enum
-
 from dash import dcc
 import pandas as pd
 import numpy as np
@@ -17,15 +16,14 @@ import edfs.firebase as file_system
 # Pmr Configuration
 # class syntax
 
-file_name = "Stats_Cap_Ind_Sample"
+file_name = "Consume_Price_Index"
 data = file_system.read_dataset(f"root/user/{file_name}")
-dataset_list = ['Stats_Cap_Ind_Sample', 'Human_Capital_Index']
+dataset_list = ['Consume_Price_Index', 'Per_Capita_GDP']
 
 dash.register_page(
     __name__,
     path='/data'
 )
-
 
 layout = html.Div(children=[
     navigation.navbar,
@@ -96,7 +94,7 @@ layout = html.Div(children=[
                 html.Div(
                     children=[
                         html.Div(children="Type", className="menu-title"),
-                        dcc.Dropdown(id="type-filter", clearable=False, placeholder="Select Indicator",
+                        dcc.Dropdown(id="type-filter", clearable=True, placeholder="Select Indicator",
                         searchable=False,
                         className="dropdown",
                         ),
@@ -176,21 +174,24 @@ layout = html.Div(children=[
 # Change EDFS
 @dash.callback(
     Output("dataset-filter", "options"),
+    # Output("region-filter", "options"), 
+    # Output("type-filter", "options"),
     Input("edfs-filter", "value"),
 )
 def change_edfs(edfs_filter):
     global file_system
     global data
+    global dataset_list
     if edfs_filter == "MySQL":
         import edfs.mysql as file_system
-        dataset_list = ['data', 'CookingData']
+        dataset_list = ['Access_Electricity', 'Access_Fuels']
     elif edfs_filter == "MongoDB":
         import edfs.mongodb as file_system
         dataset_list = ['Stats_Cap_Ind_Sample']
     else:
         import edfs.firebase as file_system
-        dataset_list = ['Stats_Cap_Ind_Sample', 'Human_Capital_Index']
-    return dataset_list
+        dataset_list = ['Consume_Price_Index', 'Per_Capita_GDP']
+    return dataset_list#, [], []
 
 
 @dash.callback(
@@ -203,9 +204,10 @@ def select_dataset(dataset_name, edfs_filter):
     global data
     global file_name
     if dataset_name:
+        print(dataset_name)
         file_name = dataset_name
-        if edfs_filter == "MySQL":
-            data = file_system.read_dataset(f"/root/foo/{file_name}")
+        if edfs_filter == "MySQL" and file_name in dataset_list:
+            data = file_system.read_dataset(f"/root/user/{file_name}")
         elif edfs_filter == "MongoDB":
             data = file_system.read_dataset(f"/root/foo/{file_name}")
         else:
@@ -329,7 +331,7 @@ def update_charts_agg(edfs_filter, dataset_filter, series_name, date_range, agg_
         print(edfs_filter)
         if edfs_filter == 'MySQL':
             print("MYSQL", AGG_FILTER, YEAR_RANGE, f"/root/foo/{dataset_filter}")
-            data_agg = pmr.execute("MYSQL", AGG_FILTER, targets=YEAR_RANGE, file=f"/root/foo/{dataset_filter}", DEBUG=True)
+            data_agg = pmr.execute("MYSQL", AGG_FILTER, targets=YEAR_RANGE, file=f"/root/user/{dataset_filter}", DEBUG=True)
         elif edfs_filter == 'MongoDB':
             data_agg = pmr.execute("MONGODB", AGG_FILTER, targets=YEAR_RANGE, file=f"/root/foo/{dataset_filter}", DEBUG=True)
         else:

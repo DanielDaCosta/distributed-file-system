@@ -85,7 +85,7 @@ def rm(path: str) -> str:
     return output
 
 
-def getPartitionLocation(file: str) -> str:
+def getPartitionLocations(file: str) -> str:
     '''Return the locations of partitions of the
         file
     Args:
@@ -116,7 +116,7 @@ def readPartition(file, partition) -> str:
         (str) Success or Error message
     '''
     try:
-        pdict = json.loads(getPartitionLocation(file))
+        pdict = json.loads(getPartitionLocations(file))
         url = pdict[partition]
         pdict = requests.get(url).json()
         output = json.dumps(pdict, indent=4, sort_keys=True)
@@ -167,7 +167,7 @@ def file_mdata(path, file, filename):
     
 
 # partition by Country (Original plan)
-def put(file: str, path: str) -> str:
+def put(path: str, file: str) -> str:
     filename = file.replace(".csv","")
     path = 'NameNode/' + path
 
@@ -185,8 +185,10 @@ def put(file: str, path: str) -> str:
                 dc[cname][n] = (';'.join(row))
             else:
                 dc[cname]={n:(';'.join(row))}
-    
-    if seek(path + '/' +filename).json() is None:
+
+    # Get only file name. Remove directory paths
+    filename = filename.split('/')[-1]
+    if seek(path + '/' + filename).json() is None:
         for key, val in dc.items():
             url = firebase_url + 'DataNode/' + key + '/' + filename + '.json'
             putResponse = requests.put(url, json.dumps(val))
@@ -208,7 +210,7 @@ def put(file: str, path: str) -> str:
 
 def cat(path):
     file = path.replace('.csv','')
-    pdict = json.loads(getPartitionLocation(file))
+    pdict = json.loads(getPartitionLocations(file))
     data = dict()
     for k,v in pdict.items():
         getPartition = requests.get(v).json()
@@ -260,7 +262,7 @@ def is_year (c):
     return any(char.isdigit() for char in c)
 
 def read_dataset(file: str):
-    partitions = json.loads(getPartitionLocation(file))
+    partitions = json.loads(getPartitionLocations(file))
 
     df_list = list()
     for country_name, dir in partitions.items():
@@ -268,7 +270,7 @@ def read_dataset(file: str):
             continue
         map = mapPartition(dir, file)
         df_list.append(to_df(map))
-        break ### REMOVEE
+        # break ### REMOVEE
 
     df = pd.concat(df_list)
 

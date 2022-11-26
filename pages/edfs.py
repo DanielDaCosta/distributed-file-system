@@ -118,7 +118,7 @@ def update_output(n_clicks, input_text):
     if input_text:
         functions = {
             'ls': file_system.ls, 'mkdir': file_system.mkdir, 'rm': file_system.rm,
-            'getPartitionLocation': file_system.getPartitionLocation,
+            'getPartitionLocations': file_system.getPartitionLocations,
             'readPartition': file_system.readPartition,
             'put': file_system.put,
             'cat': file_system.cat
