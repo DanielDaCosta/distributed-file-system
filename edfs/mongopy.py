@@ -328,44 +328,29 @@ def delete(list):
         return "Database drop error"
 
 def new_env(edfs):
-    env_statements = [
-            f"CREATE DATABASE {edfs}",
-            f"USE {edfs}",
-            """
-                CREATE TABLE df (
-                    path varchar(255),
-                    type varchar(255),
-                    PRIMARY KEY(path)
-                )""",
-            "INSERT INTO df VALUES ('/root', 'DIRECTORY')",
-            """
-                CREATE TABLE blockLocations (
-                    path varchar(255),
-                    partition_name varchar(255),
-                    CONSTRAINT FOREIGN KEY (path) REFERENCES df(path) ON DELETE CASCADE
-                )"""
-    ]
     try:
-        for s in env_statements:
-            mycursor.execute(s)
-        mydb.commit()
+        env_statements = [
+                #f"CREATE DATABASE {edfs}"
+                f"USE {edfs}",
+                db.df.createCollection(),
+                db.df.insert_one("path":'/root',"type":'DIRECTORY'),
+                #"INSERT INTO df VALUES ('/root', 'DIRECTORY')",
+                db.blockLocations.createCollection()
+        ]
         return f"{edfs} created"
     except:
         return "Database error"
 
 def delete_env(edfs):
     try:
-        drop_database = f"DROP DATABASE {edfs};"
-        mycursor.execute(drop_database)
-        mydb.commit()
+        db.edfs.dropDatabase()
     except:
         return "Database error"
     return  f"{edfs} deleted"
 
 def start_env(edfs):
     try:
-        use_database = f"USE {edfs}"
-        mycursor.execute(use_database)
+        f"use {edfs}"
     except:
         return "Database error"
     return  f"{edfs} started"
