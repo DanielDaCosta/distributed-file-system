@@ -144,8 +144,13 @@ def put(path, name, csvf):
     return("Inserted Data")
 
 #session = db.getMongo().startSession( { readPreference: { mode: "primary" } } )
-
-
+def getBlockLocation(path,filepartition):
+    path1= path+'/'+filepartition
+    X = db.blockLocations.find_one({"path":path1})
+    if(X):
+        return X["path"]
+    else:
+        return ("FILE DOES NOT EXIST")
 ######################
 # Database Functions #
 ######################
@@ -204,11 +209,12 @@ test_edfs(sys.argv[1])
 #print(mkdir('/root', "user"))
 #mkdir("/root/foo", "bar")
 #rm("/root/foo", "bar")
-#put("/root/foo/bar", "data", "/Users/digvijaydesai/Downloads/ashita_code/Data.csv")
+#put("/root/foo", "data", "/Users/digvijaydesai/Downloads/ashita_code/Data.csv")
 #seek("/root/foo/data")
 #seek("/root/foo/bar")
 #rm("/root", "bar")
-#print(ls('/root/user'))
+#print(ls('/root'))
 #print(cat("/root/foo/test","Argentina"))
 #print(read_dataset("/Users/digvijaydesai/Downloads/ashita_code/Data.csv"))
 #print(readPartition("XY","foo","root"))
+#print(getBlockLocation("/root/foo/bar","Afghanistan"))
