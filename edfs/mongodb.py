@@ -83,11 +83,10 @@ def ls(path):
         return final
 
 def readPartition(inp,file,path):
-    #a=put(file,path)
-    path1= '/'+path+'/'+file+'/'+inp
-    X = db.blockLocations.find_one({"path":path1})
+    path= '/'+path+'/'+file+'/'+inp
+    X = db.blockLocations.find_one({"path":path}, {'_id':False})
     if(X):
-        return (db.blockLocation.find_one{"path":path1},{'_id':False})
+        return X
     else:
         return ("FILE DOES NOT EXIST")
 
