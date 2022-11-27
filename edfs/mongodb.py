@@ -17,18 +17,18 @@ db = client['edfs']
 
 def read_dataset(path):
     df=pd.read_csv(path)
-    df=df.reset_index()
-    df_melted = df.melt(df.set_index('Country Name'))
+    df=df.reset_index(drop=True)
+    #df_melted = df.melt(df.set_index('Country Name'))
     new_columns = list()
-    columns = df_melted.columns.str.strip()
+    columns = df.columns.str.strip()
     for c in columns:
             new_columns.append(c.replace(" ","_"))
 
     # change column names in dataframe
-    df_melted.columns = new_columns
-    df_melted.columns = df_melted.columns.astype(str)
+    df.columns = new_columns
+    df.columns = df.columns.astype(str)
     #print("readDataset", df_melted.astype({'Year':'int', 'Value': 'float'}))
-    return df_melted
+    return df
 
 def seek(path):
     #print("seek", db.blockLocations.find_one({"path": path}))
@@ -102,7 +102,7 @@ def cat(path1):
            "from": "df",
            "localField": "path",
            "foreignField": "location",
-           "as": "merge"
+           "as": "Country Data"
         }
     },
     {
@@ -192,14 +192,14 @@ def test_edfs(argv):
 
 test_edfs(sys.argv[1])
 #test_edfs("--new")
-print(mkdir('/root', "user"))
+#print(mkdir('/root', "user"))
 #mkdir("/root/foo", "bar")
 #rm("/root/foo", "bar")
 #put("/root/foo", "data", "/Users/digvijaydesai/Downloads/ashita_code/Data.csv")
 #seek("/root/foo/data")
 #seek("/root/foo/bar")
 #rm("/root", "bar")
-print(ls('/root/user'))
+#print(ls('/root/user'))
 #print(cat("/root/foo/Argentina"))
 #print(read_dataset("/Users/digvijaydesai/Downloads/ashita_code/Data.csv"))
 #print(readPartition("XY","foo","root"))
