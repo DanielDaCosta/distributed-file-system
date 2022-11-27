@@ -328,9 +328,9 @@ def update_charts_agg(edfs_filter, dataset_filter, series_name, date_range, agg_
         }
         AGG_FILTER = map_agg_filter[agg_filter]
         YEAR_RANGE = [f"{year} [YR{year}]" for year in range(int(date_range[0]), int(date_range[1]))]  # convert year to "{year}[YR{year}]"
-        print(edfs_filter)
+        # print(edfs_filter)
         if edfs_filter == 'MySQL':
-            print("MYSQL", AGG_FILTER, YEAR_RANGE, f"/root/foo/{dataset_filter}")
+            # print("MYSQL", AGG_FILTER, YEAR_RANGE, f"/root/foo/{dataset_filter}")
             data_agg = pmr.execute("MYSQL", AGG_FILTER, targets=YEAR_RANGE, file=f"/root/user/{dataset_filter}", DEBUG=True)
         elif edfs_filter == 'MongoDB':
             data_agg = pmr.execute("MONGODB", AGG_FILTER, targets=YEAR_RANGE, file=f"/root/foo/{dataset_filter}", DEBUG=True)
