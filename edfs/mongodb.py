@@ -109,7 +109,7 @@ def cat(path1):
         "$merge":"Concatenate"
     }
 ])
-    return(db.Concatenate.find_one({"path":path1}))
+    return(db.Concatenate.find_one({"path":path1},{'_id':False}))
     return("Concatenated")
 
 def put(path, name, csvf):
