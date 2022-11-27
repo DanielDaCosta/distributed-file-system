@@ -112,7 +112,11 @@ def cat(path1,file):
         "$merge":"Concatenate"
     }
 ])'''
-    return(db.df.find_one({'location':{'$regex':path1},'Country Name':file},{'_id':False}))
+    x=db.df.find_one({'location':{'$regex':path1},'Country Name':file},{'_id':False})
+    if(x):
+        return(db.df.find_one({'location':{'$regex':path1},'Country Name':file},{'_id':False}))
+    else:
+        return("No such file or path")
 
 def put(path, name, csvf):
     header = [ "\ufeffCountry Name",	"Country Code",	"Indicator Name",
@@ -205,6 +209,6 @@ test_edfs(sys.argv[1])
 #seek("/root/foo/bar")
 #rm("/root", "bar")
 #print(ls('/root/user'))
-#print(cat("/root/foo/","Argentina"))
+#print(cat("/root/foo/test","Argentina"))
 #print(read_dataset("/Users/digvijaydesai/Downloads/ashita_code/Data.csv"))
 #print(readPartition("XY","foo","root"))
