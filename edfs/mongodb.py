@@ -6,6 +6,7 @@ from pymongo import MongoClient
 import simplejson as sp
 import json
 import os
+import re
 
 #mongodb client setup
 client = MongoClient('localhost', 27017)
@@ -90,46 +91,50 @@ def readPartition(inp,file,path):
     else:
         return ("FILE DOES NOT EXIST")
 
-def cat(path1):
+def cat(path1,file):
     '''db.blockLocations.aggregate([
   { "$project": { "path": { "$concat": [ "$path", " - ", "$type" ] } } },
   { "$merge": "Concatenate" }
 ])'''
-    #path=location=path1+file
-    db.blockLocations.aggregate([
+    '''db.blockLocations.aggregate([
     { "$lookup":
         {
            "from": "df",
            "localField": "path",
            "foreignField": "location",
-           "as": "Country Data"
+           "as": "Country_Data"
         }
+    },
+    {
+        "$project":{'_id':"0"}
     },
     {
         "$merge":"Concatenate"
     }
-])
-    return(db.Concatenate.find_one({"path":path1},{'_id':False}))
-    return("Concatenated")
+])'''
+    return(db.df.find_one({'location':{'$regex':path1},'Country Name':file},{'_id':False}))
 
 def put(path, name, csvf):
     header = [ "\ufeffCountry Name",	"Country Code",	"Indicator Name",
     	"2003",	"2004",	"2005",	"2006",	"2007",	"2008",	"2009",	
         "2010",	"2011",	"2012",	"2013",	"2014",	"2015",	"2016",
         "2017",	"2018",	"2019",	"2020",	"2021"]
-    csvfile = open( csvf, 'r')
+    new_headers_list=[ "Country Name",	"Country Code",	"Indicator Name",
+    	"2003",	"2004",	"2005",	"2006",	"2007",	"2008",	"2009",	
+        "2010",	"2011",	"2012",	"2013",	"2014",	"2015",	"2016",
+        "2017",	"2018",	"2019",	"2020",	"2021"]
+    csvfile = open( csvf, 'r+')
     reader = csv.DictReader( csvfile )
-    #print(reader)
+    reader.fieldnames = new_headers_list
     for each in reader:
         #print(each)
         row={}
         blockLoc = {}
-        for field in header:
+        for field in new_headers_list:
             row[field]=each[field]
-            blockLoc["path"] = path+ "/"+ each["\ufeffCountry Name"]
-            row["location"] = path+ "/"+ each["\ufeffCountry Name"]
+            blockLoc["path"] = path+ "/"+ each["Country Name"]
+            row["location"] = path+ "/"+ each["Country Name"]
             blockLoc["type"] = "FILE"
-        #print (row)
         db.df.insert_one(row)
         db.blockLocations.insert_one(blockLoc)
     return("Inserted Data")
@@ -195,11 +200,11 @@ test_edfs(sys.argv[1])
 #print(mkdir('/root', "user"))
 #mkdir("/root/foo", "bar")
 #rm("/root/foo", "bar")
-#put("/root/foo", "data", "/Users/digvijaydesai/Downloads/ashita_code/Data.csv")
+#put("/root/foo/bar", "data", "/Users/digvijaydesai/Downloads/ashita_code/Data.csv")
 #seek("/root/foo/data")
 #seek("/root/foo/bar")
 #rm("/root", "bar")
 #print(ls('/root/user'))
-#print(cat("/root/foo/Argentina"))
+#print(cat("/root/foo/","Argentina"))
 #print(read_dataset("/Users/digvijaydesai/Downloads/ashita_code/Data.csv"))
 #print(readPartition("XY","foo","root"))
