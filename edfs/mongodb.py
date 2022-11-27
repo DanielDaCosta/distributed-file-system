@@ -38,9 +38,9 @@ def mkdir(path, name):
     result = seek(path)
     output = ""
     #print("mkdir", result)
-    if not result:
-        path = path + "/" + name
-        db.blockLocations.insert_one({"Path": path, "type" : 'DIRECTORY'})
+    if result:
+        pathn = path + "/" + name
+        db.blockLocations.insert_one({"path": pathn, "type" : 'DIRECTORY'})
         output = f"Directory created"
     else:
         output = f"Invalid path: {path}"
@@ -62,7 +62,7 @@ def rm(path, name):
 
 def ls(path):
     result = seek(path)
-    print(result)
+    print("ls",result)
     if result:
         if result["type"] == "FILE":
             output = "Cannot run 'ls' on files"
@@ -109,7 +109,7 @@ def cat(path1):
         "$merge":"Concatenate"
     }
 ])
-    #return(db.blockLocations.find_one({"path":f"path"}))
+    return(db.Concatenate.find_one({"path":path1}))
     return("Concatenated")
 
 def put(path, name, csvf):
@@ -117,8 +117,7 @@ def put(path, name, csvf):
     	"2003",	"2004",	"2005",	"2006",	"2007",	"2008",	"2009",	
         "2010",	"2011",	"2012",	"2013",	"2014",	"2015",	"2016",
         "2017",	"2018",	"2019",	"2020",	"2021"]
-    csvpath = path+csvf
-    csvfile = open( "/Users/digvijaydesai/Downloads/ashita_code/Data.csv", 'r')
+    csvfile = open( csvf, 'r')
     reader = csv.DictReader( csvfile )
     #print(reader)
     for each in reader:
@@ -193,14 +192,14 @@ def test_edfs(argv):
 
 test_edfs(sys.argv[1])
 #test_edfs("--new")
-#print(mkdir("/root", "user"))
+print(mkdir('/root', "user"))
 #mkdir("/root/foo", "bar")
 #rm("/root/foo", "bar")
-#put("/root/foo", "data", "Data.csv")
+#put("/root/foo", "data", "/Users/digvijaydesai/Downloads/ashita_code/Data.csv")
 #seek("/root/foo/data")
 #seek("/root/foo/bar")
 #rm("/root", "bar")
-#print(ls("/root"))
-#print(cat("/root/foo/","Argentina"))
+print(ls('/root/user'))
+#print(cat("/root/foo/Argentina"))
 #print(read_dataset("/Users/digvijaydesai/Downloads/ashita_code/Data.csv"))
 #print(readPartition("XY","foo","root"))
