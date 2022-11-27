@@ -91,7 +91,7 @@ def readPartition(inp,file,path):
     else:
         return ("FILE DOES NOT EXIST")
 
-def cat(path1,file):
+def cat(path1,file,file2):
     '''db.blockLocations.aggregate([
   { "$project": { "path": { "$concat": [ "$path", " - ", "$type" ] } } },
   { "$merge": "Concatenate" }
@@ -112,11 +112,19 @@ def cat(path1,file):
         "$merge":"Concatenate"
     }
 ])'''
-    x=db.df.find_one({'location':{'$regex':path1},'Country Name':file},{'_id':False})
-    if(x):
-        return(db.df.find_one({'location':{'$regex':path1},'Country Name':file},{'_id':False}))
-    else:
-        return("No such file or path")
+    """x=db.df.find(
+        {"$and":
+        [
+            {"location":{'$regex':file}},
+            {"location":{'$regex':file2}}
+        ]},
+        {'_id':0})"""
+    x = db.df.find_one({"location":{'$regex':file}},{'_id':False})
+    y = db.df.find_one({"location":{'$regex':file2}},{'_id':False})
+    catx=[x, y]
+    return catx
+
+#db.df.find({"$and":[{"location":{'$regex':"Benin"}},{"location":{'$regex':"Belgium"}}]},{'_id':0})
 
 def put(path, name, csvf):
     header = [ "\ufeffCountry Name",	"Country Code",	"Indicator Name",
@@ -214,7 +222,7 @@ test_edfs(sys.argv[1])
 #seek("/root/foo/bar")
 #rm("/root", "bar")
 #print(ls('/root'))
-#print(cat("/root/foo/test","Argentina"))
+#print(cat("/root/foo/","Benin","Belgium"))
 #print(read_dataset("/Users/digvijaydesai/Downloads/ashita_code/Data.csv"))
 #print(readPartition("XY","foo","root"))
 #print(getBlockLocation("/root/foo/bar","Afghanistan"))
