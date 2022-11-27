@@ -126,9 +126,12 @@ def cat(filelist):
     #for file in filelist:
     #    catx.append(db.df.find_one({"location":{'$regex':file}},{'_id':False}))
     return catx'''
-    cols = pd.read_csv(filelist, nrows=0).columns.tolist()
-    data = pd.read_csv(filelist, header=None, skiprows=[0])
-    return(data)
+    x=db.df.find()
+    list=[]
+    for i in x:
+        list.append(i)
+   
+    return (list)
 
 #db.df.find({"$and":[{"location":{'$regex':"Benin"}},{"location":{'$regex':"Belgium"}}]},{'_id':0})
 
