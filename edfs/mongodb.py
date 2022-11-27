@@ -10,33 +10,7 @@ import os
 #mongodb client setup
 client = MongoClient('localhost', 27017)
 db = client['edfs']
-#collection = db['name_of_collection']
-
-#python connector setup
-
-####################
-# Helper Functions #
-####################
-
-def Sort_Tuple(tup: list, idx: int) -> list:
-    return(sorted(tup, key = lambda x: x[idx]))
-
-def key_idx(str_list):
-    try:
-        return str_list.index('Country Name')
-    except:
-        return 0
-
-def key_cleaning(row):
-    #key cleaning
-    clean_key =  re.sub(r'[^A-Za-z0-9 ]+', '', row[0]).replace(" ", "_")
-    key = clean_key if clean_key != "" else "invalid_key"
-    if key.isnumeric() and key.length() > 0:
-        key = f"t{key}"
-    if len(key) >= 64:
-        key = key[0:40]
-    return key
-
+        
 ####################
 # API Functions    #
 ####################
@@ -58,7 +32,7 @@ def read_dataset(path):
 
 def seek(path):
     #print("seek", db.blockLocations.find_one({"path": path}))
-    return db.blockLocations.find_one({"Path": path})
+    return db.blockLocations.find_one({"path": path})
 
 def mkdir(path, name):
     result = seek(path)
@@ -67,10 +41,11 @@ def mkdir(path, name):
     if not result:
         path = path + "/" + name
         db.blockLocations.insert_one({"Path": path, "type" : 'DIRECTORY'})
+        output = f"Directory created"
     else:
         output = f"Invalid path: {path}"
-    print("mkdir",output)
-    #return output
+    #print("mkdir",output)
+    return output
 
 def rm(path, name):
     result = seek(path)
@@ -81,12 +56,13 @@ def rm(path, name):
         output = f"{path} deleted"
     else:
         output = "invalid deletion"
-    print(output)
+    #print(output)
     return output
 
 
 def ls(path):
     result = seek(path)
+    print(result)
     if result:
         if result["type"] == "FILE":
             output = "Cannot run 'ls' on files"
@@ -114,11 +90,26 @@ def readPartition(inp,file,path):
     else:
         return ("FILE DOES NOT EXIST")
 
-def cat(path):
-    db.blockLocations.aggregate([
+def cat(path1):
+    '''db.blockLocations.aggregate([
   { "$project": { "path": { "$concat": [ "$path", " - ", "$type" ] } } },
   { "$merge": "Concatenate" }
+])'''
+    #path=location=path1+file
+    db.blockLocations.aggregate([
+    { "$lookup":
+        {
+           "from": "df",
+           "localField": "path",
+           "foreignField": "location",
+           "as": "merge"
+        }
+    },
+    {
+        "$merge":"Concatenate"
+    }
 ])
+    #return(db.blockLocations.find_one({"path":f"path"}))
     return("Concatenated")
 
 def put(path, name, csvf):
@@ -137,6 +128,7 @@ def put(path, name, csvf):
         for field in header:
             row[field]=each[field]
             blockLoc["path"] = path+ "/"+ each["\ufeffCountry Name"]
+            row["location"] = path+ "/"+ each["\ufeffCountry Name"]
             blockLoc["type"] = "FILE"
         #print (row)
         db.df.insert_one(row)
@@ -162,7 +154,7 @@ def delete(list):
 def new_env(edfs):
     try:
         db = client['edfs']
-        db.df.insert_one({"path":'/root',"type":'DIRECTORY'})
+        db.blockLocations.insert_one({"path":'/root',"type":'DIRECTORY'})
         return f"{edfs} created"
     except:
         return "Database error"
@@ -201,14 +193,14 @@ def test_edfs(argv):
 
 test_edfs(sys.argv[1])
 #test_edfs("--new")
-#mkdir("/root", "foo")
+#print(mkdir("/root", "user"))
 #mkdir("/root/foo", "bar")
 #rm("/root/foo", "bar")
 #put("/root/foo", "data", "Data.csv")
 #seek("/root/foo/data")
 #seek("/root/foo/bar")
 #rm("/root", "bar")
-#print(ls("/root/foo"))
-#print(cat("/root/foo/Argentina"))
+#print(ls("/root"))
+#print(cat("/root/foo/","Argentina"))
 #print(read_dataset("/Users/digvijaydesai/Downloads/ashita_code/Data.csv"))
 #print(readPartition("XY","foo","root"))
