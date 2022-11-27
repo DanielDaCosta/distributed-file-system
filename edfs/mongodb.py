@@ -84,7 +84,7 @@ def ls(path):
 
 def readPartition(inp,file,path):
     path= '/'+path+'/'+file+'/'+inp
-    X = db.blockLocations.find_one({"path":path}, {'_id':False})
+    X = db.df.find_one({"location":path}, {'_id':False})
     if(X):
         return X
     else:
