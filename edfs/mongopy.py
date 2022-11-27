@@ -9,30 +9,19 @@ from pymongo import MongoClient
 # mongodb client setup #
 ########################
 
-<<<<<<< HEAD
 # client = MongoClient('localhost', 27017)
 #db = client['edfs']
 client = MongoClient('mongodb://root:root@localhost:27017/')
 db = client['edfs']
 # db = new Mongo().getDB("edfs")
-=======
-client = MongoClient('localhost', 27017)
-db = client['edfs']
-#db=new Mongo().getDB("edfs")
->>>>>>> 1b81c4d60444ce83b44817ad961a760da08a05b0
 #collection = db['name_of_collection']
 
 #python connector setup
 mydb = ccnx.connect(
     host="localhost",
     user="root",
-<<<<<<< HEAD
     password="root",
     database="edfs_mongo"
-=======
-    password="",
-    database="edfs"
->>>>>>> 1b81c4d60444ce83b44817ad961a760da08a05b0
 )
 mycursor = mydb.cursor(buffered=True)
 
