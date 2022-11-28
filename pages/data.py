@@ -187,7 +187,7 @@ def change_edfs(edfs_filter):
         dataset_list = ['Access_Electricity', 'Access_Fuels']
     elif edfs_filter == "MongoDB":
         import edfs.mongodb as file_system
-        dataset_list = ['Stats_Cap_Ind_Sample']
+        dataset_list = ['GDP_Growth']
     else:
         import edfs.firebase as file_system
         dataset_list = ['Consume_Price_Index', 'Per_Capita_GDP']
@@ -209,7 +209,7 @@ def select_dataset(dataset_name, edfs_filter):
         if edfs_filter == "MySQL" and file_name in dataset_list:
             data = file_system.read_dataset(f"/root/user/{file_name}")
         elif edfs_filter == "MongoDB":
-            data = file_system.read_dataset(f"/root/foo/{file_name}")
+            data = file_system.read_dataset(f"datasets/{file_name}.csv")
         else:
             data = file_system.read_dataset(f"root/user/{file_name}")
         

@@ -103,7 +103,7 @@ def select_dataset(edfs_filter):
     if edfs_filter == "MySQL":
         import edfs.mysql as file_system
     elif edfs_filter == "MongoDB":
-        import edfs.mongopy as file_system
+        import edfs.mongodb as file_system
     else:
         import edfs.firebase as file_system
     return None
