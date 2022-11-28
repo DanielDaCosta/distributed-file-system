@@ -48,7 +48,7 @@ def intersection(lst1, lst2):
 #####################
 def mongodb_map(targets, file):
     col_blacklist = ["location", "_id"]
-    mango_tree = mongo.cat('/root/foo/data')
+    mango_tree = mongo.cat(file)
     mangos = []
     for mango_fruit in mango_tree:
         mango_pudding = ','.join([value for key, value in mango_fruit.items() if key not in col_blacklist])
