@@ -91,40 +91,6 @@ def readPartition(inp,file,path):
         return ("FILE DOES NOT EXIST")
 
 def cat(filelist):
-    '''db.blockLocations.aggregate([
-  { "$project": { "path": { "$concat": [ "$path", " - ", "$type" ] } } },
-  { "$merge": "Concatenate" }
-])'''
-    '''db.blockLocations.aggregate([
-    { "$lookup":
-        {
-           "from": "df",
-           "localField": "path",
-           "foreignField": "location",
-           "as": "Country_Data"
-        }
-    },
-    {
-        "$project":{'_id':"0"}
-    },
-    {
-        "$merge":"Concatenate"
-    }
-])'''
-    """x=db.df.find(
-        {"$and":
-        [
-            {"location":{'$regex':file}},
-            {"location":{'$regex':file2}}
-        ]},
-        {'_id':0})"""
-    '''catx = []
-
-    for i in db.df.find({filelist:{'$regex':""}},{'2021':True, 'Country Name':True, '_id':False}):
-        catx.append([i[filelist],i["Country Name"]])
-    #for file in filelist:
-    #    catx.append(db.df.find_one({"location":{'$regex':file}},{'_id':False}))
-    return catx'''
     x=db.df.find()
     list=[]
     for i in x:
