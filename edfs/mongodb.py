@@ -3,15 +3,14 @@ import re
 import sys
 import pandas as pd
 from pymongo import MongoClient
-import simplejson as sp
+# import simplejson as sp
 import json
 import os
-import re
 
-#mongodb client setup
-client = MongoClient('localhost', 27017)
+# MongoDB client setup
+client = MongoClient("mongodb://root:root@localhost:27017/")
 db = client['edfs']
-        
+
 ####################
 # API Functions    #
 ####################
@@ -20,6 +19,8 @@ def read_dataset(path):
     df=pd.read_csv(path)
     df=df.reset_index(drop=True)
     #df_melted = df.melt(df.set_index('Country Name'))
+    df.head()
+    df = df.drop(["Country Code"], axis=1)
     new_columns = list()
     columns = df.columns.str.strip()
     for c in columns:
@@ -28,8 +29,11 @@ def read_dataset(path):
     # change column names in dataframe
     df.columns = new_columns
     df.columns = df.columns.astype(str)
+    df_melted = df.melt(id_vars=["Country_Name", "Series_Name"],
+        var_name="Year",
+        value_name="Value")
     #print("readDataset", df_melted.astype({'Year':'int', 'Value': 'float'}))
-    return df
+    return  df_melted.astype({'Year':'int', 'Value': 'float'})
 
 def seek(path):
     #print("seek", db.blockLocations.find_one({"path": path}))
@@ -63,7 +67,7 @@ def rm(path, name):
 
 def ls(path):
     result = seek(path)
-    print("ls",result)
+    # print("ls",result)
     if result:
         if result["type"] == "FILE":
             output = "Cannot run 'ls' on files"
@@ -83,56 +87,24 @@ def ls(path):
         return final
 
 def readPartition(inp,file,path):
-    #a=put(file,path)
-    path1= '/'+path+'/'+file+'/'+inp
-    X = db.blockLocations.find_one({"path":path1})
+    path= '/'+path+'/'+file+'/'+inp
+    X = db.df.find_one({"location":path}, {'_id':False})
     if(X):
-        return ("FILE EXISTS")
+        return X
     else:
         return ("FILE DOES NOT EXIST")
 
 def cat(filelist):
-    '''db.blockLocations.aggregate([
-  { "$project": { "path": { "$concat": [ "$path", " - ", "$type" ] } } },
-  { "$merge": "Concatenate" }
-])'''
-    '''db.blockLocations.aggregate([
-    { "$lookup":
-        {
-           "from": "df",
-           "localField": "path",
-           "foreignField": "location",
-           "as": "Country_Data"
-        }
-    },
-    {
-        "$project":{'_id':"0"}
-    },
-    {
-        "$merge":"Concatenate"
-    }
-])'''
-    """x=db.df.find(
-        {"$and":
-        [
-            {"location":{'$regex':file}},
-            {"location":{'$regex':file2}}
-        ]},
-        {'_id':0})"""
-    '''catx = []
-
-    for i in db.df.find({filelist:{'$regex':""}},{'2021':True, 'Country Name':True, '_id':False}):
-        catx.append([i[filelist],i["Country Name"]])
-    #for file in filelist:
-    #    catx.append(db.df.find_one({"location":{'$regex':file}},{'_id':False}))
-    return catx'''
-    cols = pd.read_csv(filelist, nrows=0).columns.tolist()
-    data = pd.read_csv(filelist, header=None, skiprows=[0])
-    return(data)
+    x=db.df.find()
+    list=[]
+    for i in x:
+        list.append(i)
+   
+    return (list)
 
 #db.df.find({"$and":[{"location":{'$regex':"Benin"}},{"location":{'$regex':"Belgium"}}]},{'_id':0})
 
-def put(path, name, csvf):
+def put(path, csvf):
     header = [ "\ufeffCountry Name",	"Country Code",	"Indicator Name",
     	"2003",	"2004",	"2005",	"2006",	"2007",	"2008",	"2009",	
         "2010",	"2011",	"2012",	"2013",	"2014",	"2015",	"2016",
@@ -155,9 +127,8 @@ def put(path, name, csvf):
             blockLoc["type"] = "FILE"
         db.df.insert_one(row)
         db.blockLocations.insert_one(blockLoc)
-    return("Inserted Data")
+    return ("Inserted Data")
 
-#session = db.getMongo().startSession( { readPreference: { mode: "primary" } } )
 def getPartitionLocations(path):
     #path1= path+'/'+filepartition
     X = db.blockLocations.find({"path":{"$regex":path}},{"path":True,"_id":False})
@@ -168,6 +139,7 @@ def getPartitionLocations(path):
         return loc[1:]
     else:
         return ("FILE DOES NOT EXIST")
+
 ######################
 # Database Functions #
 ######################
@@ -220,19 +192,3 @@ def test_edfs(argv):
         print(start_env(edfs))
         print(mkdir("/root", "foo"))
         print(mkdir("/root/foo", "bar"))
-
-test_edfs(sys.argv[1])
-#test_edfs("--new")
-#print(mkdir('/root', "user"))
-#mkdir("/root/foo", "bar")
-#rm("/root/foo", "bar")
-#put("/root/foo", "data", "/Users/digvijaydesai/Downloads/ashita_code/Data.csv")
-#seek("/root/foo/data")
-#seek("/root/foo/bar")
-#rm("/root", "bar")
-#print(ls('/root'))
-#print(cat("/Users/digvijaydesai/Downloads/ashita_code/Data.csv"))
-#print(cat("/Users/digvijaydesai/Downloads/DSCI 552 ML/hw0/Salaries.csv"))
-#print(read_dataset("/Users/digvijaydesai/Downloads/ashita_code/Data.csv"))
-#print(readPartition("XY","foo","root"))
-#print(getPartitionLocations("/root/foo"))
