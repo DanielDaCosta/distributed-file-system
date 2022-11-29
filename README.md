@@ -26,9 +26,6 @@
 - readPartition /root/user/Access_Electricity Haiti
 - put /root/user Access_Fuels datasets/Access_Fuels.csv
 
-# References
-- https://realpython.com/python-dash/
-
 # MongoDB
 
 ## Docker
@@ -39,3 +36,6 @@
  - mkdir /root/foo bar
  - put /root/foo data datasets/Data.csv
  - cat /root/foo/data
+
+# References
+- https://realpython.com/python-dash/
