@@ -3,14 +3,16 @@ import re
 import sys
 import pandas as pd
 from pymongo import MongoClient
-# import simplejson as sp
+import simplejson as sp
 import json
 import os
+import re
+import fileinput
 
-# MongoDB client setup
-client = MongoClient("mongodb://root:root@localhost:27017/")
+#mongodb client setup
+client = MongoClient('localhost', 27017)
 db = client['edfs']
-
+        
 ####################
 # API Functions    #
 ####################
@@ -19,8 +21,6 @@ def read_dataset(path):
     df=pd.read_csv(path)
     df=df.reset_index(drop=True)
     #df_melted = df.melt(df.set_index('Country Name'))
-    df.head()
-    df = df.drop(["Country Code"], axis=1)
     new_columns = list()
     columns = df.columns.str.strip()
     for c in columns:
@@ -29,11 +29,8 @@ def read_dataset(path):
     # change column names in dataframe
     df.columns = new_columns
     df.columns = df.columns.astype(str)
-    df_melted = df.melt(id_vars=["Country_Name", "Series_Name"],
-        var_name="Year",
-        value_name="Value")
     #print("readDataset", df_melted.astype({'Year':'int', 'Value': 'float'}))
-    return  df_melted.astype({'Year':'int', 'Value': 'float'})
+    return df
 
 def seek(path):
     #print("seek", db.blockLocations.find_one({"path": path}))
@@ -67,7 +64,7 @@ def rm(path, name):
 
 def ls(path):
     result = seek(path)
-    # print("ls",result)
+    print("ls",result)
     if result:
         if result["type"] == "FILE":
             output = "Cannot run 'ls' on files"
@@ -96,38 +93,61 @@ def readPartition(inp,file,path):
 
 def cat(filelist):
     x=db.df.find()
+    y=db.temp.find()
+    list1=[]
     list=[]
     for i in x:
         list.append(i)
-   
-    return (list)
+    for j in y:
+        list1.append(j)
+    if(filelist=="data"):
+        return list
+    elif(filelist=="game"):
+        return list1
+    else:
+        return("File does not exist")
 
-#db.df.find({"$and":[{"location":{'$regex':"Benin"}},{"location":{'$regex':"Belgium"}}]},{'_id':0})
-
-def put(path, csvf):
-    header = [ "\ufeffCountry Name",	"Country Code",	"Indicator Name",
-    	"2003",	"2004",	"2005",	"2006",	"2007",	"2008",	"2009",	
-        "2010",	"2011",	"2012",	"2013",	"2014",	"2015",	"2016",
-        "2017",	"2018",	"2019",	"2020",	"2021"]
-    new_headers_list=[ "Country Name",	"Country Code",	"Indicator Name",
-    	"2003",	"2004",	"2005",	"2006",	"2007",	"2008",	"2009",	
-        "2010",	"2011",	"2012",	"2013",	"2014",	"2015",	"2016",
-        "2017",	"2018",	"2019",	"2020",	"2021"]
-    csvfile = open( csvf, 'r+')
-    reader = csv.DictReader( csvfile )
-    reader.fieldnames = new_headers_list
-    for each in reader:
-        #print(each)
-        row={}
-        blockLoc = {}
-        for field in new_headers_list:
-            row[field]=each[field]
-            blockLoc["path"] = path+ "/"+ each["Country Name"]
-            row["location"] = path+ "/"+ each["Country Name"]
-            blockLoc["type"] = "FILE"
-        db.df.insert_one(row)
-        db.blockLocations.insert_one(blockLoc)
-    return ("Inserted Data")
+def put(path, name, csvf):
+    if("Data.csv" in csvf):
+        header = [ "\ufeffCountry Name",	"Country Code",	"Indicator Name",
+    	    "2003",	"2004",	"2005",	"2006",	"2007",	"2008",	"2009",	
+            "2010",	"2011",	"2012",	"2013",	"2014",	"2015",	"2016",
+            "2017",	"2018",	"2019",	"2020",	"2021"]
+        new_headers_list=[ "Country Name",	"Country Code",	"Indicator Name",
+    	    "2003",	"2004",	"2005",	"2006",	"2007",	"2008",	"2009",	
+            "2010",	"2011",	"2012",	"2013",	"2014",	"2015",	"2016",
+            "2017",	"2018",	"2019",	"2020",	"2021"]
+        csvfile = open( csvf, 'r+')
+        reader = csv.DictReader( csvfile )
+        reader.fieldnames = new_headers_list
+        for each in reader:
+            #print(each)
+            row={}
+            blockLoc = {}
+            for field in new_headers_list:
+                row[field]=each[field]
+                blockLoc["path"] = path+ "/"+ each["Country Name"]
+                row["location"] = path+ "/"+ each["Country Name"]
+                blockLoc["type"] = "FILE"
+            db.df.insert_one(row)
+            db.blockLocations.insert_one(blockLoc)
+        return("Inserted Data")
+    else:
+        cols = pd.read_csv(csvf, nrows=0).columns.tolist()
+        csvfile = open( csvf, 'r+')
+        reader = csv.DictReader( csvfile )
+        reader.fieldnames = cols
+        for each in reader:
+            #print(each)
+            row={}
+            #blockLoc = {}
+            for field in cols:
+                row[field]=each[field]
+                #blockLoc["path"] = path+ "/"+ each["Country Name"]
+                row["location"] = path+ "/"+ each["yearID"]
+                #blockLoc["type"] = "FILE"
+            db.temp.insert_one(row)
+        return("Inserted Data")
 
 def getPartitionLocations(path):
     #path1= path+'/'+filepartition
@@ -139,7 +159,6 @@ def getPartitionLocations(path):
         return loc[1:]
     else:
         return ("FILE DOES NOT EXIST")
-
 ######################
 # Database Functions #
 ######################
@@ -179,7 +198,6 @@ def start_env(edfs):
 def test_edfs(argv):
 
     edfs = "edfs"
-
     #Testing
     if "--delete" in argv:
         print(delete_env(edfs))
@@ -192,3 +210,19 @@ def test_edfs(argv):
         print(start_env(edfs))
         print(mkdir("/root", "foo"))
         print(mkdir("/root/foo", "bar"))
+
+##test_edfs(sys.argv[1])
+#test_edfs("--new")
+#print(mkdir('/root', "user"))
+#mkdir("/root/foo", "bar")
+#rm("/root/foo", "bar")
+#print(put("/root/foo", "data", "/Users/digvijaydesai/Downloads/ashita_code/Data.csv"))
+#seek("/root/foo/data")
+#seek("/root/foo/bar")
+#rm("/root", "bar")
+#print(ls('/root'))
+#print(put("/root/foo", "temp", "/Users/digvijaydesai/Downloads/DSCI 552 ML/hw0/Salaries.csv"))
+#print(cat("etc"))
+#print(read_dataset("/Users/digvijaydesai/Downloads/ashita_code/Data.csv"))
+#print(readPartition("Belgium","foo","root"))
+#print(getPartitionLocations("/root/foo"))
